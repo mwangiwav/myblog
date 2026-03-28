@@ -12,7 +12,7 @@ let relativePath = ".";
 let headerHTML = '<ul><li><a href="' + relativePath + '/home.html">home</a></li></ul>';
 
 // Generate Footer HTML (keep your 2026 rights reserved)
-let footerHTML = "<div><img src='/images/gifs/neko.gif' style='margin-top:20px;'/><p>© 2026 mwangi, all rights reserved</p></div>";
+let footerHTML = "<div><img src='neko.gif' style='margin-top:20px;'/><p>© 2026 mwangi, all rights reserved</p></div>";
 
 // Insert header & footer if divs exist
 if (document.getElementById("header")) {
