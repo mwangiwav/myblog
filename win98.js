@@ -63,7 +63,7 @@ chatBottomBtn.addEventListener("click", function () {
 function pauseTrack() {
   document.getElementById("music").pause();
   isPlaying = false;
-  playpause_btn.innerHTML = '<button class="player-button"><img src="/images/win98/play.png" class="controlimg"></button>';
+  playpause_btn.innerHTML = '<button class="player-button"><img src="play.png" class="controlimg"></button>';
 }
 
 browserCloseBtn.addEventListener("click", function () {
