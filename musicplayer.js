@@ -83,7 +83,6 @@ let track_list = [
     path: "https://files.catbox.moe/qnm2as.mp3",
   },
 ];
-
 function loadTrack(track_index) {
   clearInterval(updateTimer);
   resetValues();
@@ -121,7 +120,7 @@ function playTrack() {
   isPlaying = true;
 
   // replace icon with the pause icon
-  playpause_btn.innerHTML = '<button class="player-button"><img src="pause.png" class="controlimg"></i></button>';
+  playpause_btn.innerHTML = '<button class="player-button"><img src="win98/pause.png" class="controlimg"></i></button>';
 }
 
 // pauses track when pause button is pressed
@@ -130,7 +129,7 @@ function pauseTrack() {
   isPlaying = false;
 
   // replace icon with the play icon
-  playpause_btn.innerHTML = '<button class="player-button"><img src="play.png" class="controlimg"></button>';
+  playpause_btn.innerHTML = '<button class="player-button"><img src="win98/play.png" class="controlimg"></button>';
 }
 
 // moves to the next track
