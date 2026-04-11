@@ -24,10 +24,10 @@ let curr_track = document.getElementById("music");
 let track_list = [
   {
     name: "drive ME crazy - lil yachty",
-    path: "https://files.catbox.moe/dnlokb.mp3",
+    path: "https://files.catbox.moe/l17ehn.mp3",
   },
   {
-    name: "Baby Keem - Bullies (ft. Kendrick Lamar)",
+    name: "Bullies - Baby Keem ft. Kendrick Lamar",
     path: "https://files.catbox.moe/gwo0ps.mp3",
   },
   {
