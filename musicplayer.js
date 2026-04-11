@@ -55,8 +55,8 @@ let track_list = [
     path: "https://files.catbox.moe/36mnc4.mp3",
   },
    {
-    name: "Sanctuary Guardians - Earthbound OST",
-    path: "https://files.catbox.moe/ekla59.mp3",
+    name: "Through the wire - Kanye West",
+    path: "https://files.catbox.moe/cbgby0.mp3",
   },
   {
     name: "Amusement Park - Nier: Autumata OST",
