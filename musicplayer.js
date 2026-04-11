@@ -31,13 +31,14 @@ let track_list = [
     path: "https://files.catbox.moe/gwo0ps.mp3",
   },
   {
-    name: "Pixelated kisses - joji",
-    path: "https://files.catbox.moe/33ycvz.mp3",
-  },
-  {
     name: "popstar in da bits - young eman",
     path: "https://files.catbox.moe/uefjs6.mp3",
   },
+  {
+    name: "Pixelated kisses - joji",
+    path: "https://files.catbox.moe/33ycvz.mp3",
+  },
+  
   {
     name: "Die Hard - Kendrick lamar",
     path: "https://files.catbox.moe/j630gl.mp3",
