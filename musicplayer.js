@@ -27,6 +27,10 @@ let track_list = [
     path: "https://files.catbox.moe/dnlokb.mp3",
   },
   {
+    name: "Baby Keem - Bullies (ft. Kendrick Lamar)",
+    path: "https://files.catbox.moe/gwo0ps.mp3",
+  },
+  {
     name: "Pixelated kisses - joji",
     path: "https://files.catbox.moe/33ycvz.mp3",
   },
@@ -50,11 +54,7 @@ let track_list = [
     name: "sAy sOMETHINg - Lil Yachty",
     path: "https://files.catbox.moe/36mnc4.mp3",
   },
-  {
-    name: "Baby Keem - Bullies (ft. Kendrick Lamar)",
-    path: "https://files.catbox.moe/gwo0ps.mp3",
-  },
-  {
+   {
     name: "Sanctuary Guardians - Earthbound OST",
     path: "https://files.catbox.moe/ekla59.mp3",
   },
