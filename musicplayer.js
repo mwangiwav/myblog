@@ -51,8 +51,8 @@ let track_list = [
     path: "https://files.catbox.moe/36mnc4.mp3",
   },
   {
-    name: "Iwatodai Dorm -Reload- - Persona 3 Reload OST",
-    path: "https://files.catbox.moe/o5x7n0.mp3",
+    name: "Baby Keem - Bullies (ft. Kendrick Lamar)",
+    path: "https://files.catbox.moe/gwo0ps.mp3",
   },
   {
     name: "Sanctuary Guardians - Earthbound OST",
