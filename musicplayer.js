@@ -35,17 +35,19 @@ let track_list = [
     path: "https://files.catbox.moe/uefjs6.mp3",
   },
   {
+    name: "new david bowie - Jim Legxacy.",
+    path: "https://files.catbox.moe/a45m05.mp3",
+  },
+  {
+    name: "Acknowledge me - doja cat ft the joy",
+    path: "https://files.catbox.moe/qf7msq.mp3",
+  },
+  {
     name: "Through the wire - Kanye West",
     path: "https://files.catbox.moe/cbgby0.mp3",
   },
-  {
-    name: "Pixelated kisses - joji",
-    path: "https://files.catbox.moe/33ycvz.mp3",
-  },
-  {
-    name: "Die Hard - Kendrick lamar",
-    path: "https://files.catbox.moe/j630gl.mp3",
-  },
+
+ 
   {
     name: "DONT BE DUMB / TRIP BABY - asap rocky",
     path: "https://files.catbox.moe/dh6bsy.mp3",
