@@ -35,6 +35,10 @@ let track_list = [
     path: "https://files.catbox.moe/uefjs6.mp3",
   },
   {
+    name: "Through the wire - Kanye West",
+    path: "https://files.catbox.moe/cbgby0.mp3",
+  },
+  {
     name: "Pixelated kisses - joji",
     path: "https://files.catbox.moe/33ycvz.mp3",
   },
@@ -54,10 +58,7 @@ let track_list = [
     name: "sAy sOMETHINg - Lil Yachty",
     path: "https://files.catbox.moe/36mnc4.mp3",
   },
-   {
-    name: "Through the wire - Kanye West",
-    path: "https://files.catbox.moe/cbgby0.mp3",
-  },
+  
   {
     name: "Amusement Park - Nier: Autumata OST",
     path: "https://files.catbox.moe/u4mp88.mp3",
