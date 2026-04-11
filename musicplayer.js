@@ -38,7 +38,6 @@ let track_list = [
     name: "Pixelated kisses - joji",
     path: "https://files.catbox.moe/33ycvz.mp3",
   },
-  
   {
     name: "Die Hard - Kendrick lamar",
     path: "https://files.catbox.moe/j630gl.mp3",
