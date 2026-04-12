@@ -35,7 +35,7 @@ let track_list = [
     path: "https://files.catbox.moe/uefjs6.mp3",
   },
   {
-    name: "new david bowie - Jim Legxacy.",
+    name: "new david bowie - Jim Legxacy",
     path: "https://files.catbox.moe/0pldg8.mp3",
   },
   {
