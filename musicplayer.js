@@ -60,8 +60,8 @@ let track_list = [
   },
   
   {
-    name: "Amusement Park - Nier: Autumata OST",
-    path: "https://files.catbox.moe/u4mp88.mp3",
+    name: "let me go - daniel ceasar",
+    path: "https://file.garden/adsn6IDutmhqKH5B/never%20see%20me%20again%20-%20kanye%20west.mp3",
   },
   {
     name: "See In Your Fantasy - OMORI OST",
