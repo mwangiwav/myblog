@@ -80,8 +80,8 @@ let track_list = [
     path: "https://files.catbox.moe/4ygsrp.mp3",
   },
   {
-    name: "Snow in Summer - Nier Replicant OST",
-    path: "https://files.catbox.moe/qnm2as.mp3",
+    name: "never see me again - Kanye West",
+    path: "https://file.garden/adsn6IDutmhqKH5B/never%20see%20me%20again%20-%20kanye%20west.mp3",
   },
 ];
 function loadTrack(track_index) {
