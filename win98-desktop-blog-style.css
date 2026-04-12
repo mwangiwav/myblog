@@ -401,7 +401,7 @@ p {
 .songtitlearrow {
   background-size: 100%;
   background-repeat: no-repeat;
-  background-image: url("../images/win98/down-arrow.png");
+  background-image: url("down-arrow.png");
   height: 21px;
   width: 21px;
   position: relative;
@@ -484,7 +484,7 @@ a:hover,
 #log-off,
 #shut-down,
 #bottom-button-start {
-  cursor: url("../images/win98/win98-pointer.png"), pointer;
+  cursor: url("win98-pointer.png"), pointer;
 }
 
 /* START MENU */
