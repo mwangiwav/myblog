@@ -36,7 +36,7 @@ let track_list = [
   },
   {
     name: "new david bowie - Jim Legxacy.",
-    path: "https://files.catbox.moe/a45m05.mp3",
+    path: "https://files.catbox.moe/0pldg8.mp3",
   },
   {
     name: "Acknowledge me - doja cat ft the joy",
