@@ -46,8 +46,6 @@ let track_list = [
     name: "Through the wire - Kanye West",
     path: "https://files.catbox.moe/cbgby0.mp3",
   },
-
- 
   {
     name: "DONT BE DUMB / TRIP BABY - asap rocky",
     path: "https://files.catbox.moe/dh6bsy.mp3",
