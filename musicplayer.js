@@ -24,7 +24,7 @@ let curr_track = document.getElementById("music");
 let track_list = [
   {
     name: "drive ME crazy - lil yachty",
-    path: "https://files.catbox.moe/l17ehn.mp3",
+    path: "https://file.garden/adsn6IDutmhqKH5B/YTDown.com_YouTube_Lil-Yachty-drive-ME-crazy-extended-versi_Media_G4ttJvcpuhA_009_128k.mp3",
   },
   {
     name: "Bullies - Baby Keem ft. Kendrick Lamar",
