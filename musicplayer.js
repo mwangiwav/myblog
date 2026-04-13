@@ -64,8 +64,8 @@ let track_list = [
     path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20Let%20Me%20Go%20-%20Daniel%20Caesar.mp3",
   },
   {
-    name: "See In Your Fantasy - OMORI OST",
-    path: "https://files.catbox.moe/vimay3.mp3",
+    name: "MYANNA'S PERSPECTIVE - millkzy",
+    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20MYANNA_S%20PERSPECTIVE%20-%20millkzy.mp3",
   },
   {
     name: "The Days When My Mother Was There - Persona 5 OST",
