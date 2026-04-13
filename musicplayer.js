@@ -52,11 +52,11 @@ let track_list = [
   },
   {
     name: "Love you less - joji",
-    path: "https://files.catbox.moe/3n2f73.mp3",
+    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20LOVE%20YOU%20LESS%20-%20Joji.mp3",
   },
   {
     name: "sAy sOMETHINg - Lil Yachty",
-    path: "https://files.catbox.moe/36mnc4.mp3",
+    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20sAy%20sOMETHINg%20-%20Lil%20Yachty.mp3",
   },
   
   {
