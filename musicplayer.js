@@ -32,11 +32,11 @@ let track_list = [
   },
   {
     name: "popstar in da bits - young eman",
-    path: "https://files.catbox.moe/uefjs6.mp3",
+    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20popstar%20in%20da%20bits%20-%20Young%20Eman.mp3",
   },
   {
     name: "idk idk - Jim Legxacy",
-    path: "https://files.catbox.moe/g41rnh.mp3",
+    path: "https://file.garden/adsn6IDutmhqKH5B/idk%20idk%20-%20jim%20legxacy.mp3",
   },
   {
     name: "Acknowledge me - doja cat ft the joy",
