@@ -28,7 +28,7 @@ let track_list = [
   },
   {
     name: "Bullies - Baby Keem ft. Kendrick Lamar",
-    path: "https://files.catbox.moe/gwo0ps.mp3",
+    path: "https://file.garden/adsn6IDutmhqKH5B/Baby%20Keem%20-%20Bullies%20(ft.%20Kendrick%20Lamar).mp3",
   },
   {
     name: "popstar in da bits - young eman",
@@ -40,11 +40,11 @@ let track_list = [
   },
   {
     name: "Acknowledge me - doja cat ft the joy",
-    path: "https://files.catbox.moe/s905st.mp3",
+    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20ACKNOWLEDGE%20ME%20_feat.%20The%20Joy_%20-%20Doja%20Cat.mp3",
   },
   {
     name: "Through the wire - Kanye West",
-    path: "https://files.catbox.moe/cbgby0.mp3",
+    path: "https://file.garden/adsn6IDutmhqKH5B/Through%20the%20wire%20-%20Kanye%20West.mp3",
   },
   {
     name: "DONT BE DUMB / TRIP BABY - asap rocky",
