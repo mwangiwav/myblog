@@ -39,12 +39,16 @@ let track_list = [
     path: "https://file.garden/adsn6IDutmhqKH5B/idk%20idk%20-%20jim%20legxacy.mp3",
   },
   {
-    name: "Acknowledge me - doja cat ft the joy",
-    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20ACKNOWLEDGE%20ME%20_feat.%20The%20Joy_%20-%20Doja%20Cat.mp3",
+    name: "Westside, Right on time - Kendrick lamar",
+    path: "https://file.garden/adsn6IDutmhqKH5B/westside%2C%20right%20on%20time.mp3",
   },
-  {
+   {
     name: "Through the wire - Kanye West",
     path: "https://file.garden/adsn6IDutmhqKH5B/Through%20the%20wire%20-%20Kanye%20West.mp3",
+  },
+  { 
+    name: "Acknowledge me - doja cat ft the joy",
+    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20ACKNOWLEDGE%20ME%20_feat.%20The%20Joy_%20-%20Doja%20Cat.mp3",
   },
   {
     name: "DONT BE DUMB / TRIP BABY - asap rocky",
@@ -67,10 +71,7 @@ let track_list = [
     name: "MYANNA'S PERSPECTIVE - millkzy",
     path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20MYANNA_S%20PERSPECTIVE%20-%20millkzy.mp3",
   },
-  {
-    name: "The Days When My Mother Was There - Persona 5 OST",
-    path: "https://files.catbox.moe/enfpqt.mp3",
-  },
+
   {
     name: "Fallen Down - Undertale OST",
     path: "https://files.catbox.moe/aew4sx.mp3",
