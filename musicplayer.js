@@ -56,7 +56,7 @@ let track_list = [
   },
   {
     name: "DONT BE DUMB / TRIP BABY - asap rocky",
-    path: "https://files.catbox.moe/dh6bsy.mp3",
+    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20DON_T%20BE%20DUMB%20_%20TRIP%20BABY%20-%20A_AP%20Rocky.mp3",
   },
   {
     name: "Love you less - joji",
