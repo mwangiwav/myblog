@@ -37,6 +37,10 @@ let track_list = [
   {
     name: "idk idk - Jim Legxacy",
     path: "https://file.garden/adsn6IDutmhqKH5B/idk%20idk%20-%20jim%20legxacy.mp3",
+  }, 
+  {
+    name: "BOMB - ¥$",
+    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20BOMB%20-%20__.mp3",
   },
   {
     name: "Westside, Right on time - Kendrick lamar",
@@ -72,10 +76,7 @@ let track_list = [
     path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20MYANNA_S%20PERSPECTIVE%20-%20millkzy.mp3",
   },
 
-  {
-    name: "Fallen Down - Undertale OST",
-    path: "https://files.catbox.moe/aew4sx.mp3",
-  },
+ 
   {
     name: "When the Moon's Reaching Out Stars -Reload- - Persona 3 Reload OST",
     path: "https://files.catbox.moe/4ygsrp.mp3",
