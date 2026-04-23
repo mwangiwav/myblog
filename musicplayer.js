@@ -41,6 +41,10 @@ let track_list = [
   {
     name: "BOMB - ¥$",
     path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20BOMB%20-%20__.mp3",
+  }, 
+  { 
+    name:"Public Enemy - Kendrick Lamar",
+    path: "https://file.garden/adsn6IDutmhqKH5B/public%20enemy%20UNRELEASED%20KENDRICK%20LAMAR%20LEAK%20-%20chirp.mp3",
   },
   {
     name: "Westside, Right on time - Kendrick lamar",
@@ -49,14 +53,10 @@ let track_list = [
    {
     name: "Through the wire - Kanye West",
     path: "https://file.garden/adsn6IDutmhqKH5B/Through%20the%20wire%20-%20Kanye%20West.mp3",
-  },
-  { 
-    name: "Acknowledge me - doja cat ft the joy",
-    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20ACKNOWLEDGE%20ME%20_feat.%20The%20Joy_%20-%20Doja%20Cat.mp3",
-  },
+  },  
   {
-    name: "DONT BE DUMB / TRIP BABY - asap rocky",
-    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20DON_T%20BE%20DUMB%20_%20TRIP%20BABY%20-%20A_AP%20Rocky.mp3",
+    name: "if. (spring in new york) - Brent Faiyaz",
+    path: "https://file.garden/adsn6IDutmhqKH5B/Brent%20Faiyaz%20-%20if.%20(spring%20in%20new%20york)%20-%20Brent%20Faiyaz.mp3",
   },
   {
     name: "bottom bitch - doja",
