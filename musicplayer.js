@@ -20,7 +20,7 @@ let curr_track = document.getElementById("music");
 // DEFINE YOUR SONGS HERE!!!!!
 // MORE THAN FOUR SONGS CAN BE ADDED!!
 // JUST ADD ANOTHER BRACKET WITH NAME AND PATH
-// CATBOX.MOE IS RECOMMENDED FOR UPLOADING MP3 FILES
+// FILEGARDEN IS RECOMMENDED FOR UPLOADING MP3 FILES
 let track_list = [
   {
     name: "drive ME crazy - lil yachty",
