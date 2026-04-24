@@ -59,7 +59,7 @@ let track_list = [
     path: "https://file.garden/adsn6IDutmhqKH5B/Brent%20Faiyaz%20-%20if.%20(spring%20in%20new%20york)%20-%20Brent%20Faiyaz.mp3",
   },
   {
-    name: "bottom bitch - doja",
+    name: "bottom bitch - doja cat",
     path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20Bottom%20Bitch%20-%20Doja%20Cat.mp3",
   },
   {
