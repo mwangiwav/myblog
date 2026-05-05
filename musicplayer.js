@@ -37,12 +37,16 @@ let track_list = [
   {
     name: "idk idk - Jim Legxacy",
     path: "https://file.garden/adsn6IDutmhqKH5B/idk%20idk%20-%20jim%20legxacy.mp3",
-  }, 
+  },  
+  {
+    name: "I already know - young thug",
+    path: " https://file.garden/adsn6IDutmhqKH5B/Young%20Thug%20-%20I%20Already%20Know%20(Unreleased)%20-%20YOUNG%20SLATT%20WORLD.mp3",
+ },
   {
     name: "BOMB - ¥$",
     path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20BOMB%20-%20__.mp3",
-  }, 
-  { 
+  },  
+   { 
     name:"Public Enemy - Kendrick Lamar",
     path: "https://file.garden/adsn6IDutmhqKH5B/public%20enemy%20UNRELEASED%20KENDRICK%20LAMAR%20LEAK%20-%20chirp.mp3",
   },
@@ -50,7 +54,7 @@ let track_list = [
     name: "Westside, Right on time - Kendrick lamar",
     path: "https://file.garden/adsn6IDutmhqKH5B/westside%2C%20right%20on%20time.mp3",
   },
-   {
+    {
     name: "Through the wire - Kanye West",
     path: "https://file.garden/adsn6IDutmhqKH5B/Through%20the%20wire%20-%20Kanye%20West.mp3",
   },  
@@ -58,10 +62,7 @@ let track_list = [
     name: "if. (spring in new york) - Brent Faiyaz",
     path: "https://file.garden/adsn6IDutmhqKH5B/Brent%20Faiyaz%20-%20if.%20(spring%20in%20new%20york)%20-%20Brent%20Faiyaz.mp3",
   },
-  {
-    name: "I already know - young thug",
-    path: "https://file.garden/adsn6IDutmhqKH5B/Young%20Thug%20-%20I%20Already%20Know%20(Unreleased)%20-%20YOUNG%20SLATT%20WORLD.mp3",
-  },
+ 
   {
     name: "sAy sOMETHINg - Lil Yachty",
     path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20sAy%20sOMETHINg%20-%20Lil%20Yachty.mp3",
