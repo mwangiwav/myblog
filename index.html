@@ -9,112 +9,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 <script src="mobiletopnav.js" type="text/javascript" defer></script>
 <title>blog!</title>
-
-<style>
-  #chat-window {
-    display: none;
-    position: fixed;
-    bottom: 28px;
-    right: 16px;
-    width: 280px;
-    z-index: 200;
-    font-family: 'Tahoma', 'Segoe UI', sans-serif;
-    font-size: 11px;
-  }
-  #chat-window .title-bar-text img {
-    vertical-align: middle;
-    margin-right: 4px;
-    width: 14px;
-    height: 14px;
-  }
-  #chat-toolbar {
-    padding: 2px 6px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 10px;
-    background: #d4d0c8;
-    border-bottom: 1px solid #b0a890;
-  }
-  .online-dot {
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    background: #00b800;
-    border-radius: 50%;
-    border: 1px solid #005000;
-  }
-  #my-anon-name {
-    margin-left: auto;
-    color: #555;
-    font-style: italic;
-  }
-  #chat-messages {
-    height: 210px;
-    overflow-y: auto;
-    padding: 5px 6px;
-    background: #fff;
-    border-bottom: 1px solid #b0a890;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .chat-msg {
-    line-height: 1.4;
-    word-break: break-word;
-    font-size: 11px;
-  }
-  .chat-msg .chat-name {
-    font-weight: bold;
-    color: #00008b;
-  }
-  .chat-msg .chat-name.is-mine {
-    color: #8b0000;
-  }
-  .chat-msg .chat-time {
-    color: #999;
-    font-size: 9px;
-    margin-left: 3px;
-  }
-  .chat-sys {
-    color: #888;
-    font-size: 10px;
-    font-style: italic;
-    text-align: center;
-  }
-  #chat-input-area {
-    padding: 4px;
-    display: flex;
-    gap: 3px;
-    align-items: flex-end;
-    background: #d4d0c8;
-  }
-  #chat-input-area textarea {
-    flex: 1;
-    font-family: 'Tahoma', sans-serif;
-    font-size: 11px;
-    height: 36px;
-    resize: none;
-    padding: 2px 3px;
-  }
-  #chat-unread {
-    display: none;
-    background: red;
-    color: #fff;
-    font-size: 9px;
-    font-weight: bold;
-    border-radius: 50%;
-    width: 13px;
-    height: 13px;
-    align-items: center;
-    justify-content: center;
-    margin-left: 2px;
-  }
-</style>
 </head>
-
+ 
 <body>
-
+ 
 <!-- BEGIN BROWSER WINDOW -->
 <div id="browser-window" class="window">
   <div class="title-bar" id="title-bar">
@@ -169,7 +67,7 @@
     <div class="ie-bottom-box" id="last-box"><img src="world-icon.png" /><p>Internet</p></div>
   </div>
 </div>
-
+ 
 <!-- BEGIN DESKTOP ICONS -->
 <div id="desktop-icons">
   <div class="desktop-icon"><img src="computer_explorer.png" /><p>My Computer</p></div>
@@ -179,7 +77,7 @@
   <div class="desktop-icon"><img src="folder.png" /><p>Documents</p></div>
   <div class="desktop-icon" id="cd-player"><img src="cd_audio.png" /><p>CD Player</p></div>
 </div>
-
+ 
 <!-- BEGIN BOTTOM BAR -->
 <div id="bottom-bar" class="window">
   <div id="bottom-bar-buttons">
@@ -202,7 +100,7 @@
       <img src="cd_small.png" />
       <p id="player-label">CD Player</p>
     </div>
-    <div class="bottom-button" id="chat-bottom-btn" onclick="toggleChat()" style="cursor:pointer; display:flex; align-items:center;">
+    <div class="bottom-button" id="chat-bottom-btn" onclick="toggleChat()" style="cursor:pointer;">
       <img src="message-small.png" />
       <p id="player-label">Chat</p>
       <span id="chat-unread">0</span>
@@ -215,7 +113,7 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- BEGIN MUSIC PLAYER -->
 <div class="player" id="music-player">
   <div class="window">
@@ -255,47 +153,43 @@
     </div>
   </div>
 </div>
-
-<div class="title-bar-controls" style="display:none;">
+ 
+<div style="display:none;">
   <button aria-label="Minimize" id="minimizebtn3"></button>
   <button aria-label="Maximize" disabled></button>
   <button aria-label="Close" id="closebtn3"></button>
 </div>
-
-<div class="window-body">
-  <!-- BEGIN START MENU -->
-  <div class="window" id="start-menu">
-    <div id="menu-list">
-      <div class="menu-item"><img src="update-small.png" style="height: 17px" /><p>Windows Update</p></div>
-      <div class="start-line"></div>
-      <div class="menu-item"><img src="programs-small.png" style="height: 17px" /><p>Programs</p></div>
-      <div class="menu-item"><img src="favorites-small.png" /><p>Favorites</p></div>
-      <div class="menu-item"><img src="directory_documents-small.png" style="height: 17px" /><p>Documents</p></div>
-      <div class="menu-item"><img src="settings-small.png" style="height: 17px" /><p>Settings</p></div>
-      <div class="menu-item"><img src="find-small.png" style="height: 17px" /><p>Find</p></div>
-      <div class="menu-item"><img src="help-small.png" style="height: 17px" /><p>Help</p></div>
-      <div class="menu-item"><img src="run-small.png" style="height: 17px" /><p>Run...</p></div>
-      <div class="start-line"></div>
-      <div class="menu-item" id="log-off"><img src="log-off-small.png" style="height: 17px" /><p>Log Off...</p></div>
-      <div class="menu-item" id="shut-down"><img src="shut-down-small.png" style="height: 17px" /><p>Shut Down...</p></div>
-      <div class="arrows">
-        <img src="right-arrow.png" class="start-arrow" />
-        <img src="right-arrow.png" class="start-arrow" />
-        <img src="right-arrow.png" class="start-arrow" />
-        <img src="right-arrow.png" class="start-arrow" />
-        <img src="right-arrow.png" class="start-arrow" />
-      </div>
+ 
+<!-- BEGIN START MENU -->
+<div class="window" id="start-menu">
+  <div id="menu-list">
+    <div class="menu-item"><img src="update-small.png" style="height: 17px" /><p>Windows Update</p></div>
+    <div class="start-line"></div>
+    <div class="menu-item"><img src="programs-small.png" style="height: 17px" /><p>Programs</p></div>
+    <div class="menu-item"><img src="favorites-small.png" /><p>Favorites</p></div>
+    <div class="menu-item"><img src="directory_documents-small.png" style="height: 17px" /><p>Documents</p></div>
+    <div class="menu-item"><img src="settings-small.png" style="height: 17px" /><p>Settings</p></div>
+    <div class="menu-item"><img src="find-small.png" style="height: 17px" /><p>Find</p></div>
+    <div class="menu-item"><img src="help-small.png" style="height: 17px" /><p>Help</p></div>
+    <div class="menu-item"><img src="run-small.png" style="height: 17px" /><p>Run...</p></div>
+    <div class="start-line"></div>
+    <div class="menu-item" id="log-off"><img src="log-off-small.png" style="height: 17px" /><p>Log Off...</p></div>
+    <div class="menu-item" id="shut-down"><img src="shut-down-small.png" style="height: 17px" /><p>Shut Down...</p></div>
+    <div class="arrows">
+      <img src="right-arrow.png" class="start-arrow" />
+      <img src="right-arrow.png" class="start-arrow" />
+      <img src="right-arrow.png" class="start-arrow" />
+      <img src="right-arrow.png" class="start-arrow" />
+      <img src="right-arrow.png" class="start-arrow" />
     </div>
   </div>
 </div>
-
-<!-- ═══════════════════════════════════════════
-     CHAT WINDOW
-═══════════════════════════════════════════ -->
+ 
+<!-- CHAT WINDOW -->
 <div class="window" id="chat-window">
-  <div class="title-bar">
+  <div class="title-bar" id="chat-title-bar">
     <div class="title-bar-text">
-      <img src="message-small.png" />
+      <img src="message-small.png" style="width:14px; height:14px;" />
       mwangi.wav — Live Chat
     </div>
     <div class="title-bar-controls">
@@ -304,41 +198,41 @@
       <button aria-label="Close" onclick="toggleChat()"></button>
     </div>
   </div>
-
+ 
   <div id="chat-toolbar">
     <span class="online-dot"></span>
     <span id="chat-online-count">0 online</span>
     <span id="my-anon-name"></span>
   </div>
-
-  <div class="window-body" style="padding:0; margin:0;">
+ 
+  <div id="chat-main-view">
     <div id="chat-messages">
       <div class="chat-sys">connecting...</div>
     </div>
   </div>
-
+ 
   <div id="chat-input-area">
     <textarea id="chat-msg-input" placeholder="say something... (Enter to send)" onkeydown="handleChatKey(event)"></textarea>
     <button onclick="sendChatMessage()">Send</button>
   </div>
-
+ 
   <div class="status-bar">
     <p class="status-bar-field" id="chat-status">connecting...</p>
     <p class="status-bar-field">mwangi.wav chatroom</p>
   </div>
 </div>
-
+ 
 <script src="script.js" type="text/javascript"></script>
 <script src="musicplayer.js"></script>
 <script src="win98.js" type="text/javascript"></script>
-
+ 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import {
     getDatabase, ref, push, onChildAdded,
     onValue, set, onDisconnect
   } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
-
+ 
   const firebaseConfig = {
     apiKey: "AIzaSyD6B5omh8v-WQT-_MdkBoXNg0z-3y3xSXs",
     authDomain: "mwangiwav-chat.firebaseapp.com",
@@ -348,47 +242,44 @@
     messagingSenderId: "549225106354",
     appId: "1:549225106354:web:7059b2ceb910a92327b2ab"
   };
-
+ 
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
   const messagesRef = ref(db, 'messages');
   const presenceRef = ref(db, 'presence');
-
-  // ── Auto-generate anon name, sticky for the session
+ 
   const adjectives = ['silent','pixel','neon','fuzzy','cosmic','glitch','velvet','static','hollow','ghost','cyber','vapor','broken','lucky','turbo'];
   const nouns = ['moth','node','drift','echo','byte','void','pulse','shade','wave','spark','orbit','haze','form','code','link'];
-
+ 
   function makeAnonName() {
     const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
     const noun = nouns[Math.floor(Math.random() * nouns.length)];
     const num = Math.floor(Math.random() * 90) + 10;
     return `${adj}_${noun}${num}`;
   }
-
+ 
   let username = sessionStorage.getItem('chat_anon_name');
   if (!username) {
     username = makeAnonName();
     sessionStorage.setItem('chat_anon_name', username);
   }
-
+ 
   document.getElementById('my-anon-name').textContent = 'you: ' + username;
   document.getElementById('chat-status').textContent = 'connected as ' + username;
-
-  // Presence
+ 
   const myPresenceRef = ref(db, 'presence/' + username);
   set(myPresenceRef, { name: username });
   onDisconnect(myPresenceRef).remove();
-
-  // Online count
+ 
   onValue(presenceRef, (snap) => {
     const n = snap.size || 0;
     document.getElementById('chat-online-count').textContent = n + ' online';
   });
-
+ 
   let chatOpen = false;
   let unread = 0;
   let initialized = false;
-
+ 
   onChildAdded(messagesRef, (snap) => {
     const msg = snap.val();
     if (!msg) return;
@@ -400,9 +291,9 @@
       badge.textContent = unread;
     }
   });
-
+ 
   setTimeout(() => { initialized = true; }, 1500);
-
+ 
   function appendMessage(name, text, time, isMine) {
     const box = document.getElementById('chat-messages');
     const placeholder = box.querySelector('.chat-sys');
@@ -416,11 +307,11 @@
     box.appendChild(div);
     box.scrollTop = box.scrollHeight;
   }
-
+ 
   function esc(s) {
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   }
-
+ 
   window.sendChatMessage = function () {
     const input = document.getElementById('chat-msg-input');
     const text = input.value.trim();
@@ -428,14 +319,14 @@
     push(messagesRef, { name: username, text, time: Date.now() });
     input.value = '';
   };
-
+ 
   window.handleChatKey = function (e) {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       window.sendChatMessage();
     }
   };
-
+ 
   window.toggleChat = function () {
     const win = document.getElementById('chat-window');
     const btn = document.getElementById('chat-bottom-btn');
@@ -450,9 +341,10 @@
       document.getElementById('chat-messages').scrollTop = 99999;
     }
   };
-
+ 
   document.getElementById('documents-chat').addEventListener('dblclick', window.toggleChat);
 </script>
-
+ 
 </body>
 </html>
+ 
