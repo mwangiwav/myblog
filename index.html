@@ -298,12 +298,9 @@
     const box = document.getElementById('chat-messages');
     const placeholder = box.querySelector('.chat-sys');
     if (placeholder) placeholder.remove();
-    const timeStr = time
-      ? new Date(time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-      : '';
     const div = document.createElement('div');
     div.className = 'chat-msg';
-    div.innerHTML = `<span class="chat-name ${isMine ? 'is-mine' : ''}">${esc(name)}:</span> ${esc(text)}<span class="chat-time">${timeStr}</span>`;
+    div.innerHTML = `<span class="chat-name ${isMine ? 'is-mine' : ''}">${esc(name)}:</span> ${esc(text)};
     box.appendChild(div);
     box.scrollTop = box.scrollHeight;
   }
@@ -316,7 +313,7 @@
     const input = document.getElementById('chat-msg-input');
     const text = input.value.trim();
     if (!text) return;
-    push(messagesRef, { name: username, text, time: Date.now() });
+    push(messagesRef, { name: username, text,});
     input.value = '';
   };
  
