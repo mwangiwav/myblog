@@ -1,305 +1,458 @@
 <!doctype html>
 <html lang="en">
-  <head><script src="site.js" defer></script>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="images/favicons/purplekonpeito.png" />
-    <link rel="stylesheet" type="text/css" href="win98-desktop-blog-style.css" />
-    <link rel="stylesheet" href="https://unpkg.com/98.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <script src="https://iframe.chat/scripts/main.min.js"></script>
-    <script src="mobiletopnav.js" type="text/javascript" defer></script>
-    <title>blog!</title>
-  </head>
-  <body><a href="../cdn-cgi/content%3Fid=oNYHSOpsva5eyoslwWI6hwAdisnAJYQwTb6k7UEKUVA-1774539268.6049464-1.0.1.1-giwT8DWYqvQnU6_47ILHcntgp6MCHZpyq5A.TrMoT.A.html" aria-hidden="true" rel="nofollow noopener" style="display: none !important; visibility: hidden !important"></a>
-    <!-- BEGIN BROWSER WINDOW -->
-    <div id="browser-window" class="window">
-      <div class="title-bar" id="title-bar">
-        <div class="title-bar-text"><img src="ie-small.png"/>welcome to my blog!</div>
-        <div class="title-bar-controls">
-          <button aria-label="Minimize" id="minimizebtn"></button>
-          <button aria-label="Maximize" disabled></button>
-          <button aria-label="Close" id="closebtn"></button>
-        </div>
-      </div>
-      <div class="window-body" id="edit-bar">
-        <div class="line"></div>
-        <p>File</p>
-        <p>Edit</p>
-        <p>View</p>
-        <p>Favorites</p>
-        <p>Tools</p>
-        <p>Help</p>
-      </div>
-      <div class="window-body" id="explorer-icons">
-        <div class="line4"></div>
-        <div class="explorer-w-title">
-          <img src="back_result.ico" />
-          <p>Back</p>
-        </div>
-        <div class="explorer-w-title">
-          <img src="forward_result.ico" />
-          <p>Forward</p>
-        </div>
-        <div class="explorer-w-title">
-          <img src="stop_result.ico" />
-          <p>Stop</p>
-        </div>
-        <div class="explorer-w-title">
-          <img src="reload_result.ico" />
-          <p>Refresh</p>
-        </div>
-        <div class="line3"></div>
-        <div class="explorer-w-title">
-          <img src="search_web.png" />
-          <p>Search</p>
-        </div>
-        <div class="explorer-w-title">
-          <img src="directory_favorites.png" style="height: 32px" />
-          <p>Favorites</p>
-        </div>
-        <div class="explorer-w-title">
-          <img src="history.png" />
-          <p>History</p>
-        </div>
-        <div class="line3"></div>
-      </div>
-      <div id="address-bar" class="field-row">
-        <div class="line2"></div>
-        <label for="address-bar-directory">Address</label>
-        <select>
-          <option>https://mwangi.wav/blog/home</option>
-        </select>
-        <!-- <input id="address-bar-directory" type="text" placeholder="https://angs-corner.nekoweb.org/blog"/> -->
-        <div class="go">
-          <img src="undo_7Ic_icon.ico" style="transform: rotateY(180deg); filter: grayscale(1); height: 23px" />
-          <p>Go</p>
-        </div>
-        <div class="line2"></div>
-        <div class="address-bar-links">
-          <p>Links</p>
-          <p id="extra"><b>>></b></p>
-        </div>
-      </div>
-      <div class="window-body">
-        <div id="blog-main-view">
-          <iframe src="home.html" id="blog-contents"> </iframe>
-          
-        </div>
-      </div>
-      <div id="browser-scroll-bar">
-        <img src="uparrow.png" class="up-arrow" />
-        <div class="scrollbar"></div>
-        <img src="down-arrow.png" class="down-arrow" />
-      </div>
-      <div id="browser-bottom-info">
-        <div class="ie-bottom-box" id="first-box">
-          <img src="ie-small.png" />
-          <p>Done</p>
-        </div>
-        <div class="ie-bottom-box"></div>
-        <div class="ie-bottom-box"></div>
-        <div class="ie-bottom-box" id="last-box">
-          <img src="world-icon.png" />
-          <p>Internet</p>
-        </div>
+<head><script src="site.js" defer></script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/x-icon" href="images/favicons/purplekonpeito.png" />
+<link rel="stylesheet" type="text/css" href="win98-desktop-blog-style.css" />
+<link rel="stylesheet" href="https://unpkg.com/98.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<script src="mobiletopnav.js" type="text/javascript" defer></script>
+<title>blog!</title>
+
+<style>
+  #chat-window {
+    display: none;
+    position: fixed;
+    bottom: 28px;
+    right: 16px;
+    width: 280px;
+    z-index: 200;
+    font-family: 'Tahoma', 'Segoe UI', sans-serif;
+    font-size: 11px;
+  }
+  #chat-window .title-bar-text img {
+    vertical-align: middle;
+    margin-right: 4px;
+    width: 14px;
+    height: 14px;
+  }
+  #chat-toolbar {
+    padding: 2px 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    background: #d4d0c8;
+    border-bottom: 1px solid #b0a890;
+  }
+  .online-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: #00b800;
+    border-radius: 50%;
+    border: 1px solid #005000;
+  }
+  #my-anon-name {
+    margin-left: auto;
+    color: #555;
+    font-style: italic;
+  }
+  #chat-messages {
+    height: 210px;
+    overflow-y: auto;
+    padding: 5px 6px;
+    background: #fff;
+    border-bottom: 1px solid #b0a890;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .chat-msg {
+    line-height: 1.4;
+    word-break: break-word;
+    font-size: 11px;
+  }
+  .chat-msg .chat-name {
+    font-weight: bold;
+    color: #00008b;
+  }
+  .chat-msg .chat-name.is-mine {
+    color: #8b0000;
+  }
+  .chat-msg .chat-time {
+    color: #999;
+    font-size: 9px;
+    margin-left: 3px;
+  }
+  .chat-sys {
+    color: #888;
+    font-size: 10px;
+    font-style: italic;
+    text-align: center;
+  }
+  #chat-input-area {
+    padding: 4px;
+    display: flex;
+    gap: 3px;
+    align-items: flex-end;
+    background: #d4d0c8;
+  }
+  #chat-input-area textarea {
+    flex: 1;
+    font-family: 'Tahoma', sans-serif;
+    font-size: 11px;
+    height: 36px;
+    resize: none;
+    padding: 2px 3px;
+  }
+  #chat-unread {
+    display: none;
+    background: red;
+    color: #fff;
+    font-size: 9px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 13px;
+    height: 13px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2px;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- BEGIN BROWSER WINDOW -->
+<div id="browser-window" class="window">
+  <div class="title-bar" id="title-bar">
+    <div class="title-bar-text"><img src="ie-small.png"/>welcome to my blog!</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize" id="minimizebtn"></button>
+      <button aria-label="Maximize" disabled></button>
+      <button aria-label="Close" id="closebtn"></button>
+    </div>
+  </div>
+  <div class="window-body" id="edit-bar">
+    <div class="line"></div>
+    <p>File</p><p>Edit</p><p>View</p><p>Favorites</p><p>Tools</p><p>Help</p>
+  </div>
+  <div class="window-body" id="explorer-icons">
+    <div class="line4"></div>
+    <div class="explorer-w-title"><img src="back_result.ico" /><p>Back</p></div>
+    <div class="explorer-w-title"><img src="forward_result.ico" /><p>Forward</p></div>
+    <div class="explorer-w-title"><img src="stop_result.ico" /><p>Stop</p></div>
+    <div class="explorer-w-title"><img src="reload_result.ico" /><p>Refresh</p></div>
+    <div class="line3"></div>
+    <div class="explorer-w-title"><img src="search_web.png" /><p>Search</p></div>
+    <div class="explorer-w-title"><img src="directory_favorites.png" style="height: 32px" /><p>Favorites</p></div>
+    <div class="explorer-w-title"><img src="history.png" /><p>History</p></div>
+    <div class="line3"></div>
+  </div>
+  <div id="address-bar" class="field-row">
+    <div class="line2"></div>
+    <label for="address-bar-directory">Address</label>
+    <select><option>https://mwangi.wav/blog/home</option></select>
+    <div class="go">
+      <img src="undo_7Ic_icon.ico" style="transform: rotateY(180deg); filter: grayscale(1); height: 23px" />
+      <p>Go</p>
+    </div>
+    <div class="line2"></div>
+    <div class="address-bar-links"><p>Links</p><p id="extra"><b>>></b></p></div>
+  </div>
+  <div class="window-body">
+    <div id="blog-main-view">
+      <iframe src="home.html" id="blog-contents"> </iframe>
+    </div>
+  </div>
+  <div id="browser-scroll-bar">
+    <img src="uparrow.png" class="up-arrow" />
+    <div class="scrollbar"></div>
+    <img src="down-arrow.png" class="down-arrow" />
+  </div>
+  <div id="browser-bottom-info">
+    <div class="ie-bottom-box" id="first-box"><img src="ie-small.png" /><p>Done</p></div>
+    <div class="ie-bottom-box"></div>
+    <div class="ie-bottom-box"></div>
+    <div class="ie-bottom-box" id="last-box"><img src="world-icon.png" /><p>Internet</p></div>
+  </div>
+</div>
+
+<!-- BEGIN DESKTOP ICONS -->
+<div id="desktop-icons">
+  <div class="desktop-icon"><img src="computer_explorer.png" /><p>My Computer</p></div>
+  <div class="desktop-icon" id="internet-explorer"><img src="ie.png" /><p>Internet Explorer</p></div>
+  <div class="desktop-icon"><img src="recycle_bin_empty.png" /><p>Recycle Bin</p></div>
+  <div class="desktop-icon" id="documents-chat"><img src="messenger.png" /><p>Messenger</p></div>
+  <div class="desktop-icon"><img src="folder.png" /><p>Documents</p></div>
+  <div class="desktop-icon" id="cd-player"><img src="cd_audio.png" /><p>CD Player</p></div>
+</div>
+
+<!-- BEGIN BOTTOM BAR -->
+<div id="bottom-bar" class="window">
+  <div id="bottom-bar-buttons">
+    <div id="bottom-button-start">
+      <img src="start-small.png" />
+      <p id="start-label"><b>Start</b></p>
+    </div>
+    <div class="line2"></div>
+    <div id="bottom-bar-icons">
+      <img src="desktop.png" />
+      <img src="ie-small-icon.png" />
+      <img src="outlook_express.png" />
+    </div>
+    <div class="line2"></div>
+    <div class="bottom-button pressed" id="blog-bottom-btn">
+      <img src="ie-small.png" />
+      <p id="blog-label">https://mwangiwav.com...</p>
+    </div>
+    <div class="bottom-button" id="player-bottom-btn">
+      <img src="cd_small.png" />
+      <p id="player-label">CD Player</p>
+    </div>
+    <div class="bottom-button" id="chat-bottom-btn" onclick="toggleChat()" style="cursor:pointer; display:flex; align-items:center;">
+      <img src="message-small.png" />
+      <p id="player-label">Chat</p>
+      <span id="chat-unread">0</span>
+    </div>
+    <div id="bottom-spacer"></div>
+    <div id="application-box">
+      <img src="application-small.png" />
+      <img src="volume-small.png" />
+      <p id="time"></p>
+    </div>
+  </div>
+</div>
+
+<!-- BEGIN MUSIC PLAYER -->
+<div class="player" id="music-player">
+  <div class="window">
+    <div class="title-bar" id="music-title-bar">
+      <div class="title-bar-text"><img src="cd_small.png" /><p>CD Player</p></div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize" id="minimizebtn2"></button>
+        <button aria-label="Maximize" disabled></button>
+        <button aria-label="Close" id="closebtn2"></button>
       </div>
     </div>
-
-    <!-- BEGIN DESPTOP ICONS -->
-    <div id="desktop-icons">
-      <div class="desktop-icon">
-        <img src="computer_explorer.png" />
-        <p>My Computer</p>
-      </div>
-      <div class="desktop-icon" id="internet-explorer">
-        <img src="ie.png" />
-        <p>Internet Explorer</p>
-      </div>
-      <div class="desktop-icon">
-        <img src="recycle_bin_empty.png" />
-        <p>Recycle Bin</p>
-      </div>
-      <div class="desktop-icon" id="documents-chat">
-        <img src="messenger.png" />
-        <p>Messenger</p>
-      </div>
-      <div class="desktop-icon">
-        <img src="folder.png" />
-        <p>Documents</p>
-      </div>
-      <div class="desktop-icon" id="cd-player">
-        <img src="cd_audio.png" />
-        <p>CD Player</p>
-      </div>
-    </div>
-
-    <!-- BEGIN BOTTOM BAR -->
-    <div id="bottom-bar" class="window">
-      <div id="bottom-bar-buttons">
-        <div id="bottom-button-start">
-          <img src="start-small.png" />
-          <p id="start-label"><b>Start</b></p>
-        </div>
-        <div class="line2"></div>
-        <div id="bottom-bar-icons">
-          <img src="desktop.png" />
-          <img src="ie-small-icon.png" />
-          <img src="outlook_express.png" />
-        </div>
-        <div class="line2"></div>
-        <div class="bottom-button pressed" id="blog-bottom-btn">
-          <img src="ie-small.png" />
-          <p id="blog-label">https://mwangiwav.com...</p>
-        </div>
-        <div class="bottom-button" id="player-bottom-btn">
-          <img src="cd_small.png" />
-          <p id="player-label">CD Player</p>
-        </div>
-        <div class="bottom-button" id="chat-bottom-btn">
-          <img src="message-small.png" />
-          <p id="player-label">Chat</p>
-        </div>
-        <div id="bottom-spacer"></div>
-        <div id="application-box">
-          <img src="application-small.png" />
-          <img src="volume-small.png" />
-          <p id="time"></p>
-        </div>
-      </div>
-    </div>
-
-    <!-- BEGIN MUSIC PLAYER -->
-    <div class="player" id="music-player">
-      <div class="window">
-        <div class="title-bar" id="music-title-bar">
-          <div class="title-bar-text">
-            <img src="cd_small.png" />
-            <p>CD Player</p>
-          </div>
-          <div class="title-bar-controls">
-            <button aria-label="Minimize" id="minimizebtn2"></button>
-            <button aria-label="Maximize" disabled></button>
-            <button aria-label="Close" id="closebtn2"></button>
-          </div>
-        </div>
-        <div class="window-body">
-          <div class="flex">
-            <div id="imagestyle"><img class="ic" src="disk-spin.gif" alt=""/></div>
-            <div id="musicplayer">
-              <div class="songtitlewindow">
-                <div class="flex">
-                 <marquee scrollamount="4" class="songtitle">playing 1 of 15: drive ME crazy - lil yachty</marquee>
-                  <div class="songtitlearrow"></div>
-                </div>
-              </div>
-              <div class="seeking">
-                <div class="current-time">00:00</div>
-
-                <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()" />
-
-                <div class="total-duration">0:00</div>
-              </div>
-              <table class="controls">
-                <tr>
-                  <td>
-                    <div class="prev-track" onclick="prevTrack()">
-                      <button class="player-button"><img src="prev-track.png" class="controlimg" /></button>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="playpause-track" onclick="playpauseTrack()">
-                      <button class="player-button"><img src="play.png" class="controlimg" /></button>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="next-track" onclick="nextTrack()">
-                      <button class="player-button"><img src="next-track.png" class="controlimg" /></button>
-                    </div>
-                  </td>
-                </tr>
-              </table>
-              <audio id="music" src="home.html"></audio>
+    <div class="window-body">
+      <div class="flex">
+        <div id="imagestyle"><img class="ic" src="disk-spin.gif" alt=""/></div>
+        <div id="musicplayer">
+          <div class="songtitlewindow">
+            <div class="flex">
+              <marquee scrollamount="4" class="songtitle">playing 1 of 15: drive ME crazy - lil yachty</marquee>
+              <div class="songtitlearrow"></div>
             </div>
           </div>
+          <div class="seeking">
+            <div class="current-time">00:00</div>
+            <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()" />
+            <div class="total-duration">0:00</div>
+          </div>
+          <table class="controls">
+            <tr>
+              <td><div class="prev-track" onclick="prevTrack()"><button class="player-button"><img src="prev-track.png" class="controlimg" /></button></div></td>
+              <td><div class="playpause-track" onclick="playpauseTrack()"><button class="player-button"><img src="play.png" class="controlimg" /></button></div></td>
+              <td><div class="next-track" onclick="nextTrack()"><button class="player-button"><img src="next-track.png" class="controlimg" /></button></div></td>
+            </tr>
+          </table>
+          <audio id="music" src="home.html"></audio>
         </div>
       </div>
-    </div>  
-        <div class="title-bar-controls" style="display:none;">
+    </div>
+  </div>
+</div>
+
+<div class="title-bar-controls" style="display:none;">
   <button aria-label="Minimize" id="minimizebtn3"></button>
   <button aria-label="Maximize" disabled></button>
   <button aria-label="Close" id="closebtn3"></button>
 </div>
- <div class="window-body">
-    <!-- BEGIN START MENU -->
-    <div class="window" id="start-menu">
-      <div id="menu-list">
-        <div class="menu-item">
-          <img src="update-small.png" style="height: 17px" />
-          <p>Windows Update</p>
-        </div>
-        <div class="start-line"></div>
-        <div class="menu-item">
-          <img src="programs-small.png" style="height: 17px" />
-          <p>Programs</p>
-        </div>
-        <div class="menu-item">
-          <img src="favorites-small.png" />
-          <p>Favorites</p>
-        </div>
-        <div class="menu-item">
-          <img src="directory_documents-small.png" style="height: 17px" />
-          <p>Documents</p>
-        </div>
-        <div class="menu-item">
-          <img src="settings-small.png" style="height: 17px" />
-          <p>Settings</p>
-        </div>
-        <div class="menu-item">
-          <img src="find-small.png" style="height: 17px" />
-          <p>Find</p>
-        </div>
-        <div class="menu-item">
-          <img src="help-small.png" style="height: 17px" />
-          <p>Help</p>
-        </div>
-        <div class="menu-item">
-          <img src="run-small.png" style="height: 17px" />
-          <p>Run...</p>
-        </div>
-       
-          <div class="start-line"></div>
-          <div class="menu-item" id="log-off">
-            <img src="log-off-small.png" style="height: 17px" />
-            <p>Log Off...</p>
-          </div>               
-          <div class="menu-item" id="shut-down">
-            <img src="shut-down-small.png" style="height: 17px" />
-            <p>Shut Down...</p>
-          </div>        
-     <div class="arrows">
-          <img src="right-arrow.png" class="start-arrow" />
-          <img src="right-arrow.png" class="start-arrow" />
-          <img src="right-arrow.png" class="start-arrow" />
-          <img src="right-arrow.png" class="start-arrow" />
-          <img src="right-arrow.png" class="start-arrow" />
-        </div>
+
+<div class="window-body">
+  <!-- BEGIN START MENU -->
+  <div class="window" id="start-menu">
+    <div id="menu-list">
+      <div class="menu-item"><img src="update-small.png" style="height: 17px" /><p>Windows Update</p></div>
+      <div class="start-line"></div>
+      <div class="menu-item"><img src="programs-small.png" style="height: 17px" /><p>Programs</p></div>
+      <div class="menu-item"><img src="favorites-small.png" /><p>Favorites</p></div>
+      <div class="menu-item"><img src="directory_documents-small.png" style="height: 17px" /><p>Documents</p></div>
+      <div class="menu-item"><img src="settings-small.png" style="height: 17px" /><p>Settings</p></div>
+      <div class="menu-item"><img src="find-small.png" style="height: 17px" /><p>Find</p></div>
+      <div class="menu-item"><img src="help-small.png" style="height: 17px" /><p>Help</p></div>
+      <div class="menu-item"><img src="run-small.png" style="height: 17px" /><p>Run...</p></div>
+      <div class="start-line"></div>
+      <div class="menu-item" id="log-off"><img src="log-off-small.png" style="height: 17px" /><p>Log Off...</p></div>
+      <div class="menu-item" id="shut-down"><img src="shut-down-small.png" style="height: 17px" /><p>Shut Down...</p></div>
+      <div class="arrows">
+        <img src="right-arrow.png" class="start-arrow" />
+        <img src="right-arrow.png" class="start-arrow" />
+        <img src="right-arrow.png" class="start-arrow" />
+        <img src="right-arrow.png" class="start-arrow" />
+        <img src="right-arrow.png" class="start-arrow" />
       </div>
     </div>
-    <script src="script.js" type="text/javascript"></script>
-    <script src="musicplayer.js"></script>
-    <script src="win98.js" type="text/javascript"></script>
-    <!-- <script>
-      document.getElementById("minimizebtn").addEventListener("click", function () {
-        console.log("clicked!");
+  </div>
+</div>
 
-        if (
-          document.getElementById("browser-window").getAttribute("class") === null ||
-          document.getElementById("browser-window").getAttribute("class").indexOf("minimized") !== -1
-        ) {
-          document.getElementById("browser-window").setAttribute("class", "minimized");
-        }
-      });
-    </script> -->
-  </body>
+<!-- ═══════════════════════════════════════════
+     CHAT WINDOW
+═══════════════════════════════════════════ -->
+<div class="window" id="chat-window">
+  <div class="title-bar">
+    <div class="title-bar-text">
+      <img src="message-small.png" />
+      mwangi.wav — Live Chat
+    </div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize" onclick="toggleChat()"></button>
+      <button aria-label="Maximize" disabled></button>
+      <button aria-label="Close" onclick="toggleChat()"></button>
+    </div>
+  </div>
+
+  <div id="chat-toolbar">
+    <span class="online-dot"></span>
+    <span id="chat-online-count">0 online</span>
+    <span id="my-anon-name"></span>
+  </div>
+
+  <div class="window-body" style="padding:0; margin:0;">
+    <div id="chat-messages">
+      <div class="chat-sys">connecting...</div>
+    </div>
+  </div>
+
+  <div id="chat-input-area">
+    <textarea id="chat-msg-input" placeholder="say something... (Enter to send)" onkeydown="handleChatKey(event)"></textarea>
+    <button onclick="sendChatMessage()">Send</button>
+  </div>
+
+  <div class="status-bar">
+    <p class="status-bar-field" id="chat-status">connecting...</p>
+    <p class="status-bar-field">mwangi.wav chatroom</p>
+  </div>
+</div>
+
+<script src="script.js" type="text/javascript"></script>
+<script src="musicplayer.js"></script>
+<script src="win98.js" type="text/javascript"></script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import {
+    getDatabase, ref, push, onChildAdded,
+    onValue, set, onDisconnect
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyD6B5omh8v-WQT-_MdkBoXNg0z-3y3xSXs",
+    authDomain: "mwangiwav-chat.firebaseapp.com",
+    databaseURL: "https://mwangiwav-chat-default-rtdb.firebaseio.com",
+    projectId: "mwangiwav-chat",
+    storageBucket: "mwangiwav-chat.firebasestorage.app",
+    messagingSenderId: "549225106354",
+    appId: "1:549225106354:web:7059b2ceb910a92327b2ab"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const messagesRef = ref(db, 'messages');
+  const presenceRef = ref(db, 'presence');
+
+  // ── Auto-generate anon name, sticky for the session
+  const adjectives = ['silent','pixel','neon','fuzzy','cosmic','glitch','velvet','static','hollow','ghost','cyber','vapor','broken','lucky','turbo'];
+  const nouns = ['moth','node','drift','echo','byte','void','pulse','shade','wave','spark','orbit','haze','form','code','link'];
+
+  function makeAnonName() {
+    const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const noun = nouns[Math.floor(Math.random() * nouns.length)];
+    const num = Math.floor(Math.random() * 90) + 10;
+    return `${adj}_${noun}${num}`;
+  }
+
+  let username = sessionStorage.getItem('chat_anon_name');
+  if (!username) {
+    username = makeAnonName();
+    sessionStorage.setItem('chat_anon_name', username);
+  }
+
+  document.getElementById('my-anon-name').textContent = 'you: ' + username;
+  document.getElementById('chat-status').textContent = 'connected as ' + username;
+
+  // Presence
+  const myPresenceRef = ref(db, 'presence/' + username);
+  set(myPresenceRef, { name: username });
+  onDisconnect(myPresenceRef).remove();
+
+  // Online count
+  onValue(presenceRef, (snap) => {
+    const n = snap.size || 0;
+    document.getElementById('chat-online-count').textContent = n + ' online';
+  });
+
+  let chatOpen = false;
+  let unread = 0;
+  let initialized = false;
+
+  onChildAdded(messagesRef, (snap) => {
+    const msg = snap.val();
+    if (!msg) return;
+    appendMessage(msg.name, msg.text, msg.time, msg.name === username);
+    if (!chatOpen && initialized) {
+      unread++;
+      const badge = document.getElementById('chat-unread');
+      badge.style.display = 'flex';
+      badge.textContent = unread;
+    }
+  });
+
+  setTimeout(() => { initialized = true; }, 1500);
+
+  function appendMessage(name, text, time, isMine) {
+    const box = document.getElementById('chat-messages');
+    const placeholder = box.querySelector('.chat-sys');
+    if (placeholder) placeholder.remove();
+    const timeStr = time
+      ? new Date(time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      : '';
+    const div = document.createElement('div');
+    div.className = 'chat-msg';
+    div.innerHTML = `<span class="chat-name ${isMine ? 'is-mine' : ''}">${esc(name)}:</span> ${esc(text)}<span class="chat-time">${timeStr}</span>`;
+    box.appendChild(div);
+    box.scrollTop = box.scrollHeight;
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  window.sendChatMessage = function () {
+    const input = document.getElementById('chat-msg-input');
+    const text = input.value.trim();
+    if (!text) return;
+    push(messagesRef, { name: username, text, time: Date.now() });
+    input.value = '';
+  };
+
+  window.handleChatKey = function (e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      window.sendChatMessage();
+    }
+  };
+
+  window.toggleChat = function () {
+    const win = document.getElementById('chat-window');
+    const btn = document.getElementById('chat-bottom-btn');
+    chatOpen = !chatOpen;
+    win.style.display = chatOpen ? 'block' : 'none';
+    btn.classList.toggle('pressed', chatOpen);
+    if (chatOpen) {
+      unread = 0;
+      const badge = document.getElementById('chat-unread');
+      badge.style.display = 'none';
+      badge.textContent = '0';
+      document.getElementById('chat-messages').scrollTop = 99999;
+    }
+  };
+
+  document.getElementById('documents-chat').addEventListener('dblclick', window.toggleChat);
+</script>
+
+</body>
 </html>
