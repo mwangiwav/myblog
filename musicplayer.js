@@ -42,14 +42,15 @@ let track_list = [
     name: "I already know - young thug",
     path: " https://file.garden/adsn6IDutmhqKH5B/Young%20Thug%20-%20I%20Already%20Know%20(Unreleased)%20-%20YOUNG%20SLATT%20WORLD.mp3",
  },
+  { 
+    name:"END OF LIFE - Elijah Aike ",
+    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20END%20OF%20LIFE%20-%20Elijah%20Aike.mp3",
+  },
   {
     name: "BOMB - ¥$",
     path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20BOMB%20-%20__.mp3",
   },  
-   { 
-    name:"Public Enemy - Kendrick Lamar",
-    path: "https://file.garden/adsn6IDutmhqKH5B/public%20enemy%20UNRELEASED%20KENDRICK%20LAMAR%20LEAK%20-%20chirp.mp3",
-  },
+  
   {
     name: "Westside, Right on time - Kendrick lamar",
     path: "https://file.garden/adsn6IDutmhqKH5B/westside%2C%20right%20on%20time.mp3",
