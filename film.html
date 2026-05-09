@@ -1,530 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>films</title>
-  <style>
-    @font-face {
-      font-family: "Pixelated MS Sans Serif";
-      src: url(https://unpkg.com/98.css@0.1.16/dist/ms_sans_serif.woff) format("woff");
-      src: url(https://unpkg.com/98.css@0.1.16/dist/ms_sans_serif.woff2) format("woff2");
-      font-weight: 400;
-    }
-    @font-face {
-      font-family: "Pixelated MS Sans Serif";
-      src: url(https://unpkg.com/98.css@0.1.16/dist/ms_sans_serif_bold.woff) format("woff");
-      src: url(https://unpkg.com/98.css@0.1.16/dist/ms_sans_serif_bold.woff2) format("woff2");
-      font-weight: 700;
-    }
+  <head>
+    <script src="site.js" defer></script>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="plain-blog-style.css" />
+    <title>films</title>
+    <style>
+      #film-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 16px;
+        margin-top: 14px;
+      }
  
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    ::-webkit-scrollbar { display: none; }
+      .film-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+      }
  
-    html, body {
-      font-family: "Pixelated MS Sans Serif", Arial;
-      background: #008080;
-      min-height: 100%;
-      width: 100%;
-      cursor: url("win982.png"), default;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
+      .poster {
+        width: 120px;
+        height: 178px;
+        background: #c0c0c0;
+        box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
  
-    body { padding: 16px; }
+      .poster img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
  
-    #window {
-      background: silver;
-      box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
-      max-width: 900px;
-      margin: 0 auto;
-    }
+      .poster-placeholder {
+        width: 100%;
+        height: 100%;
+        background-image: repeating-linear-gradient(
+          45deg,
+          #b8b8b8 0px, #b8b8b8 1px,
+          #c8c8c8 1px, #c8c8c8 6px
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
  
-    #title-bar {
-      background: linear-gradient(90deg, #86a1f1, #e8bfe4);
-      height: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 4px;
-      user-select: none;
-    }
+      .poster-placeholder span {
+        font-size: 9px;
+        color: #888;
+        text-align: center;
+        padding: 4px;
+        background: rgba(255,255,255,0.6);
+        line-height: 1.4;
+      }
  
-    .title-left span {
-      font-size: 12px;
-      font-weight: 700;
-      color: white;
-      text-shadow: 1px 1px #0a0a0a;
-    }
+      .film-card:hover .poster {
+        outline: 2px solid #86a1f1;
+      }
  
-    .tb-btn {
-      width: 16px;
-      height: 14px;
-      background: silver;
-      border: none;
-      box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
-      font-size: 9px;
-      font-family: "Pixelated MS Sans Serif", Arial;
-      cursor: url("win98-pointer.png"), pointer;
-    }
+      .card-title {
+        font-size: 11px;
+        text-align: center;
+        width: 120px;
+        word-break: break-word;
+        line-height: 1.3;
+      }
  
-    #menu-bar {
-      height: 20px;
-      display: flex;
-      align-items: center;
-      padding-left: 4px;
-      box-shadow: inset 1px 1px #fff, inset -1px -1px grey;
-      font-size: 12px;
-      gap: 2px;
-    }
+      .card-stars {
+        font-size: 13px;
+        color: #DAA520;
+        letter-spacing: 1px;
+      }
  
-    #menu-bar a {
-      color: #222;
-      text-decoration: none;
-      padding: 2px 8px;
-    }
+      /* POPUP */
+      #popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.25);
+        z-index: 100;
+        align-items: center;
+        justify-content: center;
+      }
  
-    #menu-bar a:hover {
-      background: #dfdfdf;
-      cursor: url("win98-pointer.png"), pointer;
-    }
+      #popup-overlay.visible { display: flex; }
  
-    #content {
-      padding: 14px;
-      background: white;
-      box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
-      margin: 6px;
-    }
+      #popup {
+        width: 340px;
+        background: silver;
+        box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
+        font-family: "Pixelated MS Sans Serif", Arial;
+      }
  
-    #page-title {
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 14px;
-      color: #00007b;
-      border-bottom: 1px solid #aaa;
-      padding-bottom: 6px;
-    }
+      #popup-titlebar {
+        background: linear-gradient(90deg, #86a1f1, #e8bfe4);
+        height: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 4px;
+      }
  
-    #grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-      gap: 14px;
-    }
+      #popup-titlebar span {
+        font-size: 12px;
+        font-weight: 700;
+        color: white;
+        text-shadow: 1px 1px #0a0a0a;
+      }
  
-    .card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-      cursor: url("win98-pointer.png"), pointer;
-      padding: 5px;
-    }
+      #popup-close {
+        width: 16px;
+        height: 14px;
+        background: silver;
+        border: none;
+        box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
+        font-size: 10px;
+        font-family: "Pixelated MS Sans Serif", Arial;
+        cursor: pointer;
+      }
  
-    .card:hover .poster {
-      box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a, 0 0 0 2px #86a1f1;
-    }
+      #popup-body {
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
  
-    .poster {
-      width: 120px;
-      height: 178px;
-      background: #c0c0c0;
-      box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
-    }
+      #popup-film-name {
+        font-size: 13px;
+        font-weight: 700;
+      }
  
-    .poster img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+      #star-picker {
+        display: flex;
+        gap: 4px;
+        font-size: 22px;
+      }
  
-    /* placeholder pattern */
-    .poster-placeholder {
-      width: 100%;
-      height: 100%;
-      background-image: repeating-linear-gradient(
-        45deg,
-        #b8b8b8 0px,
-        #b8b8b8 1px,
-        #c8c8c8 1px,
-        #c8c8c8 6px
-      );
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+      #star-picker span { color: #ccc; cursor: pointer; }
+      #star-picker span.lit { color: #DAA520; }
  
-    .poster-placeholder span {
-      font-size: 9px;
-      color: #888;
-      text-align: center;
-      padding: 4px;
-      background: rgba(255,255,255,0.6);
-      line-height: 1.4;
-    }
+      #review-label { font-size: 11px; font-weight: 700; }
  
-    .card-title {
-      font-size: 10px;
-      text-align: center;
-      width: 120px;
-      word-break: break-word;
-      line-height: 1.3;
-      color: #222;
-    }
+      #review-display {
+        font-size: 11px;
+        color: #444;
+        font-style: italic;
+        min-height: 28px;
+        padding: 4px 6px;
+        background: white;
+        box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
+      }
  
-    .card-stars {
-      font-size: 12px;
-      color: #DAA520;
-      letter-spacing: 1px;
-    }
+      #review-input {
+        display: none;
+        width: 100%;
+        font-family: "Pixelated MS Sans Serif", Arial;
+        font-size: 11px;
+        padding: 4px 6px;
+        border: none;
+        box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
+        resize: none;
+        height: 60px;
+      }
  
-    #status-bar {
-      height: 22px;
-      display: flex;
-      align-items: center;
-      padding: 0 8px;
-      gap: 6px;
-      font-size: 11px;
-      border-top: 1px solid #aaa;
-    }
+      #popup-btns {
+        display: flex;
+        justify-content: flex-end;
+        gap: 6px;
+        padding: 0 12px 12px;
+      }
  
-    .status-box {
-      box-shadow: inset -1px -1px #fff, inset 1px 1px grey;
-      padding: 0 8px;
-      height: 16px;
-      display: flex;
-      align-items: center;
-    }
+      .pop-btn {
+        background: silver;
+        border: none;
+        box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
+        font-family: "Pixelated MS Sans Serif", Arial;
+        font-size: 11px;
+        padding: 4px 14px;
+        cursor: pointer;
+        min-width: 72px;
+      }
  
-    /* POPUP */
-    #popup-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.25);
-      z-index: 100;
-      align-items: center;
-      justify-content: center;
-    }
+      .pop-btn:hover { background: #dfdfdf; }
+    </style>
+  </head>
+  <body>
+    <h3>🎬 my watched films</h3>
  
-    #popup-overlay.visible { display: flex; }
+    <div id="film-grid"></div>
  
-    #popup {
-      width: 360px;
-      background: silver;
-      box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
-    }
- 
-    #popup-titlebar {
-      background: linear-gradient(90deg, #86a1f1, #e8bfe4);
-      height: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 4px;
-    }
- 
-    #popup-titlebar span {
-      font-size: 12px;
-      font-weight: 700;
-      color: white;
-      text-shadow: 1px 1px #0a0a0a;
-    }
- 
-    #popup-close {
-      width: 16px;
-      height: 14px;
-      background: silver;
-      border: none;
-      box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
-      font-size: 10px;
-      font-family: "Pixelated MS Sans Serif", Arial;
-      cursor: url("win98-pointer.png"), pointer;
-    }
- 
-    #popup-body {
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
- 
-    #popup-film-name {
-      font-size: 13px;
-      font-weight: 700;
-    }
- 
-    #star-picker {
-      display: flex;
-      gap: 4px;
-      font-size: 22px;
-    }
- 
-    #star-picker span {
-      color: #ccc;
-      cursor: url("win98-pointer.png"), pointer;
-    }
- 
-    #star-picker span.lit { color: #DAA520; }
- 
-    #review-label { font-size: 11px; font-weight: 700; }
- 
-    #review-display {
-      font-size: 11px;
-      color: #444;
-      font-style: italic;
-      min-height: 28px;
-      padding: 4px 6px;
-      background: white;
-      box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
-    }
- 
-    #review-input {
-      display: none;
-      width: 100%;
-      font-family: "Pixelated MS Sans Serif", Arial;
-      font-size: 11px;
-      padding: 4px 6px;
-      border: none;
-      box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
-      resize: none;
-      height: 60px;
-    }
- 
-    #popup-btns {
-      display: flex;
-      justify-content: flex-end;
-      gap: 6px;
-      padding: 0 12px 12px;
-    }
- 
-    .pop-btn {
-      background: silver;
-      border: none;
-      box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
-      font-family: "Pixelated MS Sans Serif", Arial;
-      font-size: 11px;
-      padding: 4px 14px;
-      cursor: url("win98-pointer.png"), pointer;
-      min-width: 72px;
-    }
- 
-    .pop-btn:hover { background: #dfdfdf; }
- 
-    @media screen and (max-width: 600px) {
-      body { padding: 6px; }
-      #grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; }
-      .poster { width: 100px; height: 148px; }
-      .card-title { width: 100px; }
-      #popup { width: 95vw; }
-    }
-  </style>
-</head>
-<body>
- 
-  <div id="window">
-    <div id="title-bar">
-      <div class="title-left">
-        <span>🎬 films — mwangi.wav</span>
-      </div>
-      <div style="display:flex;gap:2px;">
-        <button class="tb-btn">_</button>
-        <button class="tb-btn">□</button>
-        <button class="tb-btn" onclick="history.back()">✕</button>
-      </div>
-    </div>
- 
-    <div id="menu-bar">
-      <a href="home.html">home</a>
-      <a href="spotify.html">spotify</a>
-      <a href="films.html">films</a>
-    </div>
- 
-    <div id="content">
-      <div id="page-title">📁 my watched films</div>
-      <div id="grid"></div>
-    </div>
- 
-    <div id="status-bar">
-      <div class="status-box">16 films</div>
-      <div class="status-box">mwangi.wav</div>
-    </div>
-  </div>
- 
-  <div id="popup-overlay">
-    <div id="popup">
-      <div id="popup-titlebar">
-        <span id="popup-title-text">film</span>
-        <button id="popup-close" onclick="closePopup()">✕</button>
-      </div>
-      <div id="popup-body">
-        <div id="popup-film-name"></div>
-        <div id="star-picker">
-          <span data-v="1">★</span>
-          <span data-v="2">★</span>
-          <span data-v="3">★</span>
-          <span data-v="4">★</span>
-          <span data-v="5">★</span>
+    <div id="popup-overlay">
+      <div id="popup">
+        <div id="popup-titlebar">
+          <span id="popup-title-text">film</span>
+          <button id="popup-close" onclick="closePopup()">✕</button>
         </div>
-        <div id="review-label">my thoughts:</div>
-        <div id="review-display">no review yet.</div>
-        <textarea id="review-input" placeholder="write something..."></textarea>
-      </div>
-      <div id="popup-btns">
-        <button class="pop-btn" id="edit-btn" onclick="toggleEdit()">edit review</button>
-        <button class="pop-btn" onclick="saveAndClose()">OK</button>
+        <div id="popup-body">
+          <div id="popup-film-name"></div>
+          <div id="star-picker">
+            <span data-v="1">★</span>
+            <span data-v="2">★</span>
+            <span data-v="3">★</span>
+            <span data-v="4">★</span>
+            <span data-v="5">★</span>
+          </div>
+          <div id="review-label">my thoughts:</div>
+          <div id="review-display">no review yet.</div>
+          <textarea id="review-input" placeholder="write something..."></textarea>
+        </div>
+        <div id="popup-btns">
+          <button class="pop-btn" id="edit-btn" onclick="toggleEdit()">edit review</button>
+          <button class="pop-btn" onclick="saveAndClose()">OK</button>
+        </div>
       </div>
     </div>
-  </div>
  
-  <script>
-    // To add a poster: put the image URL in the poster field. Leave as "" for blank.
-    const FILMS = [
-      { title: "Batman",                    poster: "" },
-      { title: "Sicario",                   poster: "" },
-      { title: "Ready Player One",          poster: "" },
-      { title: "Gladiator II",              poster: "" },
-      { title: "It Follows",               poster: "" },
-      { title: "Tetris",                    poster: "" },
-      { title: "Weapons",                   poster: "" },
-      { title: "Dunkirk",                   poster: "" },
-      { title: "Avatar: The Last Airbender",poster: "" },
-      { title: "Parasite",                  poster: "" },
-      { title: "Tenet",                     poster: "" },
-      { title: "BlacKkKlansman",            poster: "" },
-      { title: "Prisoners",                 poster: "" },
-      { title: "Sinners",                   poster: "" },
-      { title: "Mickey 17",                 poster: "" },
-      { title: "Now You See Me 3",          poster: "" },
-    ];
+    <script>
+      // To add a poster later: paste the image URL in the poster field
+      const FILMS = [
+        { title: "Batman",                     poster: "" },
+        { title: "Sicario",                    poster: "" },
+        { title: "Ready Player One",           poster: "" },
+        { title: "Gladiator II",               poster: "" },
+        { title: "It Follows",                 poster: "" },
+        { title: "Tetris",                     poster: "" },
+        { title: "Weapons",                    poster: "" },
+        { title: "Dunkirk",                    poster: "" },
+        { title: "Avatar: The Last Airbender", poster: "" },
+        { title: "Parasite",                   poster: "" },
+        { title: "Tenet",                      poster: "" },
+        { title: "BlacKkKlansman",             poster: "" },
+        { title: "Prisoners",                  poster: "" },
+        { title: "Sinners",                    poster: "" },
+        { title: "Mickey 17",                  poster: "" },
+        { title: "Now You See Me 3",           poster: "" },
+      ];
  
-    let currentFilm = null;
-    let editing = false;
+      let currentFilm = null;
+      let editing = false;
  
-    function getSaved() {
-      try { return JSON.parse(localStorage.getItem('mwangi_films') || '{}'); } catch { return {}; }
-    }
-    function setSaved(d) { localStorage.setItem('mwangi_films', JSON.stringify(d)); }
+      function getSaved() {
+        try { return JSON.parse(localStorage.getItem('mwangi_films') || '{}'); } catch { return {}; }
+      }
+      function setSaved(d) { localStorage.setItem('mwangi_films', JSON.stringify(d)); }
  
-    function renderStars(r) {
-      return '★'.repeat(r) + '☆'.repeat(5 - r);
-    }
+      function renderStars(r) {
+        return '★'.repeat(r) + '☆'.repeat(5 - r);
+      }
  
-    function buildGrid() {
-      const saved = getSaved();
-      const grid = document.getElementById('grid');
-      grid.innerHTML = '';
-      FILMS.forEach(film => {
-        const rating = saved[film.title]?.rating || 0;
+      function buildGrid() {
+        const saved = getSaved();
+        const grid = document.getElementById('film-grid');
+        grid.innerHTML = '';
+        FILMS.forEach(film => {
+          const rating = saved[film.title]?.rating || 0;
+          const card = document.createElement('div');
+          card.className = 'film-card';
  
-        const card = document.createElement('div');
-        card.className = 'card';
+          const poster = document.createElement('div');
+          poster.className = 'poster';
  
-        const poster = document.createElement('div');
-        poster.className = 'poster';
+          if (film.poster) {
+            const img = document.createElement('img');
+            img.src = film.poster;
+            img.alt = film.title;
+            poster.appendChild(img);
+          } else {
+            const ph = document.createElement('div');
+            ph.className = 'poster-placeholder';
+            ph.innerHTML = '<span>no poster<br>yet</span>';
+            poster.appendChild(ph);
+          }
  
-        if (film.poster) {
-          const img = document.createElement('img');
-          img.src = film.poster;
-          img.alt = film.title;
-          poster.appendChild(img);
-        } else {
-          const ph = document.createElement('div');
-          ph.className = 'poster-placeholder';
-          ph.innerHTML = `<span>no poster<br>yet</span>`;
-          poster.appendChild(ph);
+          const titleEl = document.createElement('div');
+          titleEl.className = 'card-title';
+          titleEl.textContent = film.title;
+ 
+          const starsEl = document.createElement('div');
+          starsEl.className = 'card-stars';
+          starsEl.textContent = renderStars(rating);
+ 
+          card.appendChild(poster);
+          card.appendChild(titleEl);
+          card.appendChild(starsEl);
+          card.addEventListener('click', () => openPopup(film.title));
+          grid.appendChild(card);
+        });
+      }
+ 
+      function openPopup(title) {
+        currentFilm = title;
+        editing = false;
+        const saved = getSaved();
+        const entry = saved[title] || {};
+ 
+        document.getElementById('popup-title-text').textContent = title;
+        document.getElementById('popup-film-name').textContent = title;
+        document.getElementById('review-display').textContent = entry.review || 'no review yet.';
+        document.getElementById('review-display').style.display = 'block';
+        document.getElementById('review-input').style.display = 'none';
+        document.getElementById('review-input').value = entry.review || '';
+        document.getElementById('edit-btn').textContent = 'edit review';
+ 
+        setStars(entry.rating || 0, false);
+        document.getElementById('popup-overlay').classList.add('visible');
+      }
+ 
+      function closePopup() {
+        document.getElementById('popup-overlay').classList.remove('visible');
+        currentFilm = null;
+      }
+ 
+      function setStars(val, save) {
+        document.querySelectorAll('#star-picker span').forEach(s => {
+          s.classList.toggle('lit', parseInt(s.dataset.v) <= val);
+        });
+        if (save && currentFilm) {
+          const saved = getSaved();
+          if (!saved[currentFilm]) saved[currentFilm] = {};
+          saved[currentFilm].rating = val;
+          setSaved(saved);
+          buildGrid();
         }
+      }
  
-        const titleEl = document.createElement('div');
-        titleEl.className = 'card-title';
-        titleEl.textContent = film.title;
- 
-        const starsEl = document.createElement('div');
-        starsEl.className = 'card-stars';
-        starsEl.textContent = renderStars(rating);
- 
-        card.appendChild(poster);
-        card.appendChild(titleEl);
-        card.appendChild(starsEl);
-        card.addEventListener('click', () => openPopup(film.title));
-        grid.appendChild(card);
+      document.querySelectorAll('#star-picker span').forEach(star => {
+        star.addEventListener('mouseover', () => setStars(parseInt(star.dataset.v), false));
+        star.addEventListener('click', () => setStars(parseInt(star.dataset.v), true));
       });
-    }
  
-    function openPopup(title) {
-      currentFilm = title;
-      editing = false;
-      const saved = getSaved();
-      const entry = saved[title] || {};
- 
-      document.getElementById('popup-title-text').textContent = title;
-      document.getElementById('popup-film-name').textContent = title;
-      document.getElementById('review-display').textContent = entry.review || 'no review yet.';
-      document.getElementById('review-display').style.display = 'block';
-      document.getElementById('review-input').style.display = 'none';
-      document.getElementById('review-input').value = entry.review || '';
-      document.getElementById('edit-btn').textContent = 'edit review';
- 
-      setStars(entry.rating || 0, false);
-      document.getElementById('popup-overlay').classList.add('visible');
-    }
- 
-    function closePopup() {
-      document.getElementById('popup-overlay').classList.remove('visible');
-      currentFilm = null;
-    }
- 
-    function setStars(val, save) {
-      document.querySelectorAll('#star-picker span').forEach(s => {
-        s.classList.toggle('lit', parseInt(s.dataset.v) <= val);
+      document.getElementById('star-picker').addEventListener('mouseleave', () => {
+        if (!currentFilm) return;
+        const saved = getSaved();
+        setStars(saved[currentFilm]?.rating || 0, false);
       });
-      if (save && currentFilm) {
+ 
+      function toggleEdit() {
+        editing = !editing;
+        document.getElementById('review-display').style.display = editing ? 'none' : 'block';
+        document.getElementById('review-input').style.display = editing ? 'block' : 'none';
+        document.getElementById('edit-btn').textContent = editing ? 'cancel' : 'edit review';
+      }
+ 
+      function saveAndClose() {
+        if (!currentFilm) { closePopup(); return; }
         const saved = getSaved();
         if (!saved[currentFilm]) saved[currentFilm] = {};
-        saved[currentFilm].rating = val;
+        if (editing) saved[currentFilm].review = document.getElementById('review-input').value.trim();
         setSaved(saved);
         buildGrid();
+        closePopup();
       }
-    }
  
-    document.querySelectorAll('#star-picker span').forEach(star => {
-      star.addEventListener('mouseover', () => setStars(parseInt(star.dataset.v), false));
-      star.addEventListener('click', () => setStars(parseInt(star.dataset.v), true));
-    });
+      document.getElementById('popup-overlay').addEventListener('click', function(e) {
+        if (e.target === this) closePopup();
+      });
  
-    document.getElementById('star-picker').addEventListener('mouseleave', () => {
-      if (!currentFilm) return;
-      const saved = getSaved();
-      setStars(saved[currentFilm]?.rating || 0, false);
-    });
- 
-    function toggleEdit() {
-      editing = !editing;
-      document.getElementById('review-display').style.display = editing ? 'none' : 'block';
-      document.getElementById('review-input').style.display = editing ? 'block' : 'none';
-      document.getElementById('edit-btn').textContent = editing ? 'cancel' : 'edit review';
-    }
- 
-    function saveAndClose() {
-      if (!currentFilm) { closePopup(); return; }
-      const saved = getSaved();
-      if (!saved[currentFilm]) saved[currentFilm] = {};
-      if (editing) saved[currentFilm].review = document.getElementById('review-input').value.trim();
-      setSaved(saved);
       buildGrid();
-      closePopup();
-    }
- 
-    document.getElementById('popup-overlay').addEventListener('click', function(e) {
-      if (e.target === this) closePopup();
-    });
- 
-    buildGrid();
-  </script>
+    </script>
+  </body>
+</html>
 </body>
 </html>
