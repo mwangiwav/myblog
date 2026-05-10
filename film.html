@@ -13,7 +13,7 @@
         gap: 16px;
         margin-top: 14px;
       }
- 
+
       .film-card {
         display: flex;
         flex-direction: column;
@@ -21,7 +21,7 @@
         gap: 5px;
         cursor: pointer;
       }
- 
+
       .poster {
         width: 120px;
         height: 178px;
@@ -32,14 +32,14 @@
         align-items: center;
         justify-content: center;
       }
- 
+
       .poster img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         display: block;
       }
- 
+
       .poster-placeholder {
         width: 100%;
         height: 100%;
@@ -52,7 +52,7 @@
         align-items: center;
         justify-content: center;
       }
- 
+
       .poster-placeholder span {
         font-size: 9px;
         color: #888;
@@ -61,11 +61,11 @@
         background: rgba(255,255,255,0.6);
         line-height: 1.4;
       }
- 
+
       .film-card:hover .poster {
         outline: 2px solid #86a1f1;
       }
- 
+
       .card-title {
         font-size: 11px;
         text-align: center;
@@ -73,14 +73,13 @@
         word-break: break-word;
         line-height: 1.3;
       }
- 
+
       .card-stars {
         font-size: 13px;
         color: #DAA520;
         letter-spacing: 1px;
       }
- 
-      /* POPUP */
+
       #popup-overlay {
         display: none;
         position: fixed;
@@ -90,16 +89,16 @@
         align-items: center;
         justify-content: center;
       }
- 
+
       #popup-overlay.visible { display: flex; }
- 
+
       #popup {
         width: 340px;
         background: silver;
         box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
         font-family: "Pixelated MS Sans Serif", Arial;
       }
- 
+
       #popup-titlebar {
         background: linear-gradient(90deg, #86a1f1, #e8bfe4);
         height: 22px;
@@ -108,14 +107,14 @@
         justify-content: space-between;
         padding: 0 4px;
       }
- 
+
       #popup-titlebar span {
         font-size: 12px;
         font-weight: 700;
         color: white;
         text-shadow: 1px 1px #0a0a0a;
       }
- 
+
       #popup-close {
         width: 16px;
         height: 14px;
@@ -126,30 +125,27 @@
         font-family: "Pixelated MS Sans Serif", Arial;
         cursor: pointer;
       }
- 
+
       #popup-body {
         padding: 12px;
         display: flex;
         flex-direction: column;
         gap: 10px;
       }
- 
+
       #popup-film-name {
         font-size: 13px;
         font-weight: 700;
       }
- 
-      #star-picker {
-        display: flex;
-        gap: 4px;
+
+      #popup-stars {
         font-size: 22px;
+        color: #DAA520;
+        letter-spacing: 2px;
       }
- 
-      #star-picker span { color: #ccc; cursor: pointer; }
-      #star-picker span.lit { color: #DAA520; }
- 
+
       #review-label { font-size: 11px; font-weight: 700; }
- 
+
       #review-display {
         font-size: 11px;
         color: #444;
@@ -159,26 +155,13 @@
         background: white;
         box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
       }
- 
-      #review-input {
-        display: none;
-        width: 100%;
-        font-family: "Pixelated MS Sans Serif", Arial;
-        font-size: 11px;
-        padding: 4px 6px;
-        border: none;
-        box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
-        resize: none;
-        height: 60px;
-      }
- 
+
       #popup-btns {
         display: flex;
         justify-content: flex-end;
-        gap: 6px;
         padding: 0 12px 12px;
       }
- 
+
       .pop-btn {
         background: silver;
         border: none;
@@ -189,15 +172,15 @@
         cursor: pointer;
         min-width: 72px;
       }
- 
+
       .pop-btn:hover { background: #dfdfdf; }
     </style>
   </head>
   <body>
     <h3>watched films in 2026</h3>
- 
+
     <div id="film-grid"></div>
- 
+
     <div id="popup-overlay">
       <div id="popup">
         <div id="popup-titlebar">
@@ -206,69 +189,54 @@
         </div>
         <div id="popup-body">
           <div id="popup-film-name"></div>
-          <div id="star-picker">
-            <span data-v="1">★</span>
-            <span data-v="2">★</span>
-            <span data-v="3">★</span>
-            <span data-v="4">★</span>
-            <span data-v="5">★</span>
-          </div>
+          <div id="popup-stars"></div>
           <div id="review-label">my thoughts:</div>
-          <div id="review-display">no review yet.</div>
-          <textarea id="review-input" placeholder="write something..."></textarea>
+          <div id="review-display"></div>
         </div>
         <div id="popup-btns">
-          <button class="pop-btn" id="edit-btn" onclick="toggleEdit()">edit review</button>
-          <button class="pop-btn" onclick="saveAndClose()">OK</button>
+          <button class="pop-btn" onclick="closePopup()">OK</button>
         </div>
       </div>
     </div>
- 
+
     <script>
-      // To add a poster later: paste the image URL in the poster field
       const FILMS = [
-        { title: "Batman",                     poster: "https://posters.movieposterdb.com/22_05/2022/1877830/l_1877830_f55aded0.jpg" },
-        { title: "Sicario",                    poster: "https://posters.movieposterdb.com/15_10/2015/3397884/l_429c1de5.jpg" },
-        { title: "Ready Player One",           poster: "https://posters.movieposterdb.com/20_06/2018/1677720/l_1677720_376c9e0b.jpg" },
-        { title: "Gladiator II",               poster: "https://posters.movieposterdb.com/24_09/2024/9218128/l_gladiator-ii-movie-poster_c9934359.jpg" },
-        { title: "It Follows",                 poster: "https://posters.movieposterdb.com/15_04/2014/3235888/l_3235888_42ed86b6.jpg" },
-        { title: "Tetris",                     poster: "https://posters.movieposterdb.com/23_03/2023/12758060/l_tetris-movie-poster_f0531b01.jpg" },
-        { title: "Weapons",                    poster: "https://posters.movieposterdb.com/25_04/2025/26581740/l_weapons-movie-poster_b9cfd5c6.jpg" },
-        { title: "Dunkirk",                    poster: "https://posters.movieposterdb.com/23_02/2017/5013056/l_dunkirk-movie-poster_4e89cfce.jpg" },
-        { title: "Avatar: The Last Airbender", poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnekLKFeBgQlWfGgoX1aEN-_nrQLodBdNpOw&s" },
-        { title: "Parasite",                   poster: "https://posters.movieposterdb.com/21_11/2019/6751668/l_6751668_0d0409c5.jpg" },
-        { title: "Tenet",                      poster: "https://posters.movieposterdb.com/20_09/2020/6723592/l_6723592_46561c38.jpg" },
-        { title: "BlacKkKlansman",             poster: "https://posters.movieposterdb.com/20_01/2018/7349662/l_7349662_64722860.jpg" },
-        { title: "Prisoners",                  poster: "https://posters.movieposterdb.com/15_03/2013/1392214/l_1392214_7c2f784a.jpg" },
-        { title: "Sinners",                    poster: "https://posters.movieposterdb.com/25_04/2025/31193180/l_sinners-movie-poster_3fa9e5fc.jpg" },
-        { title: "Mickey 17",                  poster: "https://posters.movieposterdb.com/25_01/2025/12299608/l_mickey-17-movie-poster_97f35750.jpg" },
-        { title: "Now You See Me 3",           poster: "https://posters.movieposterdb.com/25_09/2025/4712810/l_now-you-see-me-now-you-dont-movie-poster_5fdbc32f.jpg" },
+        { title: "Batman",                     poster: "https://posters.movieposterdb.com/22_05/2022/1877830/l_1877830_f55aded0.jpg",           rating: 4, review: "" },
+        { title: "Sicario",                    poster: "https://posters.movieposterdb.com/15_10/2015/3397884/l_429c1de5.jpg",                   rating: 4, review: "" },
+        { title: "Ready Player One",           poster: "https://posters.movieposterdb.com/20_06/2018/1677720/l_1677720_376c9e0b.jpg",           rating: 5, review: "" },
+        { title: "Gladiator II",               poster: "https://posters.movieposterdb.com/24_09/2024/9218128/l_gladiator-ii-movie-poster_c9934359.jpg", rating: 3, review: "" },
+        { title: "It Follows",                 poster: "https://posters.movieposterdb.com/15_04/2014/3235888/l_3235888_42ed86b6.jpg",           rating: 2, review: "Dry aah dialogue" },
+        { title: "Tetris",                     poster: "https://posters.movieposterdb.com/23_03/2023/12758060/l_tetris-movie-poster_f0531b01.jpg", rating: 4, review: "" },
+        { title: "Weapons",                    poster: "https://posters.movieposterdb.com/25_04/2025/26581740/l_weapons-movie-poster_b9cfd5c6.jpg", rating: 3, review: "Ass cheeks ending" },
+        { title: "Dunkirk",                    poster: "https://posters.movieposterdb.com/23_02/2017/5013056/l_dunkirk-movie-poster_4e89cfce.jpg", rating: 4, review: "" },
+        { title: "Avatar: The Last Airbender", poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnekLKFeBgQlWfGgoX1aEN-_nrQLodBdNpOw&s", rating: 4, review: "" },
+        { title: "Parasite",                   poster: "https://posters.movieposterdb.com/21_11/2019/6751668/l_6751668_0d0409c5.jpg",           rating: 4, review: "" },
+        { title: "Tenet",                      poster: "https://posters.movieposterdb.com/20_09/2020/6723592/l_6723592_46561c38.jpg",           rating: 5, review: "Still don't know wtf happened" },
+        { title: "BlacKkKlansman",             poster: "https://posters.movieposterdb.com/20_01/2018/7349662/l_7349662_64722860.jpg",           rating: 3, review: "" },
+        { title: "Prisoners",                  poster: "https://posters.movieposterdb.com/15_03/2013/1392214/l_1392214_7c2f784a.jpg",           rating: 4, review: "" },
+        { title: "Sinners",                    poster: "https://posters.movieposterdb.com/25_04/2025/31193180/l_sinners-movie-poster_3fa9e5fc.jpg", rating: 4, review: "" },
+        { title: "Mickey 17",                  poster: "https://posters.movieposterdb.com/25_01/2025/12299608/l_mickey-17-movie-poster_97f35750.jpg", rating: 3, review: "" },
+        { title: "Now You See Me 3",           poster: "https://posters.movieposterdb.com/25_09/2025/4712810/l_now-you-see-me-now-you-dont-movie-poster_5fdbc32f.jpg", rating: 0, review: "" },
+        { title: "Everything Everywhere All at Once",  poster: "https://posters.movieposterdb.com/22_04/2/6710474/l_6710474_7ad8ab0d.jpg",     rating: 4, review: "ABSOLUTE CINEMA" },
       ];
- 
+
       let currentFilm = null;
-      let editing = false;
- 
-      function getSaved() {
-        try { return JSON.parse(localStorage.getItem('mwangi_films') || '{}'); } catch { return {}; }
-      }
-      function setSaved(d) { localStorage.setItem('mwangi_films', JSON.stringify(d)); }
- 
+
       function renderStars(r) {
+        if (!r) return '☆☆☆☆☆';
         return '★'.repeat(r) + '☆'.repeat(5 - r);
       }
- 
+
       function buildGrid() {
-        const saved = getSaved();
         const grid = document.getElementById('film-grid');
         grid.innerHTML = '';
         FILMS.forEach(film => {
-          const rating = saved[film.title]?.rating || 0;
           const card = document.createElement('div');
           card.className = 'film-card';
- 
+
           const poster = document.createElement('div');
           poster.className = 'poster';
- 
+
           if (film.poster) {
             const img = document.createElement('img');
             img.src = film.poster;
@@ -280,15 +248,15 @@
             ph.innerHTML = '<span>no poster<br>yet</span>';
             poster.appendChild(ph);
           }
- 
+
           const titleEl = document.createElement('div');
           titleEl.className = 'card-title';
           titleEl.textContent = film.title;
- 
+
           const starsEl = document.createElement('div');
           starsEl.className = 'card-stars';
-          starsEl.textContent = renderStars(rating);
- 
+          starsEl.textContent = renderStars(film.rating);
+
           card.appendChild(poster);
           card.appendChild(titleEl);
           card.appendChild(starsEl);
@@ -296,81 +264,32 @@
           grid.appendChild(card);
         });
       }
- 
+
       function openPopup(title) {
+        const film = FILMS.find(f => f.title === title);
+        if (!film) return;
         currentFilm = title;
-        editing = false;
-        const saved = getSaved();
-        const entry = saved[title] || {};
- 
+
         document.getElementById('popup-title-text').textContent = title;
         document.getElementById('popup-film-name').textContent = title;
-        document.getElementById('review-display').textContent = entry.review || 'no review yet.';
-        document.getElementById('review-display').style.display = 'block';
-        document.getElementById('review-input').style.display = 'none';
-        document.getElementById('review-input').value = entry.review || '';
-        document.getElementById('edit-btn').textContent = 'edit review';
- 
-        setStars(entry.rating || 0, false);
+        document.getElementById('popup-stars').textContent = renderStars(film.rating);
+        document.getElementById('review-display').textContent = film.review || 'no review yet.';
         document.getElementById('popup-overlay').classList.add('visible');
       }
- 
+
       function closePopup() {
         document.getElementById('popup-overlay').classList.remove('visible');
         currentFilm = null;
       }
- 
-      function setStars(val, save) {
-        document.querySelectorAll('#star-picker span').forEach(s => {
-          s.classList.toggle('lit', parseInt(s.dataset.v) <= val);
-        });
-        if (save && currentFilm) {
-          const saved = getSaved();
-          if (!saved[currentFilm]) saved[currentFilm] = {};
-          saved[currentFilm].rating = val;
-          setSaved(saved);
-          buildGrid();
-        }
-      }
- 
-      document.querySelectorAll('#star-picker span').forEach(star => {
-        star.addEventListener('mouseover', () => setStars(parseInt(star.dataset.v), false));
-        star.addEventListener('click', () => setStars(parseInt(star.dataset.v), true));
-      });
- 
-      document.getElementById('star-picker').addEventListener('mouseleave', () => {
-        if (!currentFilm) return;
-        const saved = getSaved();
-        setStars(saved[currentFilm]?.rating || 0, false);
-      });
- 
-      function toggleEdit() {
-        editing = !editing;
-        document.getElementById('review-display').style.display = editing ? 'none' : 'block';
-        document.getElementById('review-input').style.display = editing ? 'block' : 'none';
-        document.getElementById('edit-btn').textContent = editing ? 'cancel' : 'edit review';
-      }
- 
-      function saveAndClose() {
-        if (!currentFilm) { closePopup(); return; }
-        const saved = getSaved();
-        if (!saved[currentFilm]) saved[currentFilm] = {};
-        if (editing) saved[currentFilm].review = document.getElementById('review-input').value.trim();
-        setSaved(saved);
-        buildGrid();
-        closePopup();
-      }
- 
+
       document.getElementById('popup-overlay').addEventListener('click', function(e) {
         if (e.target === this) closePopup();
       });
- 
+
       buildGrid();
     </script>
     <a href="home.html">← back</a>
     <div id="footer" style="text-align: center"></div>
     <script src="script.js" type="text/javascript"></script>
   </body>
-</html>
-</body>
 </html>
