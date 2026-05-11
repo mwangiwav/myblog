@@ -9,11 +9,15 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 <script src="mobiletopnav.js" type="text/javascript" defer></script>
 <title>blog!</title>
+<style>
+  html, body {
+    overflow: hidden;
+  }
 </style>
 </head>
-
+ 
 <body>
-
+ 
 <!-- BEGIN BROWSER WINDOW -->
 <div id="browser-window" class="window">
   <div class="title-bar" id="title-bar">
@@ -68,7 +72,7 @@
     <div class="ie-bottom-box" id="last-box"><img src="world-icon.png" /><p>Internet</p></div>
   </div>
 </div>
-
+ 
 <!-- BEGIN DESKTOP ICONS -->
 <div id="desktop-icons">
   <div class="desktop-icon"><img src="computer_explorer.png" /><p>My Computer</p></div>
@@ -78,7 +82,7 @@
   <div class="desktop-icon"><img src="folder.png" /><p>Documents</p></div>
   <div class="desktop-icon" id="cd-player"><img src="cd_audio.png" /><p>CD Player</p></div>
 </div>
-
+ 
 <!-- BEGIN BOTTOM BAR -->
 <div id="bottom-bar" class="window">
   <div id="bottom-bar-buttons">
@@ -113,7 +117,7 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- BEGIN MUSIC PLAYER -->
 <div class="player" id="music-player">
   <div class="window">
@@ -153,64 +157,62 @@
     </div>
   </div>
 </div>
-
+ 
 <div class="title-bar-controls" style="display:none;">
   <button aria-label="Minimize" id="minimizebtn3"></button>
   <button aria-label="Maximize" disabled></button>
   <button aria-label="Close" id="closebtn3"></button>
 </div>
-
-  <!-- BEGIN START MENU -->
-  <div class="window" id="start-menu">
-    <div id="menu-list">
-      <div class="menu-item"><img src="update-small.png" style="height: 17px" /><p>Windows Update</p></div>
-      <div class="start-line"></div>
-      <div class="menu-item"><img src="programs-small.png" style="height: 17px" /><p>Programs</p></div>
-      <div class="menu-item"><img src="favorites-small.png" /><p>Favorites</p></div>
-      <div class="menu-item"><img src="directory_documents-small.png" style="height: 17px" /><p>Documents</p></div>
-      <div class="menu-item"><img src="settings-small.png" style="height: 17px" /><p>Settings</p></div>
-      <div class="menu-item"><img src="find-small.png" style="height: 17px" /><p>Find</p></div>
-      <div class="menu-item"><img src="help-small.png" style="height: 17px" /><p>Help</p></div>
-      <div class="menu-item"><img src="run-small.png" style="height: 17px" /><p>Run...</p></div>
-      <div class="start-line"></div>
-      <div class="menu-item" id="log-off"><img src="log-off-small.png" style="height: 17px" /><p>Log Off...</p></div>
-      <div class="menu-item" id="shut-down"><img src="shut-down-small.png" style="height: 17px" /><p>Shut Down...</p></div>
-      <div class="arrows">
-        <img src="right-arrow.png" class="start-arrow" />
-        <img src="right-arrow.png" class="start-arrow" />
-        <img src="right-arrow.png" class="start-arrow" />
-        <img src="right-arrow.png" class="start-arrow" />
-        <img src="right-arrow.png" class="start-arrow" />
-      </div>
+ 
+<!-- BEGIN START MENU -->
+<div class="window" id="start-menu">
+  <div id="menu-list">
+    <div class="menu-item"><img src="update-small.png" style="height: 17px" /><p>Windows Update</p></div>
+    <div class="start-line"></div>
+    <div class="menu-item"><img src="programs-small.png" style="height: 17px" /><p>Programs</p></div>
+    <div class="menu-item"><img src="favorites-small.png" /><p>Favorites</p></div>
+    <div class="menu-item"><img src="directory_documents-small.png" style="height: 17px" /><p>Documents</p></div>
+    <div class="menu-item"><img src="settings-small.png" style="height: 17px" /><p>Settings</p></div>
+    <div class="menu-item"><img src="find-small.png" style="height: 17px" /><p>Find</p></div>
+    <div class="menu-item"><img src="help-small.png" style="height: 17px" /><p>Help</p></div>
+    <div class="menu-item"><img src="run-small.png" style="height: 17px" /><p>Run...</p></div>
+    <div class="start-line"></div>
+    <div class="menu-item" id="log-off"><img src="log-off-small.png" style="height: 17px" /><p>Log Off...</p></div>
+    <div class="menu-item" id="shut-down"><img src="shut-down-small.png" style="height: 17px" /><p>Shut Down...</p></div>
+    <div class="arrows">
+      <img src="right-arrow.png" class="start-arrow" />
+      <img src="right-arrow.png" class="start-arrow" />
+      <img src="right-arrow.png" class="start-arrow" />
+      <img src="right-arrow.png" class="start-arrow" />
+      <img src="right-arrow.png" class="start-arrow" />
     </div>
   </div>
-
-   <!-- BEGIN CHAT -->
-    <div id="chat-window" class="window">
-      <div class="title-bar" id="chat-title-bar">
-        <div class="title-bar-text"><img src="message-small.png"/>chat</div>
-        <div class="title-bar-controls">
-          <button aria-label="Minimize" id="minimizebtn3"></button>
-          <button aria-label="Maximize" disabled></button>
-          <button aria-label="Close" id="closebtn3"></button>
-        </div>
-      </div>
-      <div class="window-body">
-        <div id="chat-main-view">
-          <!-- <p style="margin-left: 10px; font-size: 15px !important">the chat box service i used has been discontinued :(</p>
-          <p style="margin-left: 10px; font-size: 15px !important">please bear with me while i find a replacement!</p> -->
-          <iframe src="https://iframe.chat/embed?chat=mwangichat" id="chattable" frameborder="0" height="100%" width="100%"></iframe>
-          <script>
-            chattable.initialize({
-              stylesheet: "chattable.css",
-            });
-          </script>
-        </div>
-      </div>
+</div>
+ 
+<!-- BEGIN CHAT -->
+<div id="chat-window" class="window">
+  <div class="title-bar" id="chat-title-bar">
+    <div class="title-bar-text"><img src="message-small.png"/>chat</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize" id="minimizebtn3"></button>
+      <button aria-label="Maximize" disabled></button>
+      <button aria-label="Close" id="closebtn3"></button>
     </div>
-  
-   <script src="script.js" type="text/javascript"></script>
-    <script src="musicplayer.js"></script>
-    <script src="win98.js" type="text/javascript"></script>
+  </div>
+  <div class="window-body">
+    <div id="chat-main-view">
+      <iframe src="https://iframe.chat/embed?chat=mwangichat" id="chattable" frameborder="0" height="100%" width="100%"></iframe>
+      <script>
+        chattable.initialize({
+          stylesheet: "chattable.css",
+        });
+      </script>
+    </div>
+  </div>
+</div>
+ 
+<script src="script.js" type="text/javascript"></script>
+<script src="musicplayer.js"></script>
+<script src="win98.js" type="text/javascript"></script>
 </body>
 </html>
