@@ -555,6 +555,7 @@ a:hover,
   left: 7.5%;
   top: 3%;
   transition: 0.3s all;
+  overflow: hidden;
 }
 
 #chat-title-bar {
