@@ -8,7 +8,7 @@
     <title>stream player</title>
     <style>
       #player-layout { display: flex; gap: 20px; }
-      #main-video { flex: 3; }
+      #main-video { flex: 3; min-width: 0; }
       #playlist { flex: 1; display: flex; flex-direction: column; gap: 5px; }
 
       .playlist-item {
@@ -19,124 +19,185 @@
       .playlist-item:hover, .playlist-item.active { background: #dfdfdf; }
       .playlist-item img { width: 32px; height: 32px; }
 
-     #yt-player {
-  position: relative;
-  background: #000;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  cursor: pointer;
-  user-select: none;
-}
-       #yt-player video { width: 100%; height: 100%; display: block; object-fit: contain; }
+      /* PLAYER WRAPPER */
+      #yt-player {
+        position: relative;
+        background: #000;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        cursor: pointer;
+        user-select: none;
+        overflow: hidden;
+      }
+      #yt-player video {
+        width: 100%; height: 100%;
+        display: block; object-fit: contain;
+      }
 
+      /* CONTROLS OVERLAY */
       #yt-controls {
         position: absolute;
         bottom: 0; left: 0; right: 0;
-        background: linear-gradient(transparent, rgba(0,0,0,0.85));
-        padding: 30px 10px 8px 10px;
+        background: linear-gradient(transparent, rgba(0,0,0,0.9));
+        padding: 40px 12px 10px 12px;
         opacity: 1;
-        transition: opacity 0.3s;
+        transition: opacity 0.25s;
       }
       #yt-player.hide-controls #yt-controls { opacity: 0; }
+      #yt-player.hide-controls { cursor: none; }
 
-      #progress-container {
-        width: 100%;
-        height: 4px;
-        background: rgba(255,255,255,0.3);
+      /* PROGRESS BAR */
+      #progress-wrap {
         position: relative;
-        margin-bottom: 8px;
+        width: 100%;
+        height: 16px;
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 6px;
         cursor: pointer;
-        border-radius: 2px;
-        transition: height 0.1s;
       }
-      #progress-container:hover { height: 6px; }
+      #progress-track {
+        position: relative;
+        width: 100%;
+        height: 3px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 2px;
+        transition: height 0.15s;
+      }
+      #progress-wrap:hover #progress-track { height: 5px; }
+
       #progress-buffered {
         position: absolute; top: 0; left: 0; height: 100%;
-        background: rgba(255,255,255,0.4);
+        background: rgba(255,255,255,0.35);
         border-radius: 2px; pointer-events: none;
+        width: 0%;
       }
       #progress-fill {
         position: absolute; top: 0; left: 0; height: 100%;
-        background: #86a1f1;
+        background: #ff0000;
         border-radius: 2px; pointer-events: none;
+        width: 0%;
       }
       #progress-thumb {
-        position: absolute; top: 50%;
-        width: 12px; height: 12px;
-        background: #86a1f1;
+        position: absolute;
+        top: 50%;
+        width: 13px; height: 13px;
+        background: #ff0000;
         border-radius: 50%;
         transform: translate(-50%, -50%) scale(0);
-        transition: transform 0.1s;
+        transition: transform 0.15s;
         pointer-events: none;
+        z-index: 2;
       }
-      #progress-container:hover #progress-thumb { transform: translate(-50%, -50%) scale(1); }
+      #progress-wrap:hover #progress-thumb { transform: translate(-50%, -50%) scale(1); }
 
+      /* SEEK PREVIEW */
+      #seek-preview {
+        position: absolute;
+        bottom: 28px;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        transform: translateX(-50%);
+        pointer-events: none;
+        z-index: 10;
+      }
+      #seek-preview video {
+        width: 160px;
+        height: 90px;
+        object-fit: cover;
+        display: block;
+        border: 2px solid #fff;
+        background: #000;
+      }
+      #seek-preview-time {
+        background: rgba(0,0,0,0.8);
+        color: #fff;
+        font-size: 11px;
+        padding: 2px 6px;
+        margin-top: 3px;
+        font-family: "Pixelated MS Sans Serif", Arial;
+        border-radius: 2px;
+      }
+
+      /* CONTROLS ROW */
       #controls-row {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 4px;
         color: #fff;
       }
       .yt-btn {
         background: none; border: none; color: #fff;
-        font-size: 16px; cursor: url("win98-pointer.png"), pointer;
-        padding: 2px 4px; display: flex; align-items: center;
+        cursor: url("win98-pointer.png"), pointer;
+        padding: 6px;
+        display: flex; align-items: center; justify-content: center;
         font-family: "Pixelated MS Sans Serif", Arial;
+        border-radius: 50%;
+        transition: background 0.15s;
+        flex-shrink: 0;
       }
-      .yt-btn:hover { color: #ccc; }
+      .yt-btn:hover { background: rgba(255,255,255,0.15); }
+      .yt-btn svg { width: 24px; height: 24px; fill: #fff; display: block; }
+      .yt-btn-sm svg { width: 20px; height: 20px; }
 
-      #volume-wrap { display: flex; align-items: center; gap: 4px; }
+      #volume-wrap { display: flex; align-items: center; }
       #volume-slider {
-        width: 0; overflow: hidden; transition: width 0.2s;
         -webkit-appearance: none; appearance: none;
-        height: 4px; background: rgba(255,255,255,0.3);
+        width: 0; height: 3px;
+        background: rgba(255,255,255,0.3);
         outline: none; border-radius: 2px;
-        accent-color: #86a1f1;
+        accent-color: #fff;
+        transition: width 0.2s;
+        cursor: pointer;
+        margin-left: 4px;
       }
-      #volume-wrap:hover #volume-slider { width: 60px; }
+      #volume-wrap:hover #volume-slider { width: 52px; }
 
       #time-wrap {
         font-size: 12px;
         font-family: "Pixelated MS Sans Serif", Arial;
         color: #fff;
         white-space: nowrap;
+        padding: 0 8px;
       }
 
-      #right-controls { margin-left: auto; display: flex; gap: 4px; align-items: center; }
+      #right-controls { margin-left: auto; display: flex; gap: 0px; align-items: center; }
 
       #autoplay-btn {
         font-size: 11px;
         background: rgba(255,255,255,0.15);
         border: 1px solid rgba(255,255,255,0.3);
         border-radius: 2px;
-        padding: 2px 6px;
+        padding: 3px 8px;
         color: #fff;
         cursor: url("win98-pointer.png"), pointer;
         font-family: "Pixelated MS Sans Serif", Arial;
         white-space: nowrap;
+        margin-right: 4px;
+        transition: all 0.15s;
       }
       #autoplay-btn:hover { background: rgba(255,255,255,0.25); }
+      #autoplay-btn.off { color: rgba(255,255,255,0.4); border-color: rgba(255,255,255,0.15); background: transparent; }
 
-      #video-info { margin-top: 8px; }
-      #video-info p { margin: 3px 0; }
-
+      /* PLAY OVERLAY */
       #play-overlay {
         position: absolute;
         top: 50%; left: 50%;
         transform: translate(-50%, -50%) scale(0);
-        background: rgba(0,0,0,0.6);
+        background: rgba(0,0,0,0.5);
         border-radius: 50%;
-        width: 60px; height: 60px;
+        width: 64px; height: 64px;
         display: flex; align-items: center; justify-content: center;
-        font-size: 24px; color: #fff;
         pointer-events: none;
-        transition: transform 0.1s, opacity 0.3s;
         opacity: 0;
+        transition: transform 0.08s, opacity 0.3s;
       }
-      #play-overlay.show {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-      }
+      #play-overlay.show { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      #play-overlay svg { width: 32px; height: 32px; fill: #fff; }
+
+      #video-info { margin-top: 8px; }
+      #video-info p { margin: 3px 0; }
     </style>
   </head>
   <body>
@@ -150,29 +211,69 @@
           <div id="yt-player">
             <video id="player" src="" preload="metadata"></video>
 
-            <div id="play-overlay"></div>
+            <div id="play-overlay">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
 
             <div id="yt-controls">
-              <div id="progress-container">
-                <div id="progress-buffered"></div>
-                <div id="progress-fill"></div>
-                <div id="progress-thumb"></div>
+
+              <div id="progress-wrap">
+                <div id="seek-preview">
+                  <video id="preview-player" src="" preload="metadata" muted></video>
+                  <div id="seek-preview-time">0:00</div>
+                </div>
+                <div id="progress-track">
+                  <div id="progress-buffered"></div>
+                  <div id="progress-fill"></div>
+                  <div id="progress-thumb"></div>
+                </div>
               </div>
+
               <div id="controls-row">
-                <button class="yt-btn" id="play-btn" title="Play/Pause">▶</button>
-                <button class="yt-btn" onclick="prevStream()" title="Previous">⏮</button>
-                <button class="yt-btn" onclick="rewind()" title="-10s">↺ 10</button>
-                <button class="yt-btn" onclick="skipForward()" title="+10s">↻ 10</button>
-                <button class="yt-btn" onclick="nextStream()" title="Next">⏭</button>
+
+                <!-- Play/Pause -->
+                <button class="yt-btn" id="play-btn" title="Play/Pause">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+
+                <!-- Prev -->
+                <button class="yt-btn yt-btn-sm" onclick="prevStream()" title="Previous">
+                  <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+                </button>
+
+                <!-- Rewind 10s -->
+                <button class="yt-btn yt-btn-sm" onclick="rewind()" title="Rewind 10s">
+                  <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8zm-1.1 11H10v-3.26L9 13.12V12.3l1.8-.65h.1V16zm3.08 0h-2.13v-.7l1.05-1.08c.26-.27.43-.46.52-.58a.85.85 0 0 0 .13-.24.57.57 0 0 0 .04-.2c0-.1-.02-.18-.07-.23a.27.27 0 0 0-.2-.08.3.3 0 0 0-.22.1.59.59 0 0 0-.11.31h-.92a1.17 1.17 0 0 1 .36-.84c.23-.2.53-.3.89-.3.37 0 .66.09.86.27.21.18.31.43.31.74 0 .16-.03.32-.08.46-.06.14-.14.28-.26.43-.12.14-.32.35-.6.63l-.28.3v.02h1.25v.79z"/></svg>
+                </button>
+
+                <!-- Skip 10s -->
+                <button class="yt-btn yt-btn-sm" onclick="skipForward()" title="Skip 10s">
+                  <svg viewBox="0 0 24 24"><path d="M12 5V1l5 5-5 5V7c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6h2c0 4.42-3.58 8-8 8s-8-3.58-8-8 3.58-8 8-8zm-1.1 11H10v-3.26L9 13.12V12.3l1.8-.65h.1V16zm3.08 0h-2.13v-.7l1.05-1.08c.26-.27.43-.46.52-.58a.85.85 0 0 0 .13-.24.57.57 0 0 0 .04-.2c0-.1-.02-.18-.07-.23a.27.27 0 0 0-.2-.08.3.3 0 0 0-.22.1.59.59 0 0 0-.11.31h-.92a1.17 1.17 0 0 1 .36-.84c.23-.2.53-.3.89-.3.37 0 .66.09.86.27.21.18.31.43.31.74 0 .16-.03.32-.08.46-.06.14-.28.43-.26.43-.12.14-.32.35-.6.63l-.28.3v.02h1.25v.79z"/></svg>
+                </button>
+
+                <!-- Next -->
+                <button class="yt-btn yt-btn-sm" onclick="nextStream()" title="Next">
+                  <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zm2-8.14L11.03 12 8 14.14V9.86zM16 6h2v12h-2z"/></svg>
+                </button>
+
+                <!-- Volume -->
                 <div id="volume-wrap">
-                  <button class="yt-btn" id="mute-btn" onclick="toggleMute()">🔊</button>
+                  <button class="yt-btn yt-btn-sm" id="mute-btn" onclick="toggleMute()" title="Mute">
+                    <svg id="vol-icon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+                  </button>
                   <input id="volume-slider" type="range" min="0" max="1" step="0.05" value="1"/>
                 </div>
+
+                <!-- Time -->
                 <span id="time-wrap">0:00 / 0:00</span>
+
                 <div id="right-controls">
                   <button id="autoplay-btn" onclick="toggleAutoplay()">autoplay: on</button>
-                  <button class="yt-btn" onclick="toggleFullscreen()" title="Fullscreen">⛶</button>
+                  <button class="yt-btn yt-btn-sm" onclick="toggleFullscreen()" title="Fullscreen">
+                    <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                  </button>
                 </div>
+
               </div>
             </div>
           </div>
@@ -202,15 +303,19 @@
       let autoplay = true;
 
       const player = document.getElementById("player");
+      const previewPlayer = document.getElementById("preview-player");
       const ytPlayer = document.getElementById("yt-player");
       const playBtn = document.getElementById("play-btn");
       const muteBtn = document.getElementById("mute-btn");
+      const volIcon = document.getElementById("vol-icon");
       const volumeSlider = document.getElementById("volume-slider");
       const timeWrap = document.getElementById("time-wrap");
       const progressFill = document.getElementById("progress-fill");
       const progressBuffered = document.getElementById("progress-buffered");
       const progressThumb = document.getElementById("progress-thumb");
-      const progressContainer = document.getElementById("progress-container");
+      const progressWrap = document.getElementById("progress-wrap");
+      const seekPreview = document.getElementById("seek-preview");
+      const seekPreviewTime = document.getElementById("seek-preview-time");
       const playOverlay = document.getElementById("play-overlay");
       const videoTitle = document.getElementById("video-title");
       const videoMeta = document.getElementById("video-meta");
@@ -218,9 +323,13 @@
       const autoplayBtn = document.getElementById("autoplay-btn");
 
       let hideTimer;
+      let isSeeking = false;
+
+      const volHigh = `<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>`;
+      const volMute = `<path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4 9.91 6.09 12 8.18V4z"/>`;
 
       function formatTime(s) {
-        if (isNaN(s)) return "0:00";
+        if (isNaN(s) || !isFinite(s)) return "0:00";
         const m = Math.floor(s / 60);
         const sec = Math.floor(s % 60).toString().padStart(2, "0");
         return `${m}:${sec}`;
@@ -230,29 +339,38 @@
         currentIndex = index;
         const stream = streams[index];
         player.src = stream.src;
+        previewPlayer.src = stream.src;
         player.load();
         player.play();
-        playBtn.textContent = "⏸";
+        updatePlayIcon(false);
         videoTitle.textContent = stream.title;
         videoMeta.textContent = stream.meta;
         document.querySelectorAll(".playlist-item").forEach(el => el.classList.remove("active"));
         document.querySelectorAll(".playlist-item")[index].classList.add("active");
       }
 
+      function updatePlayIcon(paused) {
+        playBtn.querySelector("svg").innerHTML = paused
+          ? `<path d="M8 5v14l11-7z"/>`
+          : `<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>`;
+      }
+
       function togglePlay() {
         if (player.paused) {
           player.play();
-          playBtn.textContent = "⏸";
-          flashOverlay("⏸");
+          updatePlayIcon(false);
+          flashOverlay(false);
         } else {
           player.pause();
-          playBtn.textContent = "▶";
-          flashOverlay("▶");
+          updatePlayIcon(true);
+          flashOverlay(true);
         }
       }
 
-      function flashOverlay(icon) {
-        playOverlay.textContent = icon;
+      function flashOverlay(paused) {
+        playOverlay.querySelector("svg").innerHTML = paused
+          ? `<path d="M8 5v14l11-7z"/>`
+          : `<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>`;
         playOverlay.classList.add("show");
         setTimeout(() => playOverlay.classList.remove("show"), 500);
       }
@@ -264,14 +382,13 @@
 
       function toggleMute() {
         player.muted = !player.muted;
-        muteBtn.textContent = player.muted ? "🔇" : "🔊";
+        volIcon.innerHTML = player.muted ? volMute : volHigh;
       }
 
       function toggleAutoplay() {
         autoplay = !autoplay;
         autoplayBtn.textContent = autoplay ? "autoplay: on" : "autoplay: off";
-        autoplayBtn.style.background = autoplay ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.05)";
-        autoplayBtn.style.color = autoplay ? "#fff" : "rgba(255,255,255,0.4)";
+        autoplayBtn.classList.toggle("off", !autoplay);
       }
 
       function toggleFullscreen() {
@@ -279,37 +396,79 @@
         else document.exitFullscreen();
       }
 
-      player.addEventListener("timeupdate", () => {
-        if (!player.duration) return;
+      function updateProgress() {
+        if (!player.duration || isSeeking) return;
         const pct = (player.currentTime / player.duration) * 100;
         progressFill.style.width = pct + "%";
         progressThumb.style.left = pct + "%";
         timeWrap.textContent = `${formatTime(player.currentTime)} / ${formatTime(player.duration)}`;
-      });
+      }
+
+      player.addEventListener("timeupdate", updateProgress);
 
       player.addEventListener("progress", () => {
         if (player.buffered.length && player.duration) {
-          const buffered = (player.buffered.end(player.buffered.length - 1) / player.duration) * 100;
-          progressBuffered.style.width = buffered + "%";
+          const b = (player.buffered.end(player.buffered.length - 1) / player.duration) * 100;
+          progressBuffered.style.width = b + "%";
         }
       });
 
-      player.addEventListener("ended", () => {
-        if (autoplay) nextStream();
+      player.addEventListener("ended", () => { if (autoplay) nextStream(); });
+
+      /* SEEK */
+      progressWrap.addEventListener("mousemove", (e) => {
+        const rect = progressWrap.getBoundingClientRect();
+        const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        const previewTime = ratio * player.duration;
+
+        if (!isNaN(previewTime)) {
+          previewPlayer.currentTime = previewTime;
+          seekPreviewTime.textContent = formatTime(previewTime);
+        }
+
+        let left = e.clientX - rect.left;
+        left = Math.max(80, Math.min(rect.width - 80, left));
+        seekPreview.style.left = left + "px";
+        seekPreview.style.display = "flex";
       });
 
-      progressContainer.addEventListener("click", (e) => {
-        const rect = progressContainer.getBoundingClientRect();
-        const ratio = (e.clientX - rect.left) / rect.width;
+      progressWrap.addEventListener("mouseleave", () => {
+        seekPreview.style.display = "none";
+      });
+
+      progressWrap.addEventListener("click", (e) => {
+        const rect = progressWrap.getBoundingClientRect();
+        const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
         player.currentTime = ratio * player.duration;
       });
 
-      volumeSlider.addEventListener("input", () => { player.volume = volumeSlider.value; });
+      progressWrap.addEventListener("mousedown", (e) => {
+        isSeeking = true;
+        const move = (e2) => {
+          const rect = progressWrap.getBoundingClientRect();
+          const ratio = Math.max(0, Math.min(1, (e2.clientX - rect.left) / rect.width));
+          const pct = ratio * 100;
+          progressFill.style.width = pct + "%";
+          progressThumb.style.left = pct + "%";
+          player.currentTime = ratio * player.duration;
+        };
+        const up = () => {
+          isSeeking = false;
+          document.removeEventListener("mousemove", move);
+          document.removeEventListener("mouseup", up);
+        };
+        document.addEventListener("mousemove", move);
+        document.addEventListener("mouseup", up);
+      });
+
+      volumeSlider.addEventListener("input", () => {
+        player.volume = volumeSlider.value;
+        volIcon.innerHTML = volumeSlider.value == 0 ? volMute : volHigh;
+      });
 
       ytPlayer.addEventListener("click", (e) => {
         if (e.target === player || e.target === ytPlayer) togglePlay();
       });
-
       playBtn.addEventListener("click", togglePlay);
 
       ytPlayer.addEventListener("mousemove", () => {
