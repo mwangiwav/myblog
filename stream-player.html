@@ -20,6 +20,16 @@
       #main-video p {
         margin: 5px 0;
       }
+      #controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 8px;
+        flex-wrap: wrap;
+      }
+      #controls button {
+        cursor: url("win98-pointer.png"), pointer;
+      }
       #playlist {
         flex: 1;
         display: flex;
@@ -54,10 +64,16 @@
       <div id="player-layout">
 
         <div id="main-video">
-          <video id="player" controls src="https://file.garden/adsn6IDutmhqKH5B/test.mp4">
+          <video id="player" controls src="">
             Your browser does not support video.
           </video>
-          <p><strong id="video-title"></strong></p>
+          <div id="controls">
+            <button onclick="prevStream()">⏮ prev</button>
+            <button onclick="rewind()">↺ -10s</button>
+            <button onclick="skipForward()">↻ +10s</button>
+            <button onclick="nextStream()">⏭ next</button>
+          </div>
+          <p style="margin-top: 10px;"><strong id="video-title"></strong></p>
           <p style="color: grey;" id="video-meta"></p>
         </div>
 
@@ -88,12 +104,15 @@
         }
       ];
 
+      let currentIndex = 0;
+
       const player = document.getElementById("player");
       const videoTitle = document.getElementById("video-title");
       const videoMeta = document.getElementById("video-meta");
       const playlist = document.getElementById("playlist");
 
       function loadStream(index) {
+        currentIndex = index;
         const stream = streams[index];
         player.src = stream.src;
         player.load();
@@ -102,6 +121,22 @@
         videoMeta.textContent = stream.meta;
         document.querySelectorAll(".playlist-item").forEach(el => el.classList.remove("active"));
         document.querySelectorAll(".playlist-item")[index].classList.add("active");
+      }
+
+      function rewind() {
+        player.currentTime = Math.max(0, player.currentTime - 10);
+      }
+
+      function skipForward() {
+        player.currentTime = Math.min(player.duration, player.currentTime + 10);
+      }
+
+      function prevStream() {
+        if (currentIndex > 0) loadStream(currentIndex - 1);
+      }
+
+      function nextStream() {
+        if (currentIndex < streams.length - 1) loadStream(currentIndex + 1);
       }
 
       streams.forEach((stream, i) => {
