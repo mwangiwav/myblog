@@ -19,14 +19,15 @@
       .playlist-item:hover, .playlist-item.active { background: #dfdfdf; }
       .playlist-item img { width: 32px; height: 32px; }
 
-      #yt-player {
-        position: relative;
-        background: #000;
-        width: 100%;
-        cursor: pointer;
-        user-select: none;
-      }
-      #yt-player video { width: 100%; display: block; }
+     #yt-player {
+  position: relative;
+  background: #000;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  cursor: pointer;
+  user-select: none;
+}
+       #yt-player video { width: 100%; height: 100%; display: block; object-fit: contain; }
 
       #yt-controls {
         position: absolute;
