@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="site.js" defer></script>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/98.css" />
+    <link rel="stylesheet" href="plain-blog-style.css" />
+    <title>stream player</title>
+  </head>
+  <body>
+    <h2 style="text-align: center">mwangi's blog</h2>
+    <div id="header"></div>
+    <div id="content">
+
+      <div class="window" style="width: 100%; max-width: 680px; margin: 0 auto;">
+        <div class="title-bar">
+          <div class="title-bar-text">Minecraft Streams</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="window-body" style="padding: 0;">
+
+          <div style="background: #000; padding: 8px;">
+            <video
+              controls
+              style="width: 100%; display: block;"
+              src="">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <div style="background: silver; padding: 5px 10px; display: flex; align-items: center; gap: 8px; border-top: 2px solid white; border-bottom: 1px solid grey;">
+            <button title="Previous" style="font-size: 13px; min-width: 28px;">⏮</button>
+            <button title="Play" style="font-size: 13px; min-width: 28px;">▶</button>
+            <button title="Stop" style="font-size: 13px; min-width: 28px;">⏹</button>
+            <button title="Next" style="font-size: 13px; min-width: 28px;">⏭</button>
+            <div style="flex-grow: 1; height: 8px; background: #1a1a1a; box-shadow: inset 1px 1px grey, inset -1px -1px white; margin: 0 5px;">
+              <div style="height: 100%; width: 30%; background: linear-gradient(90deg, #86a1f1, #e8bfe4);"></div>
+            </div>
+            <span style="font-size: 12px; font-family: 'Pixelated MS Sans Serif', Arial;">00:00</span>
+          </div>
+
+          <div style="background: #c0c0c0; padding: 8px 12px; font-family: 'Pixelated MS Sans Serif', Arial; font-size: 13px; display: flex; justify-content: space-between;">
+            <span><strong>session_01</strong> — survival world</span>
+            <span style="color: grey;">May 2026</span>
+          </div>
+
+        </div>
+      </div>
+
+      <p style="text-align: center; margin-top: 15px;">
+        <a href="streams.html">← back to streams</a>
+      </p>
+
+    </div>
+    <div id="footer" style="text-align: center"></div>
+    <script src="script.js" type="text/javascript"></script>
+  </body>
+</html>
