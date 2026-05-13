@@ -7,86 +7,126 @@
     <link rel="stylesheet" href="plain-blog-style.css" />
     <title>stream player</title>
     <style>
-      #player-layout {
-        display: flex;
-        gap: 20px;
-      }
+      #player-layout { display: flex; gap: 20px; }
       #main-video { flex: 3; }
-      #playlist {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-      }
+      #playlist { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+
       .playlist-item {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 5px;
-        border-bottom: 1px solid #dfdfdf;
+        display: flex; align-items: center; gap: 8px;
+        padding: 5px; border-bottom: 1px solid #dfdfdf;
         cursor: url("win98-pointer.png"), pointer;
       }
-      .playlist-item:hover { background: #dfdfdf; }
-      .playlist-item.active { background: #dfdfdf; }
+      .playlist-item:hover, .playlist-item.active { background: #dfdfdf; }
       .playlist-item img { width: 32px; height: 32px; }
 
-      #video-wrapper {
+      /* PLAYER */
+      #yt-player {
         position: relative;
         background: #000;
         width: 100%;
+        cursor: pointer;
+        user-select: none;
       }
-      #video-wrapper video {
+      #yt-player video { width: 100%; display: block; }
+
+      #yt-controls {
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        background: linear-gradient(transparent, rgba(0,0,0,0.85));
+        padding: 30px 10px 8px 10px;
+        opacity: 1;
+        transition: opacity 0.3s;
+      }
+      #yt-player.hide-controls #yt-controls { opacity: 0; }
+
+      /* PROGRESS BAR */
+      #progress-container {
         width: 100%;
-        display: block;
+        height: 4px;
+        background: rgba(255,255,255,0.3);
+        position: relative;
+        margin-bottom: 8px;
+        cursor: pointer;
+        border-radius: 2px;
+        transition: height 0.1s;
       }
-
-      #custom-controls {
-        background: silver;
-        border-top: 2px solid #fff;
-        border-bottom: 2px solid grey;
-        padding: 5px 8px;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
+      #progress-container:hover { height: 6px; }
+      #progress-buffered {
+        position: absolute; top: 0; left: 0; height: 100%;
+        background: rgba(255,255,255,0.4);
+        border-radius: 2px; pointer-events: none;
       }
-
-      #seek-bar {
-        width: 100%;
-        height: 14px;
-        cursor: url("win98-pointer.png"), pointer;
-        accent-color: #86a1f1;
+      #progress-fill {
+        position: absolute; top: 0; left: 0; height: 100%;
+        background: #86a1f1;
+        border-radius: 2px; pointer-events: none;
       }
+      #progress-thumb {
+        position: absolute; top: 50%;
+        width: 12px; height: 12px;
+        background: #86a1f1;
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 0.1s;
+        pointer-events: none;
+      }
+      #progress-container:hover #progress-thumb { transform: translate(-50%, -50%) scale(1); }
 
+      /* BOTTOM ROW */
       #controls-row {
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 8px;
+        color: #fff;
       }
-
-      #controls-row button {
+      .yt-btn {
+        background: none; border: none; color: #fff;
+        font-size: 16px; cursor: url("win98-pointer.png"), pointer;
+        padding: 2px 4px; display: flex; align-items: center;
         font-family: "Pixelated MS Sans Serif", Arial;
-        font-size: 11px;
-        cursor: url("win98-pointer.png"), pointer;
-        min-width: 36px;
-        padding: 2px 4px;
       }
+      .yt-btn:hover { color: #ccc; }
 
-      #volume-bar {
-        width: 70px;
-        height: 14px;
+      #volume-wrap { display: flex; align-items: center; gap: 4px; }
+      #volume-slider {
+        width: 0; overflow: hidden; transition: width 0.2s;
+        -webkit-appearance: none; appearance: none;
+        height: 4px; background: rgba(255,255,255,0.3);
+        outline: none; border-radius: 2px;
         accent-color: #86a1f1;
-        cursor: url("win98-pointer.png"), pointer;
       }
+      #volume-wrap:hover #volume-slider { width: 60px; }
 
-      #time-display {
-        font-size: 11px;
+      #time-wrap {
+        font-size: 12px;
         font-family: "Pixelated MS Sans Serif", Arial;
-        margin-left: auto;
+        color: #fff;
         white-space: nowrap;
       }
 
+      #right-controls { margin-left: auto; display: flex; gap: 4px; align-items: center; }
+
       #video-info { margin-top: 8px; }
       #video-info p { margin: 3px 0; }
+
+      /* PLAY OVERLAY */
+      #play-overlay {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        background: rgba(0,0,0,0.6);
+        border-radius: 50%;
+        width: 60px; height: 60px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 24px; color: #fff;
+        pointer-events: none;
+        transition: transform 0.1s, opacity 0.3s;
+        opacity: 0;
+      }
+      #play-overlay.show {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
     </style>
   </head>
   <body>
@@ -97,21 +137,35 @@
       <div id="player-layout">
 
         <div id="main-video">
-          <div id="video-wrapper">
-            <video id="player" src=""></video>
-          </div>
-          <div id="custom-controls">
-            <input id="seek-bar" type="range" value="0" min="0" step="0.1"/>
-            <div id="controls-row">
-              <button onclick="prevStream()">⏮</button>
-              <button onclick="rewind()">-10s</button>
-              <button id="play-btn" onclick="togglePlay()">▶</button>
-              <button onclick="skipForward()">+10s</button>
-              <button onclick="nextStream()">⏭</button>
-              <input id="volume-bar" type="range" min="0" max="1" step="0.05" value="1"/>
-              <span id="time-display">0:00 / 0:00</span>
+          <div id="yt-player">
+            <video id="player" src="" preload="metadata"></video>
+
+            <div id="play-overlay">▶</div>
+
+            <div id="yt-controls">
+              <div id="progress-container">
+                <div id="progress-buffered"></div>
+                <div id="progress-fill"></div>
+                <div id="progress-thumb"></div>
+              </div>
+              <div id="controls-row">
+                <button class="yt-btn" id="play-btn" title="Play/Pause">▶</button>
+                <button class="yt-btn" onclick="prevStream()" title="Previous">⏮</button>
+                <button class="yt-btn" onclick="rewind()" title="-10s">↺ 10</button>
+                <button class="yt-btn" onclick="skipForward()" title="+10s">↻ 10</button>
+                <button class="yt-btn" onclick="nextStream()" title="Next">⏭</button>
+                <div id="volume-wrap">
+                  <button class="yt-btn" id="mute-btn" onclick="toggleMute()">🔊</button>
+                  <input id="volume-slider" type="range" min="0" max="1" step="0.05" value="1"/>
+                </div>
+                <span id="time-wrap">0:00 / 0:00</span>
+                <div id="right-controls">
+                  <button class="yt-btn" onclick="toggleFullscreen()" title="Fullscreen">⛶</button>
+                </div>
+              </div>
             </div>
           </div>
+
           <div id="video-info">
             <p><strong id="video-title"></strong></p>
             <p style="color: grey;" id="video-meta"></p>
@@ -135,15 +189,24 @@
 
       let currentIndex = 0;
       const player = document.getElementById("player");
+      const ytPlayer = document.getElementById("yt-player");
       const playBtn = document.getElementById("play-btn");
-      const seekBar = document.getElementById("seek-bar");
-      const volumeBar = document.getElementById("volume-bar");
-      const timeDisplay = document.getElementById("time-display");
+      const muteBtn = document.getElementById("mute-btn");
+      const volumeSlider = document.getElementById("volume-slider");
+      const timeWrap = document.getElementById("time-wrap");
+      const progressFill = document.getElementById("progress-fill");
+      const progressBuffered = document.getElementById("progress-buffered");
+      const progressThumb = document.getElementById("progress-thumb");
+      const progressContainer = document.getElementById("progress-container");
+      const playOverlay = document.getElementById("play-overlay");
       const videoTitle = document.getElementById("video-title");
       const videoMeta = document.getElementById("video-meta");
       const playlist = document.getElementById("playlist");
 
+      let hideTimer;
+
       function formatTime(s) {
+        if (isNaN(s)) return "0:00";
         const m = Math.floor(s / 60);
         const sec = Math.floor(s % 60).toString().padStart(2, "0");
         return `${m}:${sec}`;
@@ -163,8 +226,19 @@
       }
 
       function togglePlay() {
-        if (player.paused) { player.play(); playBtn.textContent = "⏸"; }
-        else { player.pause(); playBtn.textContent = "▶"; }
+        if (player.paused) {
+          player.play(); playBtn.textContent = "⏸";
+          flashOverlay("⏸");
+        } else {
+          player.pause(); playBtn.textContent = "▶";
+          flashOverlay("▶");
+        }
+      }
+
+      function flashOverlay(icon) {
+        playOverlay.textContent = icon;
+        playOverlay.classList.add("show");
+        setTimeout(() => playOverlay.classList.remove("show"), 500);
       }
 
       function rewind() { player.currentTime = Math.max(0, player.currentTime - 10); }
@@ -172,17 +246,58 @@
       function prevStream() { if (currentIndex > 0) loadStream(currentIndex - 1); }
       function nextStream() { if (currentIndex < streams.length - 1) loadStream(currentIndex + 1); }
 
+      function toggleMute() {
+        player.muted = !player.muted;
+        muteBtn.textContent = player.muted ? "🔇" : "🔊";
+      }
+
+      function toggleFullscreen() {
+        if (!document.fullscreenElement) ytPlayer.requestFullscreen();
+        else document.exitFullscreen();
+      }
+
       player.addEventListener("timeupdate", () => {
-        if (player.duration) {
-          seekBar.max = player.duration;
-          seekBar.value = player.currentTime;
-          timeDisplay.textContent = `${formatTime(player.currentTime)} / ${formatTime(player.duration)}`;
+        if (!player.duration) return;
+        const pct = (player.currentTime / player.duration) * 100;
+        progressFill.style.width = pct + "%";
+        progressThumb.style.left = pct + "%";
+        timeWrap.textContent = `${formatTime(player.currentTime)} / ${formatTime(player.duration)}`;
+      });
+
+      player.addEventListener("progress", () => {
+        if (player.buffered.length && player.duration) {
+          const buffered = (player.buffered.end(player.buffered.length - 1) / player.duration) * 100;
+          progressBuffered.style.width = buffered + "%";
         }
       });
 
-      seekBar.addEventListener("input", () => { player.currentTime = seekBar.value; });
-      volumeBar.addEventListener("input", () => { player.volume = volumeBar.value; });
       player.addEventListener("ended", () => nextStream());
+
+      progressContainer.addEventListener("click", (e) => {
+        const rect = progressContainer.getBoundingClientRect();
+        const ratio = (e.clientX - rect.left) / rect.width;
+        player.currentTime = ratio * player.duration;
+      });
+
+      volumeSlider.addEventListener("input", () => { player.volume = volumeSlider.value; });
+
+      ytPlayer.addEventListener("click", (e) => {
+        if (e.target === player || e.target === ytPlayer) togglePlay();
+      });
+
+      playBtn.addEventListener("click", togglePlay);
+
+      ytPlayer.addEventListener("mousemove", () => {
+        ytPlayer.classList.remove("hide-controls");
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(() => {
+          if (!player.paused) ytPlayer.classList.add("hide-controls");
+        }, 3000);
+      });
+
+      ytPlayer.addEventListener("mouseleave", () => {
+        if (!player.paused) ytPlayer.classList.add("hide-controls");
+      });
 
       streams.forEach((stream, i) => {
         const item = document.createElement("div");
