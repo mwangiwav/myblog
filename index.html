@@ -215,6 +215,21 @@
       </script>
     </div>
   </div>
+</div><div id="chat-main-view">
+  <p id="chat-fallback" style="display:none; font-size:11px; text-align:center; margin:4px 0;">
+    Chat not loading? Try refreshing the page.
+  </p>
+  <iframe 
+    src="https://iframe.chat/embed?chat=mwangichat" id="chattable" frameborder="0" height="390" width="100%" onload="clearTimeout(window._chatTimer)"></iframe>
+  <script>
+    window._chatTimer = setTimeout(function() {
+      document.getElementById('chat-fallback').style.display = 'block';
+    }, 5000);
+
+    chattable.initialize({
+      stylesheet: "chattable.css",
+    });
+  </script>
 </div>
  
 <script src="script.js" type="text/javascript"></script>
