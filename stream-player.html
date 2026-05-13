@@ -19,7 +19,6 @@
       .playlist-item:hover, .playlist-item.active { background: #dfdfdf; }
       .playlist-item img { width: 32px; height: 32px; }
 
-      /* PLAYER */
       #yt-player {
         position: relative;
         background: #000;
@@ -39,7 +38,6 @@
       }
       #yt-player.hide-controls #yt-controls { opacity: 0; }
 
-      /* PROGRESS BAR */
       #progress-container {
         width: 100%;
         height: 4px;
@@ -72,7 +70,6 @@
       }
       #progress-container:hover #progress-thumb { transform: translate(-50%, -50%) scale(1); }
 
-      /* BOTTOM ROW */
       #controls-row {
         display: flex;
         align-items: center;
@@ -106,10 +103,22 @@
 
       #right-controls { margin-left: auto; display: flex; gap: 4px; align-items: center; }
 
+      #autoplay-btn {
+        font-size: 11px;
+        background: rgba(255,255,255,0.15);
+        border: 1px solid rgba(255,255,255,0.3);
+        border-radius: 2px;
+        padding: 2px 6px;
+        color: #fff;
+        cursor: url("win98-pointer.png"), pointer;
+        font-family: "Pixelated MS Sans Serif", Arial;
+        white-space: nowrap;
+      }
+      #autoplay-btn:hover { background: rgba(255,255,255,0.25); }
+
       #video-info { margin-top: 8px; }
       #video-info p { margin: 3px 0; }
 
-      /* PLAY OVERLAY */
       #play-overlay {
         position: absolute;
         top: 50%; left: 50%;
@@ -140,7 +149,7 @@
           <div id="yt-player">
             <video id="player" src="" preload="metadata"></video>
 
-            <div id="play-overlay">▶</div>
+            <div id="play-overlay"></div>
 
             <div id="yt-controls">
               <div id="progress-container">
@@ -160,6 +169,7 @@
                 </div>
                 <span id="time-wrap">0:00 / 0:00</span>
                 <div id="right-controls">
+                  <button id="autoplay-btn" onclick="toggleAutoplay()">autoplay: on</button>
                   <button class="yt-btn" onclick="toggleFullscreen()" title="Fullscreen">⛶</button>
                 </div>
               </div>
@@ -182,12 +192,14 @@
     <script src="script.js"></script>
     <script>
       const streams = [
-        { title: "session_01", meta: "May 2026 — survival world", src: "https://file.garden/adsn6IDutmhqKH5B/test.mp4" },
+        { title: "session_01", meta: "May 2026 — survival world", src: "YOUR_FILE_GARDEN_LINK_1" },
         { title: "session_02", meta: "May 2026 — survival world", src: "YOUR_FILE_GARDEN_LINK_2" },
         { title: "session_03", meta: "May 2026 — survival world", src: "YOUR_FILE_GARDEN_LINK_3" }
       ];
 
       let currentIndex = 0;
+      let autoplay = true;
+
       const player = document.getElementById("player");
       const ytPlayer = document.getElementById("yt-player");
       const playBtn = document.getElementById("play-btn");
@@ -202,6 +214,7 @@
       const videoTitle = document.getElementById("video-title");
       const videoMeta = document.getElementById("video-meta");
       const playlist = document.getElementById("playlist");
+      const autoplayBtn = document.getElementById("autoplay-btn");
 
       let hideTimer;
 
@@ -227,10 +240,12 @@
 
       function togglePlay() {
         if (player.paused) {
-          player.play(); playBtn.textContent = "⏸";
+          player.play();
+          playBtn.textContent = "⏸";
           flashOverlay("⏸");
         } else {
-          player.pause(); playBtn.textContent = "▶";
+          player.pause();
+          playBtn.textContent = "▶";
           flashOverlay("▶");
         }
       }
@@ -249,6 +264,13 @@
       function toggleMute() {
         player.muted = !player.muted;
         muteBtn.textContent = player.muted ? "🔇" : "🔊";
+      }
+
+      function toggleAutoplay() {
+        autoplay = !autoplay;
+        autoplayBtn.textContent = autoplay ? "autoplay: on" : "autoplay: off";
+        autoplayBtn.style.background = autoplay ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.05)";
+        autoplayBtn.style.color = autoplay ? "#fff" : "rgba(255,255,255,0.4)";
       }
 
       function toggleFullscreen() {
@@ -271,7 +293,9 @@
         }
       });
 
-      player.addEventListener("ended", () => nextStream());
+      player.addEventListener("ended", () => {
+        if (autoplay) nextStream();
+      });
 
       progressContainer.addEventListener("click", (e) => {
         const rect = progressContainer.getBoundingClientRect();
