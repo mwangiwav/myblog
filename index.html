@@ -108,7 +108,7 @@
       <img src="cd_small.png" />
       <p id="player-label">CD Player</p>
     </div>
-    <div class="bottom-button" id="chat-bottom-btn" onclick="toggleChat()" style="cursor:pointer; display:flex; align-items:center;">
+    <div class="bottom-button" id="chat-bottom-btn" style="cursor:pointer; display:flex; align-items:center;">
       <img src="message-small.png" />
       <p id="player-label">Chat</p>
     </div>
@@ -161,12 +161,6 @@
   </div>
 </div>
  
-<div class="title-bar-controls" style="display:none;">
-  <button aria-label="Minimize" id="minimizebtn3"></button>
-  <button aria-label="Maximize" disabled></button>
-  <button aria-label="Close" id="closebtn3"></button>
-</div>
- 
 <!-- BEGIN START MENU -->
 <div class="window" id="start-menu">
   <div id="menu-list">
@@ -203,27 +197,25 @@
     </div>
   </div>
   <div class="window-body">
-<div id="chat-main-view">
-  <p id="chat-fallback" style="display:none; font-size:11px; text-align:center; margin:4px 0;">
-    Chat not loading? Try refreshing the page.
-  </p>
-  <iframe 
-    src="https://iframe.chat/embed?chat=mwangichat" 
-    id="chattable" 
-    frameborder="0" 
-    height="390" 
-    width="100%"
-    onload="clearTimeout(window._chatTimer)"
-  ></iframe>
-  <script>
-    window._chatTimer = setTimeout(function() {
-      document.getElementById('chat-fallback').style.display = 'block';
-    }, 5000);
-
-    chattable.initialize({
-      stylesheet: "chattable.css",
-    });
-  </script>
+    <div id="chat-main-view">
+      <p id="chat-fallback" style="display:none; font-size:11px; text-align:center; margin:4px 0;">
+        Chat not loading? Try refreshing the page.
+      </p>
+      <iframe 
+        src="https://iframe.chat/embed?chat=mwangichat" 
+        id="chattable" 
+        frameborder="0" 
+        height="390" 
+        width="100%"
+        onload="clearTimeout(window._chatTimer); chattable.initialize({ stylesheet: 'chattable.css' });"
+      ></iframe>
+      <script>
+        window._chatTimer = setTimeout(function() {
+          document.getElementById('chat-fallback').style.display = 'block';
+        }, 5000);
+      </script>
+    </div>
+  </div>
 </div>
  
 <script src="script.js" type="text/javascript"></script>
