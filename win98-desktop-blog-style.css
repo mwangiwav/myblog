@@ -551,16 +551,13 @@ a:hover,
 /* CHAT */
 #chat-window {
   width: 310px;
-  position: absolute;
-  left: 7.5%;
-  top: 3%;
+  position: relative;
+  margin: 20px auto;
   transition: 0.3s all;
- }
-
+}
 #chat-title-bar {
   background: linear-gradient(90deg, #86a1f1, #e8bfe4);
 }
-
 #chat-main-view {
   background: #fff;
   box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
@@ -569,7 +566,6 @@ a:hover,
   padding: 3px 2px 2px 2px;
   height: 400px;
 }
-
 /* RESPONSIVENESS */
 @media screen and (max-height: 950px) {
   #blog-contents {
