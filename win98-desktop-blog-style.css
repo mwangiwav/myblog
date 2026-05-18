@@ -552,7 +552,7 @@ a:hover,
 #chat-window {
   width: 310px;
   position: fixed;
-  left: 20px;
+  left: 60px;
   top: 80px;
   transition: 0.3s all;
   z-index: 100;
