@@ -198,23 +198,14 @@
   </div>
   <div class="window-body">
     <div id="chat-main-view">
-      <p id="chat-fallback" style="display:none; font-size:11px; text-align:center; margin:4px 0;">
-        Chat not loading? Try refreshing the page.
-      </p>
-      <iframe 
-        src="https://iframe.chat/embed?chat=mwangichat" 
+     <iframe src="https://iframe.chat/embed?chat=mwangichat" 
         id="chattable" 
         frameborder="0" 
         height="390" 
         width="100%"
         onload="clearTimeout(window._chatTimer); chattable.initialize({ stylesheet: 'chattable.css' });"
       ></iframe>
-      <script>
-        window._chatTimer = setTimeout(function() {
-          document.getElementById('chat-fallback').style.display = 'block';
-        }, 5000);
-      </script>
-    </div>
+      </div>
   </div>
 </div>
  
