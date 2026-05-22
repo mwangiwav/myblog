@@ -76,15 +76,16 @@ let track_list = [
   {
     name: "MYANNA'S PERSPECTIVE - millkzy",
     path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20MYANNA_S%20PERSPECTIVE%20-%20millkzy.mp3",
-  },
-  {
-    name: "FEEL - Kendrick Lamar",
-    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20FEEL.%20-%20Kendrick%20Lamar.mp3",
-  },
+  }, 
   {
     name: "never see me again - Kanye West",
     path: "https://file.garden/adsn6IDutmhqKH5B/never%20see%20me%20again%20-%20kanye%20west.mp3",
   },
+  {
+    name: "Bella Solitudine - Mia FluxXx",
+    path: "https://file.garden/adsn6IDutmhqKH5B/Bella_Solitudine.mp3",
+  },
+ 
 ];
 function loadTrack(track_index) {
   clearInterval(updateTimer);
