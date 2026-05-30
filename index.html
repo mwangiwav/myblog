@@ -17,6 +17,22 @@
   #desktop-icons {
     height: auto;
   }
+ 
+  .songtitle-wrapper {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+  }
+ 
+  .songtitle {
+    display: inline-block;
+    animation: marquee-scroll 12s linear infinite;
+  }
+ 
+  @keyframes marquee-scroll {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
 </style>
 </head>
  
@@ -139,7 +155,9 @@
         <div id="musicplayer">
           <div class="songtitlewindow">
             <div class="flex">
-              <marquee scrollamount="4" class="songtitle">playing 1 of 15: drive ME crazy - lil yachty</marquee>
+              <div class="songtitle-wrapper">
+                <div class="songtitle">playing 1 of 15: drive ME crazy - lil yachty</div>
+              </div>
               <div class="songtitlearrow"></div>
             </div>
           </div>
@@ -220,3 +238,4 @@
 <script src="win98.js" type="text/javascript"></script>
 </body>
 </html>
+ 
