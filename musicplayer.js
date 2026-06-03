@@ -51,11 +51,7 @@ let track_list = [
     path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20BOMB%20-%20__.mp3",
   },  
   
-  {
-    name: "Westside, Right on time - Kendrick lamar",
-    path: "https://file.garden/adsn6IDutmhqKH5B/westside%2C%20right%20on%20time.mp3",
-  },
-    {
+   {
     name: "Through the wire - Kanye West",
     path: "https://file.garden/adsn6IDutmhqKH5B/Through%20the%20wire%20-%20Kanye%20West.mp3",
   },  
@@ -77,6 +73,10 @@ let track_list = [
     name: "MYANNA'S PERSPECTIVE - millkzy",
     path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20MYANNA_S%20PERSPECTIVE%20-%20millkzy.mp3",
   },  
+  {
+    name: "I Really Want to Stay at Your House - Rosa Walton",
+    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20I%20Really%20Want%20to%20Stay%20at%20Your%20House%20-%20Rosa%20Walton.mp3",
+  },
   {
     name: "Bella Solitudine - Mia FluxXx",
     path: "https://file.garden/adsn6IDutmhqKH5B/Bella_Solitudine.mp3",
