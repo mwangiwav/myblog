@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Performance Paradox — Mwangi</title>
+  <style>
+    @font-face {
+      font-family: "Pixelated MS Sans Serif";
+      src: url(https://unpkg.com/98.css@0.1.16/dist/ms_sans_serif.woff) format("woff");
+      src: url(https://unpkg.com/98.css@0.1.16/dist/ms_sans_serif.woff2) format("woff2");
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "Pixelated MS Sans Serif";
+      src: url(https://unpkg.com/98.css@0.1.16/dist/ms_sans_serif_bold.woff) format("woff");
+      src: url(https://unpkg.com/98.css@0.1.16/dist/ms_sans_serif_bold.woff2) format("woff2");
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    ::-webkit-scrollbar { display: none; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      font-family: "Pixelated MS Sans Serif", Arial, sans-serif;
+      background: #fff;
+      color: #111;
+      line-height: 130%;
+      letter-spacing: 0.5px;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      overflow-x: hidden;
+    }
+
+    .page-wrap {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 32px 18px 80px;
+    }
+
+    /* back link */
+    .back-link {
+      font-size: 11px;
+      color: #888;
+      text-decoration: none;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 32px;
+    }
+    .back-link:hover {
+      color: #0000cc;
+    }
+
+    /* category eyebrow */
+    .eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #008800;
+      margin-bottom: 12px;
+    }
+
+    /* article title */
+    .article-title {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 140%;
+      color: #000;
+      margin-bottom: 14px;
+    }
+
+    /* subtitle / pull */
+    .article-subtitle {
+      font-size: 14px;
+      color: #555;
+      line-height: 155%;
+      margin-bottom: 20px;
+      border-left: 3px solid #ddd;
+      padding-left: 12px;
+    }
+
+    /* meta */
+    .article-meta {
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+    .article-meta span {
+      color: #0000cc;
+      font-weight: 700;
+    }
+
+    /* cover image */
+    .article-cover {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border: 1px solid #ccc;
+      display: block;
+      margin-bottom: 32px;
+    }
+
+    /* divider */
+    .section-rule {
+      border: none;
+      border-top: 1px solid #e0e0e0;
+      margin: 28px 0;
+    }
+
+    /* body text */
+    .article-body p {
+      font-size: 14px;
+      line-height: 175%;
+      color: #1a1a1a;
+      margin-bottom: 22px;
+    }
+
+    .article-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* pull quote inside body */
+    .pull-quote {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 155%;
+      color: #111;
+      border-left: 3px solid #111;
+      padding: 10px 0 10px 16px;
+      margin: 30px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+
+    <a class="back-link" href="home.html">← back</a>
+
+    <p class="eyebrow">Culture</p>
+
+    <h1 class="article-title">The Paradox of authenticity and performance.</h1>
+
+    <p class="article-subtitle">
+      On the impossibility of being real in a world that rewards the version of you that looks the most real.
+    </p>
+
+    <p class="article-meta">— <span>mwangi</span> &nbsp;·&nbsp; June 2025</p>
+
+    <!-- swap src for your chosen cover image URL -->
+    <img
+      class="article-cover"
+      src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80"
+      alt="Performance and identity"
+    />
+
+    <div class="article-body">
+
+      <p>
+        There is a version of you that only exists when other people are watching. You know them. 
+       They sit up a little straighter. They choose their words more carefully. They laugh at the right 
+        moments and goes quiet at the right ones too. They are not fake exactly but they are not fully 
+        you either. They are you, edited.
+      </p>
+
+      <p>
+        I used to think this was a social media problem. That social media specifically had done something 
+        to people, turned them into highlight reels of themselves, curated and filtered and captioned 
+        into something that barely resembles a human life. But the more I sat with it the more I 
+        realised social media did not create the performance. It just handed it a stage.
+      </p>
+
+      <hr class="section-rule" />
+
+      <p>
+        Think about the last time you were completely alone. Not alone in a coffee shop, not alone 
+        with your phone nearby, not alone in the way where you're still mentally narrating your day 
+        to someone. Actually alone, with no audience real or imagined. How long did it take before 
+        you stopped performing?
+      </p>
+
+      <p>
+        Because I think most of us are performing even then. Performing for a future version of the 
+        story. Performing for the person we wish was watching. Performing for ourselves, which might 
+        be the strangest performance of all.
+      </p>
+
+      <div class="pull-quote">
+        "The desire to be witnessed is not a flaw in our character. It is the character. It has always been."
+      </div>
+
+      <p>
+        Humans have always needed an audience. Before Instagram there were diaries written in the 
+        hope someone would one day read them. Before selfies there were portraits commissioned by 
+        people who wanted to be remembered in a specific way. Before personal branding there was 
+        reputation which is just personal branding with slower distribution. The need did not 
+        change. Only the speed did.
+      </p>
+
+      <hr class="section-rule" />
+
+      <p>
+        So here is where it gets uncomfortable. If performance is just human nature, if we have 
+        always been doing this then what exactly are we chasing when we talk about being authentic?
+      </p>
+
+      <p>
+        I scroll through Instagram and I see people who have built entire identities around not 
+        performing. The "I don't care what you think" post that clearly took three attempts to get 
+        right. The "raw and unfiltered" caption on a photo that is very much filtered. The "just 
+        existing" story that was very much considered before posting. There is nothing wrong with 
+        any of it but it is still a performance. It is the performance of authenticity. And 
+        somehow that one is the most seductive because it asks you to believe it is not a performance 
+        at all.
+      </p>
+
+      <div class="pull-quote">
+        "Authenticity became an aesthetic before most of us noticed it happening."
+      </div>
+
+      <p>
+        The paradox is this: the moment you decide to "be yourself" online, you have already made 
+        a decision. You have chosen which self. You have chosen what lighting. You have chosen what 
+        that self is going to say and how and when. That act of choosing  however honest it feels
+        is curation. And curation is performance. There is no way out of it.
+      </p>
+
+      <hr class="section-rule" />
+
+      <p>
+        I am not saying this to be cynical. I am saying it because I think accepting it is actually 
+        more honest than the alternative. The alternative is pretending you have transcended the 
+        very human need to be seen and validated  which is itself a performance, and a particularly 
+        exhausting one.
+      </p>
+
+      <p>
+        Maybe the more interesting question is not "how do I stop performing" but "which version 
+        of me do I actually want to put on stage." Because you are going to perform either way. 
+        You might as well perform something close to true.
+      </p>
+
+      <p>
+        The real you is probably somewhere in the gap between what you post and what you never 
+        would. Not the highlight and not the void somewhere in the middle, watching both, 
+        deciding what to do with them. That person is the most interesting one in the room. 
+        It's just that nobody has figured out how to post them yet.
+      </p>
+
+    </div>
+  </div>
+</body>
+</html>
