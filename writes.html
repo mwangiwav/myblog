@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Writes — Mwangi</title>
+  <style>
+    @font-face {
+      font-family: "Pixelated MS Sans Serif";
+      src: url(https://unpkg.com/98.css@0.1.16/dist/ms_sans_serif.woff) format("woff");
+      src: url(https://unpkg.com/98.css@0.1.16/dist/ms_sans_serif.woff2) format("woff2");
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "Pixelated MS Sans Serif";
+      src: url(https://unpkg.com/98.css@0.1.16/dist/ms_sans_serif_bold.woff) format("woff");
+      src: url(https://unpkg.com/98.css@0.1.16/dist/ms_sans_serif_bold.woff2) format("woff2");
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    ::-webkit-scrollbar { display: none; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      font-family: "Pixelated MS Sans Serif", Arial, sans-serif;
+      background: #fff;
+      color: #111;
+      line-height: 130%;
+      letter-spacing: 0.5px;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      overflow-x: hidden;
+    }
+
+    .page-wrap {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 28px 18px 60px;
+    }
+
+    .section-heading {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #888;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 8px;
+      margin-bottom: 32px;
+    }
+
+    .post-card {
+      margin-bottom: 48px;
+    }
+
+    .post-pull {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 145%;
+      margin-bottom: 10px;
+      color: #111;
+    }
+
+    .post-teaser {
+      font-size: 13px;
+      color: #444;
+      margin-bottom: 14px;
+      line-height: 150%;
+    }
+
+    .post-cover {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      border: 1px solid #ccc;
+      margin-bottom: 12px;
+      image-rendering: auto;
+    }
+
+    .post-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #000;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      display: inline-block;
+      margin-bottom: 6px;
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+    .post-title:hover {
+      color: #0000cc;
+    }
+
+    .post-meta {
+      font-size: 12px;
+      color: #555;
+    }
+    .post-meta .author {
+      color: #0000cc;
+      font-weight: 700;
+    }
+    .post-meta .category {
+      color: #008800;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .post-divider {
+      border: none;
+      border-top: 1px solid #e0e0e0;
+      margin-bottom: 48px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #888;
+      font-size: 13px;
+      border: 1px dashed #ccc;
+    }
+    .empty-state .empty-icon {
+      font-size: 32px;
+      display: block;
+      margin-bottom: 12px;
+    }
+    .empty-state strong {
+      display: block;
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+
+    <p class="section-heading">Writes</p>
+
+    <article class="post-card">
+      <p class="post-pull">"We were always performing. The internet just gave us an audience."</p>
+      <p class="post-teaser">On the impossibility of being real in a world that rewards the version of you that looks the most real.</p>
+      <img
+        class="post-cover"
+        src="https://i.pinimg.com/736x/44/0e/c6/440ec69a55030ecd33c031e3dce93c9f.jpg"
+        alt="Performance and identity"
+      />
+      <a class="post-title" href="write-performance.html">The Performance Paradox</a>
+      <p class="post-meta">
+        — <span class="author">mwangi</span>
+        &nbsp;in&nbsp;
+       </p>
+    </article>
+
+    <!-- Add new post cards above this line as you write more -->
+
+  </div>
+</body>
+</html>
