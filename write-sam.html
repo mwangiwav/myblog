@@ -206,5 +206,356 @@
    <a href="writes.html">← back</a>
     <div id="footer" style="text-align: center"></div>
     <script src="script.js"></script>
+  <!-- ═══════════════════════════════════
+     COMMENT SECTION — paste this block
+     just before </body> on each write page
+     ═══════════════════════════════════ -->
+
+<style>
+  .comments-wrap {
+    max-width: 620px;
+    margin: 48px auto 0;
+    padding: 0 18px 60px;
+    font-family: "Pixelated MS Sans Serif", Arial, sans-serif;
+  }
+
+  .comments-heading {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #888;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+  }
+
+  .comment-form {
+    margin-bottom: 28px;
+  }
+
+  .comment-form textarea {
+    width: 100%;
+    font-family: "Pixelated MS Sans Serif", Arial, sans-serif;
+    font-size: 13px;
+    background: #fff;
+    border: 1px solid #ccc;
+    color: #111;
+    padding: 8px 10px;
+    resize: vertical;
+    min-height: 64px;
+    display: block;
+    letter-spacing: 0.5px;
+    line-height: 130%;
+  }
+
+  .comment-form textarea:focus {
+    outline: dotted 1px #000;
+  }
+
+  .post-btn {
+    font-family: "Pixelated MS Sans Serif", Arial, sans-serif;
+    font-size: 12px;
+    background: #fff;
+    border: 1px solid #aaa;
+    color: #111;
+    padding: 4px 16px;
+    cursor: pointer;
+    margin-top: 6px;
+    float: right;
+    letter-spacing: 0.5px;
+  }
+
+  .post-btn:hover {
+    background: #f0f0f0;
+  }
+
+  .clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  .comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  .comment-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .comment-body {
+    font-size: 13px;
+    color: #1a1a1a;
+    line-height: 170%;
+    letter-spacing: 0.5px;
+    padding-bottom: 4px;
+  }
+
+  .comment-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .comment-ts {
+    font-size: 11px;
+    color: #aaa;
+  }
+
+  .reply-toggle {
+    font-family: "Pixelated MS Sans Serif", Arial, sans-serif;
+    font-size: 11px;
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    padding: 0;
+    letter-spacing: 0.5px;
+  }
+
+  .reply-toggle:hover {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  .comment-divider {
+    border: none;
+    border-top: 1px solid #eee;
+    margin-top: 12px;
+  }
+
+  .replies-list {
+    margin-left: 20px;
+    margin-top: 10px;
+    border-left: 2px solid #e0e0e0;
+    padding-left: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .reply-block {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .reply-snippet {
+    font-size: 11px;
+    font-style: italic;
+    color: #aaa;
+    margin-bottom: 4px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    letter-spacing: 0.5px;
+  }
+
+  .reply-body {
+    font-size: 13px;
+    color: #1a1a1a;
+    line-height: 170%;
+    letter-spacing: 0.5px;
+  }
+
+  .reply-ts {
+    font-size: 11px;
+    color: #aaa;
+    margin-top: 4px;
+  }
+
+  .reply-form {
+    margin-left: 20px;
+    margin-top: 8px;
+    padding-left: 14px;
+    border-left: 2px solid #e0e0e0;
+  }
+
+  .reply-snippet-preview {
+    font-size: 11px;
+    font-style: italic;
+    color: #aaa;
+    margin-bottom: 6px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    letter-spacing: 0.5px;
+  }
+
+  .reply-form textarea {
+    width: 100%;
+    font-family: "Pixelated MS Sans Serif", Arial, sans-serif;
+    font-size: 13px;
+    background: #fff;
+    border: 1px solid #ccc;
+    color: #111;
+    padding: 6px 10px;
+    resize: vertical;
+    min-height: 48px;
+    display: block;
+    letter-spacing: 0.5px;
+    line-height: 130%;
+  }
+
+  .reply-form textarea:focus {
+    outline: dotted 1px #000;
+  }
+
+  .reply-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 5px;
+  }
+
+  .cancel-btn {
+    font-family: "Pixelated MS Sans Serif", Arial, sans-serif;
+    font-size: 11px;
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    padding: 0;
+    letter-spacing: 0.5px;
+  }
+
+  .cancel-btn:hover {
+    text-decoration: underline;
+    color: #333;
+  }
+
+  .empty-comments {
+    font-size: 13px;
+    color: #aaa;
+    font-style: italic;
+  }
+</style>
+
+<div class="comments-wrap">
+  <p class="comments-heading">Discussion</p>
+
+  <div class="comment-form clearfix">
+    <textarea id="main-text" placeholder="Leave a comment..."></textarea>
+    <button class="post-btn" id="submit-btn">Post</button>
+  </div>
+
+  <div class="comments-list" id="comments-list">
+    <p class="empty-comments" id="load-msg">Loading...</p>
+  </div>
+</div>
+
+<script>
+  const CKEY = 'writes_comments_v3';
+
+  function ago(ts) {
+    const d = Math.floor((Date.now() - ts) / 1000);
+    if (d < 60) return 'just now';
+    if (d < 3600) return Math.floor(d / 60) + 'm ago';
+    if (d < 86400) return Math.floor(d / 3600) + 'h ago';
+    return Math.floor(d / 86400) + 'd ago';
+  }
+
+  function esc(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function snip(s) {
+    return s.length > 80 ? s.slice(0, 80) + '...' : s;
+  }
+
+  async function loadComments() {
+    try {
+      const r = await window.storage.get(CKEY, true);
+      return r ? JSON.parse(r.value) : [];
+    } catch (e) { return []; }
+  }
+
+  async function saveComments(data) {
+    try { await window.storage.set(CKEY, JSON.stringify(data), true); } catch (e) {}
+  }
+
+  let all = [];
+
+  function render() {
+    const list = document.getElementById('comments-list');
+    if (!all.length) {
+      list.innerHTML = '<p class="empty-comments">No comments yet. Start the discussion.</p>';
+      return;
+    }
+    list.innerHTML = all.map((c, ci) => `
+      <div class="comment-block" id="cb-${ci}">
+        <p class="comment-body">${esc(c.text)}</p>
+        <div class="comment-meta">
+          <span class="comment-ts">${ago(c.ts)}</span>
+          <button class="reply-toggle" onclick="openReply(${ci})">↩ reply</button>
+        </div>
+        ${(c.replies && c.replies.length) ? `
+          <div class="replies-list" id="rl-${ci}">
+            ${c.replies.map(r => `
+              <div class="reply-block">
+                <p class="reply-snippet">${esc(snip(c.text))}</p>
+                <p class="reply-body">${esc(r.text)}</p>
+                <span class="reply-ts">${ago(r.ts)}</span>
+              </div>
+            `).join('')}
+          </div>
+        ` : `<div class="replies-list" id="rl-${ci}" style="display:none"></div>`}
+        <div class="reply-form" id="rf-${ci}" style="display:none">
+          <p class="reply-snippet-preview">${esc(snip(c.text))}</p>
+          <textarea id="rt-${ci}" placeholder="Write a reply..."></textarea>
+          <div class="reply-actions">
+            <button class="cancel-btn" onclick="closeReply(${ci})">cancel</button>
+            <button class="post-btn" onclick="postReply(${ci})">Reply</button>
+          </div>
+        </div>
+        <hr class="comment-divider" />
+      </div>
+    `).join('');
+  }
+
+  function openReply(ci) {
+    document.querySelectorAll('[id^="rf-"]').forEach(el => el.style.display = 'none');
+    const rf = document.getElementById('rf-' + ci);
+    rf.style.display = 'block';
+    document.getElementById('rt-' + ci).focus();
+  }
+
+  function closeReply(ci) {
+    document.getElementById('rf-' + ci).style.display = 'none';
+  }
+
+  async function postReply(ci) {
+    const text = document.getElementById('rt-' + ci).value.trim();
+    if (!text) return;
+    if (!all[ci].replies) all[ci].replies = [];
+    all[ci].replies.push({ text, ts: Date.now() });
+    await saveComments(all);
+    render();
+  }
+
+  document.getElementById('submit-btn').onclick = async function () {
+    const text = document.getElementById('main-text').value.trim();
+    if (!text) return;
+    all.unshift({ text, ts: Date.now(), replies: [] });
+    await saveComments(all);
+    document.getElementById('main-text').value = '';
+    render();
+  };
+
+  (async function () {
+    all = await loadComments();
+    const lm = document.getElementById('load-msg');
+    if (lm) lm.remove();
+    render();
+  })();
+</script>
 </body>
 </html>
