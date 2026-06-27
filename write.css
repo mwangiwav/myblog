@@ -73,6 +73,21 @@
       display: block;
       margin-bottom: 32px;
     }
+  .guest-credit {
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+    .guest-credit a {
+      color: #0000cc;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .guest-credit a:hover {
+      color: #000099;
+    }
 
     .section-rule {
       border: none;
