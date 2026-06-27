@@ -4,59 +4,10 @@
    <meta charset="UTF-8"/>
     <meta name="referrer" content="no-referrer"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="plain-blog-style.css" />
+    <link rel="stylesheet" href="plain-blog-style.css"/>
+    <link rel="stylesheet" href="album.css"/>
     <title>visual diary</title>
-    <style>
-      .masonry {
-        columns: 2;
-        column-gap: 8px;
-        margin-top: 12px;
-      }
- 
-      .masonry .poster-wrap {
-        position: relative;
-        display: block;
-        margin-bottom: 8px;
-        break-inside: avoid;
-        cursor: url("win98-pointer.png"), pointer;
-      }
- 
-      .masonry .poster-wrap img {
-        width: 100%;
-        display: block;
-      }
- 
-      .album-label {
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.75);
-        color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        font-family: "Pixelated MS Sans Serif", Arial;
-        font-size: 13px;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        padding: 10px;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.15s ease;
-      }
- 
-      .poster-wrap.active .album-label {
-        opacity: 1;
-        pointer-events: auto;
-      }
- 
-      @media (min-width: 600px) {
-        .masonry {
-          columns: 3;
-        }
-      }
-    </style>
-  </head>
+     </head>
   <body>
     <h3>Albums, mixtapes and EPs</h3>
     <div id="header">This site requires JavaScript!</div>
