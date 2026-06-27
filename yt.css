@@ -1,0 +1,29 @@
+  #player-layout { display: flex; gap: 20px; }
+      #main-video { flex: 3; min-width: 0; }
+      #playlist { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+ 
+      .playlist-item {
+        display: flex; align-items: center; gap: 8px;
+        padding: 5px; border-bottom: 1px solid #dfdfdf;
+        cursor: url("win98-pointer.png"), pointer;
+      }
+      .playlist-item:hover, .playlist-item.active { background: #dfdfdf; }
+      .playlist-item img { width: 32px; height: 32px; }
+ 
+      #yt-player {
+        position: relative;
+        background: #000;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+      }
+ 
+      #yt-player iframe {
+        width: 100%;
+        height: 100%;
+        display: block;
+        border: none;
+      }
+ 
+      #video-info { margin-top: 8px; }
+      #video-info p { margin: 3px 0; }
