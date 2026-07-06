@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="site.js" defer></script>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="plain-blog-style.css"/>
+    <link rel="stylesheet" href="yt.css"/>
+    <title>Twinks</title>   
+  </head>
+  <body>
+    <h2 style="text-align: center">mwangi's blog</h2>
+    <div id="header"></div>
+    <div id="content">
+      <p><a href="youtube.html">← back to categories</a></p>
+      <div id="player-layout">
+ 
+        <div id="main-video">
+          <div id="yt-player">
+            <iframe
+              id="yt-iframe"
+              src=""
+              allowfullscreen
+              allow="autoplay; encrypted-media"
+            ></iframe>
+          </div>
+ 
+          <div id="video-info">
+            <p><strong id="video-title"></strong></p>
+            <p style="color: grey;" id="video-meta"></p>
+          </div>
+        </div>
+ 
+        <div id="playlist">
+          <p><strong>up next</strong></p>
+        </div>
+ 
+      </div>
+    </div>
+    <div id="footer" style="text-align: center"></div>
+    <script src="script.js"></script>
+    <script>
+      const streams = [
+        { ytId: "kKFTa3zKqo8"}, 
+        { ytId: ""},
+        { ytId: ""},
+        { ytId: ""},
+        { ytId: ""}, 
+        { ytId: ""},
+        { ytId: ""},
+        { ytId: ""},
+     
+     
+              
+        ];
+ 
+      let currentIndex = 0;
+ 
+      const iframe = document.getElementById("yt-iframe");
+      const videoTitle = document.getElementById("video-title");
+      const videoMeta = document.getElementById("video-meta");
+      const playlist = document.getElementById("playlist");
+ 
+      function loadStream(index) {
+        currentIndex = index;
+        const stream = streams[index];
+        iframe.src = `https://www.youtube.com/embed/${stream.ytId}?autoplay=1&rel=0`;
+        videoTitle.textContent = stream.title;
+        videoMeta.textContent = stream.meta;
+        document.querySelectorAll(".playlist-item").forEach(el => el.classList.remove("active"));
+        document.querySelectorAll(".playlist-item")[index].classList.add("active");
+      }
+ 
+      streams.forEach((stream, i) => {
+        const item = document.createElement("div");
+        item.className = "playlist-item";
+        item.innerHTML = `<img src="folder.png" alt="stream"/><span>${stream.title}<br><span style="color:grey;">${stream.meta}</span></span>`;
+        item.addEventListener("click", () => loadStream(i));
+        playlist.appendChild(item);
+      });
+ 
+      loadStream(0);
+    </script>
+  </body>
+</html>
+</html>
