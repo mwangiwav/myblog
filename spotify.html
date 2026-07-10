@@ -4,36 +4,22 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="plain-blog-style.css" />
-    <title>spotify — mwangi's blog</title>
+    <link rel="stylesheet" href="spotify.css" />
+    <title>spotify</title>
   </head>
   <body>
     <div id="header">This site requires JavaScript!</div>
     <div id="content">
       <h3>mwangi's playlist</h3>
 
-      <div style="display: flex; flex-wrap: nowrap; gap: 12px; align-items: flex-start; width: 100%;">
+      <div class="player-row">
 
         <!-- Spotify window -->
-        <div style="
-          flex: 1 1 60%;
-          min-width: 0;
-          background: silver;
-          box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
-        ">
-          <div style="
-            background: linear-gradient(90deg, #86a1f1, #e8bfe4);
-            color: white;
-            font-family: 'Pixelated MS Sans Serif', Arial;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 3px 6px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-          ">
-            <img src="cd_small.png" style="height: 14px;"/> mwangi's playlist
+        <div class="spotify-window">
+          <div class="spotify-titlebar">
+            <img src="cd_small.png"/> mwangi's playlist
           </div>
-          <div style="padding: 4px;">
+          <div class="spotify-body">
             <iframe
               src="https://open.spotify.com/embed/playlist/2n03dPvOuIk6q8pYU6xJFt?utm_source=generator"
               width="100%"
@@ -42,12 +28,7 @@
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
               loading="lazy">
             </iframe>
-            <p style="
-              font-family: 'Pixelated MS Sans Serif', Arial;
-              font-size: 11px;
-              color: #444;
-              margin: 4px 2px 0;
-            ">
+            <p class="spotify-caption">
               showing 100 of 1,200+ songs — <a href="https://open.spotify.com/playlist/2n03dPvOuIk6q8pYU6xJFt" target="_blank">open full playlist on Spotify</a>
             </p>
           </div>
@@ -56,7 +37,7 @@
         <!-- Plain square video box, no chrome -->
         <iframe
           id="yt-iframe"
-          style="flex: 1 1 40%; min-width: 0; height: 352px; border: none;"
+          class="video-frame"
           allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
           allowfullscreen>
         </iframe>
