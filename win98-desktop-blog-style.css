@@ -83,7 +83,7 @@ p {
  
 #browser-window {
   height: 800px;
-  width: 950px;
+  width: min(950px, calc(96vw - 480px));
   position: absolute;
   top: 2%;
   right: 4%;
