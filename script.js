@@ -41,9 +41,9 @@ fetch("https://api.github.com/repos/" + githubRepo + "/commits?per_page=1")
     let diffDays = Math.floor((now - lastCommitDate) / (1000 * 60 * 60 * 24));
 
     let text;
-    if (diffDays <= 0) text = "(updated today)";
-    else if (diffDays === 1) text = "(updated 1 day ago)";
-    else text = "(updated " + diffDays + " days ago)";
+    if (diffDays <= 0) text = "(last updated today)";
+    else if (diffDays === 1) text = "(last updated 1 day ago)";
+    else text = "(last updated " + diffDays + " days ago)";
 
     if (document.getElementById("dayScore")) {
       document.getElementById("dayScore").innerHTML = text;
