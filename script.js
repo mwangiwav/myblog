@@ -9,7 +9,7 @@ let url = window.location.pathname;
 let relativePath = ".";
 
 // Generate Header HTML (simple)
-let headerHTML = '<ul><li><a href="' + relativePath + '/home.html">home</a></li></ul>';
+let headerHTML = '<ul><li><a href="' + relativePath + '/home.html">home</a></li><li><a href="' + relativePath + '/archive.html">archive</a></li></ul>';
 
 // Generate Footer HTML (keep your 2026 rights reserved)
 let footerHTML = "<div><img src='neko.gif' style='margin-top:20px;'/><p>© 2026 mwangi, all rights reserved</p></div>";
