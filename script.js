@@ -3,7 +3,7 @@ let blogName = "mwangi's blog";
 let authorName = "mwangi";
 let authorLink = ""; // your link
 
-//==[ 3. GENERATING THE HTML SECTIONS TO BE INSERTED ]==
+//==[ 2. GENERATING THE HTML SECTIONS TO BE INSERTED ]==
 // relative path (if needed)
 let url = window.location.pathname;
 let relativePath = ".";
@@ -26,4 +26,20 @@ if (document.getElementById("footer")) {
 }
 if (document.getElementById("footer2")) {
   document.getElementById("footer2").innerHTML = footerHTML;
+}
+//==[ 3. DAY SCORE ]==
+let scoreStartDate = "2026-07-15"; // set this once, to whatever day you want day 1 to be
+
+function getDayScore(dateStr) {
+  let start = new Date(dateStr);
+  let now = new Date();
+  start.setHours(0, 0, 0, 0);
+  now.setHours(0, 0, 0, 0);
+  let diffDays = Math.floor((now - start) / (1000 * 60 * 60 * 24));
+  return diffDays + 1; // the set date itself counts as day 1
+}
+
+if (document.getElementById("dayScore")) {
+  let days = getDayScore(scoreStartDate);
+  document.getElementById("dayScore").innerHTML = "(" + days + (days === 1 ? " day" : " days") + ")";
 }
