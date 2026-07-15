@@ -27,21 +27,28 @@ if (document.getElementById("footer")) {
 if (document.getElementById("footer2")) {
   document.getElementById("footer2").innerHTML = footerHTML;
 }
+
 //==[ 3. DAY SCORE ]==
-let lastUpdatedDate = "2026-07-15"; // change this every time you update the blog
+let githubRepo = "mwangiwav/myblog"; 
 
-function getLastUpdatedText(dateStr) {
-  let updated = new Date(dateStr);
-  let now = new Date();
-  updated.setHours(0, 0, 0, 0);
-  now.setHours(0, 0, 0, 0);
-  let diffDays = Math.floor((now - updated) / (1000 * 60 * 60 * 24));
+fetch("https://api.github.com/repos/" + githubRepo + "/commits?per_page=1")
+  .then(function (res) { return res.json(); })
+  .then(function (data) {
+    let lastCommitDate = new Date(data[0].commit.committer.date);
+    let now = new Date();
+    lastCommitDate.setHours(0, 0, 0, 0);
+    now.setHours(0, 0, 0, 0);
+    let diffDays = Math.floor((now - lastCommitDate) / (1000 * 60 * 60 * 24));
 
-  if (diffDays <= 0) return "(updated today)";
-  if (diffDays === 1) return "(updated 1 day ago)";
-  return "(updated " + diffDays + " days ago)";
-}
+    let text;
+    if (diffDays <= 0) text = "(updated today)";
+    else if (diffDays === 1) text = "(updated 1 day ago)";
+    else text = "(updated " + diffDays + " days ago)";
 
-if (document.getElementById("dayScore")) {
-  document.getElementById("dayScore").innerHTML = getLastUpdatedText(lastUpdatedDate);
-}
+    if (document.getElementById("dayScore")) {
+      document.getElementById("dayScore").innerHTML = text;
+    }
+  })
+  .catch(function (err) {
+    console.error("Couldn't fetch last commit:", err);
+  });
