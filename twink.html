@@ -6,97 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="plain-blog-style.css"/>
     <link rel="stylesheet" href="twink.css"/>
-    <title>Twinks</title>     
+    <title>Twinks</title>   
+  
   </head>
   <body>
     <h2 style="text-align: center">mwangi's blog</h2>
     <div id="header"></div>
     <div id="content">
       <p><a href="home.html">← back</a></p>
-      <div id="player-layout">
- 
-        <div id="main-video">
-          <div id="yt-player">
-            <iframe
-              id="yt-iframe"
-              src=""
-              allowfullscreen
-              allow="autoplay; encrypted-media"
-            ></iframe>
-          </div>
- 
-          <div id="video-info">
-            <p><strong id="video-title"></strong></p>
-            <p style="color: grey;" id="video-meta"></p>
-          </div>
-        </div>
- 
-        <!-- Grid Wrapper instead of Masonry -->
-        <p style="margin-top: 20px;"><strong>up next</strong></p>
-        <div id="playlist" class="grid-container"></div>
- 
-      </div>
+      <div id="playlist" class="grid-container"></div>
     </div>
     <div id="footer" style="text-align: center"></div>
     <script src="script.js"></script>
     <script>
       const streams = [        
-       { title: "TWINK O1", meta: "Mwangi", ytId: "kKFTa3zKqo8"}, 
-       { title: "TWINK O2", meta: "Mwangi", ytId: "QSNt_Hx-VQ8"},
-       { title: "TWINK O3", meta: "Mwangi", ytId: "HwzH1O1-y0s"},
-       { title: "TWINK O4", meta: "Mwangi", ytId: "wL6JYHeKwGA"},
-       { title: "TWINK O5", meta: "Mwangi", ytId: "baW3IHUcQ6o"}, 
-       { title: "TWINK O6", meta: "Mwangi", ytId: "OYtdno4lH5U"},
-       { title: "TWINK O7", meta: "Mwangi", ytId: "Tc_9-G4eB-k"},
-       { title: "TWINK O7.1", meta: "Mwangi", ytId: "kbmejc94-dQ"},
-       { title: "TWINK O8", meta: "Mwangi", ytId: "IimoULVIJlI"},
-       { title: "TWINK 09", meta: "Mwangi", ytId: "ZQEAaORy5Ew"}, 
-       { title: "TWINK 10", meta: "Mwangi", ytId: "pefljevaVB4"}, 
-       { title: "TWINK 11", meta: "Mwangi", ytId: "LES8OL04SZQ"}, 
-       { title: "TWINK 12", meta: "Mwangi", ytId: "Sg_dnoaS4gM"}, 
-       { title: "TWINK 13", meta: "Mwangi", ytId: "-uhDIAu0AEI"}, 
-       { title: "TWINK 14", meta: "Mwangi", ytId: "RlsIo-55l0g"}, 
-       { title: "TWINK 15", meta: "Mwangi", ytId: "qRg39xbNPS4"}, 
-       { title: "TWINK 16", meta: "Mwangi", ytId: "LK5Doeg3ep8"},    
+       { ytId: "kKFTa3zKqo8"}, 
+       { ytId: "QSNt_Hx-VQ8"},
+       { ytId: "HwzH1O1-y0s"},
+       { ytId: "wL6JYHeKwGA"},
+       { ytId: "baW3IHUcQ6o"}, 
+       { ytId: "OYtdno4lH5U"},
+       { ytId: "Tc_9-G4eB-k"},
+       { ytId: "kbmejc94-dQ"},
+       { ytId: "IimoULVIJlI"},
+       { ytId: "ZQEAaORy5Ew"}, 
+       { ytId: "pefljevaVB4"}, 
+       { ytId: "LES8OL04SZQ"}, 
+       { ytId: "Sg_dnoaS4gM"}, 
+       { ytId: "-uhDIAu0AEI"}, 
+       { ytId: "RlsIo-55l0g"}, 
+       { ytId: "qRg39xbNPS4"}, 
+       { ytId: "LK5Doeg3ep8"},    
       ];
 
-      let currentIndex = 0;
- 
-      const iframe = document.getElementById("yt-iframe");
-      const videoTitle = document.getElementById("video-title");
-      const videoMeta = document.getElementById("video-meta");
       const playlist = document.getElementById("playlist");
  
-      function loadStream(index) {
-        currentIndex = index;
-        const stream = streams[index];
-        iframe.src = `https://www.youtube.com/embed/${stream.ytId}?autoplay=1&rel=0`;
-        videoTitle.textContent = stream.title;
-        videoMeta.textContent = stream.meta;
-        
-        document.querySelectorAll(".poster-wrap").forEach(el => el.classList.remove("active"));
-        document.querySelectorAll(".poster-wrap")[index].classList.add("active");
-      }
- 
-      streams.forEach((stream, i) => {
-        const item = document.createElement("div");
+      streams.forEach((stream) => {
+        const item = document.createElement("a");
         item.className = "poster-wrap"; 
+        item.href = `https://youtube.com{stream.ytId}`;
+        item.target = "_blank";
         
-        // FIXED: Added missing '$' sign for template literal and corrected domain path
         const thumbUrl = `https://youtube.com{stream.ytId}/hqdefault.jpg`;
         
-        item.innerHTML = `
-          <img src="${thumbUrl}" alt="${stream.title}"/>
-          <div class="album-label">
-            <span>${stream.title}<br><span style="color:#aaa;">${stream.meta}</span></span>
-          </div>
-        `;
-        
-        item.addEventListener("click", () => loadStream(i));
+        item.innerHTML = `<img src="${thumbUrl}" alt="Video thumbnail"/>`;
         playlist.appendChild(item);
       });
- 
-      loadStream(0);
     </script>
   </body>
 </html>
