@@ -6,19 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="plain-blog-style.css" />
     <link rel="stylesheet" href="pins.css"/>
-    <title>visual diary</title>
+    <title>visual diary</title>  
   </head>
   <body>
-    <div id="header">This site requires JavaScript!</div>
+    <div id="header">Visual Diary</div>
     <div id="content">
 
+      <!-- Main Overview -->
       <div id="boardsView">
         <h3>my boards</h3>
         <div class="board-grid" id="boardGrid"></div>
       </div>
 
+      <!-- Deep Dive View -->
       <div id="boardDetailView">
-        <a class="back-link" id="backToBoards">← boards</a>
+        <span class="back-link" id="backToBoards">← boards</span>
         <h3 id="boardDetailTitle"></h3>
         <div class="masonry" id="boardDetailGrid"></div>
       </div>
@@ -30,10 +32,9 @@
     </div>
 
     <div id="footer" style="text-align: center"></div>
-    <script src="script.js" type="text/javascript"></script>
 
     <script>
-          const boards = {
+      const boards = {
         "me": {
           cover: [
             "https://i.pinimg.com/1200x/c7/e6/70/c7e670b85d515196a8805ae51ff8ed93.jpg",
@@ -175,46 +176,44 @@
         }
       };
 
-      const boardGrid = document.getElementById('boardGrid');
-      const boardsView = document.getElementById('boardsView');
-      const boardDetailView = document.getElementById('boardDetailView');
-      const boardDetailGrid = document.getElementById('boardDetailGrid');
-      const boardDetailTitle = document.getElementById('boardDetailTitle');
-      const backToBoards = document.getElementById('backToBoards');
+      const boardGrid = document.getElementById("boardGrid");
+      const boardsView = document.getElementById("boardsView");
+      const boardDetailView = document.getElementById("boardDetailView");
+      const boardDetailTitle = document.getElementById("boardDetailTitle");
+      const boardDetailGrid = document.getElementById("boardDetailGrid");
+      const backToBoards = document.getElementById("backToBoards");
 
-      function renderBoardTiles() {
-        boardGrid.innerHTML = '';
-        Object.keys(boards).forEach(function (name) {
-          const board = boards[name];
-          const tile = document.createElement('div');
-          tile.className = 'board-tile';
-          tile.innerHTML = '<img src="' + board.cover + '"/><div class="board-name">' + name + '</div>';
-          tile.addEventListener('click', function () {
-            openBoard(name);
-          });
+      // Generate the Board Elements matching your CSS structure
+      function renderBoards() {
+        boardGrid.innerHTML = "";
+        
+        for (const [boardName, data] of Object.entries(boards)) {
+          const tile = document.createElement("div");
+          tile.className = "board-tile";
+          
+          // Structure matching your css: .board-cover -> .cover-main & .cover-stack
+          tile.innerHTML = `
+            <div class="board-cover">
+              <div class="cover-main">
+                <img src="${data.cover[0] || ''}" alt="Main Cover">
+              </div>
+              <div class="cover-stack">
+                <img src="${data.cover[1] || ''}" alt="Cover 2">
+                <img src="${data.cover[2] || ''}" alt="Cover 3">
+              </div>
+            </div>
+            <div class="board-name">${boardName}</div>
+          `;
+          
+          tile.addEventListener("click", () => openBoard(boardName, data));
           boardGrid.appendChild(tile);
-        });
+        }
       }
 
-      function openBoard(name) {
-        const board = boards[name];
-        boardDetailTitle.textContent = name;
-        boardDetailGrid.innerHTML = '';
-        board.pins.forEach(function (url) {
-          const img = document.createElement('img');
-          img.src = url;
-          boardDetailGrid.appendChild(img);
-        });
-        boardsView.style.display = 'none';
-        boardDetailView.style.display = 'block';
-      }
-
-      backToBoards.addEventListener('click', function () {
-        boardDetailView.style.display = 'none';
-        boardsView.style.display = 'block';
-      });
-
-      renderBoardTiles();
-    </script>
-  </body>
-</html>
+      // Transition to Detail Masonry Grid
+      function openBoard(name, data) {
+        boardsView.style.display = "none";
+        boardDetailView.style.display = "block";
+        boardDetailTitle.innerText = name;
+        
+        boardDetailGrid.innerHTML = data.pins
