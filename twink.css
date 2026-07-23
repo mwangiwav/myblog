@@ -1,0 +1,71 @@
+#player-layout { display: block; }
+#main-video { width: 100%; }
+
+#yt-player {
+  position: relative;
+  background: #000;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+#yt-player iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: none;
+}
+
+#video-info { margin-top: 8px; }
+#video-info p { margin: 3px 0; }
+
+/* video grid, replaces the old sidebar list */
+.masonry {
+  columns: 2;
+  column-gap: 8px;
+  margin-top: 16px;
+}
+
+.masonry .poster-wrap {
+  position: relative;
+  display: block;
+  margin-bottom: 8px;
+  break-inside: avoid;
+  cursor: url("win98-pointer.png"), pointer;
+}
+
+.masonry .poster-wrap img {
+  width: 100%;
+  display: block;
+}
+
+.album-label {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Pixelated MS Sans Serif", Arial;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.poster-wrap:hover .album-label,
+.poster-wrap.active .album-label {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (min-width: 600px) {
+  .masonry {
+    columns: 3;
+  }
+}
