@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="plain-blog-style.css" />
     <link rel="stylesheet" href="pins.css"/>
-    <title>visual diary</title>  
+    <title>visual diary</title>
   </head>
   <body>
     <div id="header">This site requires JavaScript!</div>
@@ -33,9 +33,14 @@
     <script src="script.js" type="text/javascript"></script>
 
     <script>
-       const boards = {
+      const boards = {
         "me": {
-          cover: "https://i.pinimg.com/1200x/a7/af/1f/a7af1fd8c5f21f1fc5873ab49f95190e.jpg",
+         cover: [
+            "https://i.pinimg.com/1200x/c7/e6/70/c7e670b85d515196a8805ae51ff8ed93.jpg",
+            "https://i.pinimg.com/736x/64/60/ec/6460ec1bbaccae2895e919a1c0361c6d.jpg",
+            "https://i.pinimg.com/1200x/c1/cd/69/c1cd6960dc99221c8cf54e1983b0c096.jpg",
+            "https://i.pinimg.com/736x/c3/96/59/c39659ba280c92381351111419c6c916.jpg"
+          ],
           pins: [
             "https://i.pinimg.com/1200x/a7/af/1f/a7af1fd8c5f21f1fc5873ab49f95190e.jpg",
             "https://i.pinimg.com/1200x/ab/ca/0e/abca0ee632ebd78d7f7c9aa1503c7992.jpg",
@@ -183,7 +188,7 @@
           const board = boards[name];
           const tile = document.createElement('div');
           tile.className = 'board-tile';
-          tile.innerHTML = '<img src="' + board.cover + '"/><span class="board-name">' + name + '</span>';
+          tile.innerHTML = '<img src="' + board.cover + '"/><div class="board-name">' + name + '</div>';
           tile.addEventListener('click', function () {
             openBoard(name);
           });
