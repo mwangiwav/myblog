@@ -1,19 +1,20 @@
-  .masonry {
-        columns: 2;
-        column-gap: 8px;
+ .grid-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
         margin-top: 12px;
       }
  
-      .masonry .poster-wrap {
+      .grid-container .poster-wrap {
         position: relative;
         display: block;
-        margin-bottom: 8px;
-        break-inside: avoid;
         cursor: url("win98-pointer.png"), pointer;
       }
  
-      .masonry .poster-wrap img {
+      .grid-container .poster-wrap img {
         width: 100%;
+        aspect-ratio: 1 / 1; 
+        object-fit: cover;
         display: block;
       }
  
@@ -42,6 +43,6 @@
       }
  
       @media (min-width: 600px) {
-        .masonry {
-          columns: 3;
+        .grid-container {
+          grid-template-columns: repeat(3, 1fr);
         }
