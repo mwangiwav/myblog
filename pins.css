@@ -48,6 +48,9 @@
       #boardDetailTitle {
         margin: 0 0 12px 0;
       }
+
+      /* Masonry grid for the pins inside an opened board.
+         Self-contained so it doesn't depend on pins.css existing. */
       #boardDetailGrid.masonry {
         column-count: 4;
         column-gap: 12px;
