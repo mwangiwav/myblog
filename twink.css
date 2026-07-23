@@ -1,4 +1,4 @@
- .grid-container {
+   .grid-container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
@@ -13,33 +13,9 @@
  
       .grid-container .poster-wrap img {
         width: 100%;
-        aspect-ratio: 1 / 1; 
+        aspect-ratio: 16 / 9; 
         object-fit: cover;
         display: block;
-      }
- 
-      .album-label {
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.75);
-        color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        font-family: "Pixelated MS Sans Serif", Arial;
-        font-size: 13px;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        padding: 10px;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.15s ease;
-      }
- 
-      .poster-wrap.active .album-label {
-        opacity: 1;
-        pointer-events: auto;
       }
  
       @media (min-width: 600px) {
