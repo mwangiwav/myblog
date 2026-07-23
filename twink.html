@@ -31,9 +31,8 @@
           </div>
         </div>
  
-        <div id="playlist">
-          <p><strong>up next</strong></p>
-        </div>
+        <p style="margin-top: 20px;"><strong>up next</strong></p>
+        <div id="playlist" class="masonry"></div>
  
       </div>
     </div>
@@ -41,11 +40,11 @@
     <script src="script.js"></script>
     <script>
       const streams = [        
-       { title: "TWINK O1", meta: "Mwangi",  ytId: "kKFTa3zKqo8"}, 
+       { title: "TWINK O1", meta: "Mwangi", ytId: "kKFTa3zKqo8"}, 
        { title: "TWINK O2", meta: "Mwangi", ytId: "QSNt_Hx-VQ8"},
        { title: "TWINK O3", meta: "Mwangi", ytId: "HwzH1O1-y0s"},
-       { title: "TWINK O4", meta: "Mwangi",  ytId: "wL6JYHeKwGA"},
-       { title: "TWINK O5", meta: "Mwangi",  ytId: "baW3IHUcQ6o"}, 
+       { title: "TWINK O4", meta: "Mwangi", ytId: "wL6JYHeKwGA"},
+       { title: "TWINK O5", meta: "Mwangi", ytId: "baW3IHUcQ6o"}, 
        { title: "TWINK O6", meta: "Mwangi", ytId: "OYtdno4lH5U"},
        { title: "TWINK O7", meta: "Mwangi", ytId: "Tc_9-G4eB-k"},
        { title: "TWINK O7.1", meta: "Mwangi", ytId: "kbmejc94-dQ"},
@@ -58,8 +57,7 @@
        { title: "TWINK 14", meta: "Mwangi", ytId: "RlsIo-55l0g"}, 
        { title: "TWINK 15", meta: "Mwangi", ytId: "qRg39xbNPS4"}, 
        { title: "TWINK 16", meta: "Mwangi", ytId: "LK5Doeg3ep8"},    
-                   
-        ];
+      ];
 
       let currentIndex = 0;
  
@@ -74,14 +72,26 @@
         iframe.src = `https://www.youtube.com/embed/${stream.ytId}?autoplay=1&rel=0`;
         videoTitle.textContent = stream.title;
         videoMeta.textContent = stream.meta;
-        document.querySelectorAll(".playlist-item").forEach(el => el.classList.remove("active"));
-        document.querySelectorAll(".playlist-item")[index].classList.add("active");
+        
+        document.querySelectorAll(".poster-wrap").forEach(el => el.classList.remove("active"));
+        document.querySelectorAll(".poster-wrap")[index].classList.add("active");
       }
  
       streams.forEach((stream, i) => {
         const item = document.createElement("div");
-        item.className = "playlist-item";
-        item.innerHTML = `<img src="folder.png" alt="stream"/><span>${stream.title}<br><span style="color:grey;">${stream.meta}</span></span>`;
+        // Apply poster-wrap class for masonry structural styling
+        item.className = "poster-wrap"; 
+        
+        // Generate high-quality YouTube thumbnail matching the video ID
+        const thumbUrl = `https://youtube.com{stream.ytId}/hqdefault.jpg`;
+        
+        item.innerHTML = `
+          <img src="${thumbUrl}" alt="${stream.title}"/>
+          <div class="album-label">
+            <span>${stream.title}<br><span style="color:#aaa;">${stream.meta}</span></span>
+          </div>
+        `;
+        
         item.addEventListener("click", () => loadStream(i));
         playlist.appendChild(item);
       });
@@ -89,5 +99,4 @@
       loadStream(0);
     </script>
   </body>
-</html>
 </html>
