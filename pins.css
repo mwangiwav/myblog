@@ -1,18 +1,45 @@
- .masonry {
-        columns: 2;
-        column-gap: 8px;
-        margin-top: 12px;
+  .board-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 12px;
       }
- 
-      .masonry img {
+      .board-tile {
+        position: relative;
+        cursor: pointer;
+        overflow: hidden;
+        aspect-ratio: 1 / 1;
+      }
+      .board-tile img {
         width: 100%;
+        height: 100%;
+        object-fit: cover;
         display: block;
-        margin-bottom: 8px;
-        break-inside: avoid;
       }
- 
-      @media (min-width: 600px) {
-        .masonry {
-          columns: 3;
-        }
+      .board-tile .board-name {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.55);
+        color: #fff;
+        font-family: inherit;
+        text-align: center;
+        padding: 8px;
+        opacity: 0;
+        transition: opacity 0.15s ease;
+      }
+      .board-tile:hover .board-name {
+        opacity: 1;
+      }
+      #boardDetailView {
+        display: none;
+      }
+      #boardDetailView .back-link {
+        display: inline-block;
+        margin-bottom: 12px;
+        cursor: pointer;
+      }
+      #boardDetailTitle {
+        margin: 0 0 12px 0;
       }
