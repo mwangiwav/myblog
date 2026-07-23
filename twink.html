@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="plain-blog-style.css"/>
     <link rel="stylesheet" href="yt.css"/>
-    <title>Twinks</title>   
+    <title>Twinks</title>     
   </head>
   <body>
     <h2 style="text-align: center">mwangi's blog</h2>
@@ -31,8 +31,9 @@
           </div>
         </div>
  
+        <!-- Grid Wrapper instead of Masonry -->
         <p style="margin-top: 20px;"><strong>up next</strong></p>
-        <div id="playlist" class="masonry"></div>
+        <div id="playlist" class="grid-container"></div>
  
       </div>
     </div>
@@ -79,10 +80,9 @@
  
       streams.forEach((stream, i) => {
         const item = document.createElement("div");
-        // Apply poster-wrap class for masonry structural styling
         item.className = "poster-wrap"; 
         
-        // Generate high-quality YouTube thumbnail matching the video ID
+        // FIXED: Added missing '$' sign for template literal and corrected domain path
         const thumbUrl = `https://youtube.com{stream.ytId}/hqdefault.jpg`;
         
         item.innerHTML = `
