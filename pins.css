@@ -1,4 +1,4 @@
-    .board-grid {
+       .board-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
         gap: 12px;
@@ -48,8 +48,6 @@
       #boardDetailTitle {
         margin: 0 0 12px 0;
       }
- 
-      
       #boardDetailGrid.masonry {
         column-count: 4;
         column-gap: 12px;
@@ -69,3 +67,4 @@
         #boardDetailGrid.masonry {
           column-count: 2;
         }
+      }
