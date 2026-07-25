@@ -136,7 +136,13 @@ const boards = {
       "https://i.pinimg.com/736x/35/e5/04/35e504ceba8b3df17527099fd5ff9d5d.jpg",
       "https://i.pinimg.com/736x/b3/13/bf/b313bf07a6fd99112e43ce54c58e103e.jpg",
       "https://i.pinimg.com/736x/5e/db/66/5edb663f3f0a0b619a19130223e84367.jpg",
-      "https://i.pinimg.com/736x/b0/b1/fb/b0b1fba5783066d2595acb459ccdaacb.jpg"
+      "https://i.pinimg.com/736x/b0/b1/fb/b0b1fba5783066d2595acb459ccdaacb.jpg",
+      "https://i.pinimg.com/1200x/ca/32/f5/ca32f513b951b6d30b05040193a4a72e.jpg",
+      "https://i.pinimg.com/1200x/be/ed/f8/beedf8121d913b3406bebd852c9a6e7f.jpg",
+      "https://i.pinimg.com/736x/b2/af/40/b2af4026720bd91111d78162107dc438.jpg",
+      "https://i.pinimg.com/736x/a1/6a/76/a16a7600cf02c627d0bd2625aa64e4ec.jpg",
+      "https://i.pinimg.com/736x/b3/de/8e/b3de8ece441f808dd44ec2aaab244686.jpg"
+  
     ]
   }
 };
