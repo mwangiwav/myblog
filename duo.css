@@ -10,7 +10,6 @@
 .ig-slides {
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1;
 }
 
 .ig-slide {
@@ -29,7 +28,7 @@
 .ig-slide img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 
