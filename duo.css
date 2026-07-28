@@ -1,0 +1,72 @@
+.ig-carousel {
+  position: relative;
+  max-width: 470px;
+  margin: 12px auto;
+  border: 1px solid #000;
+  background: #000;
+  overflow: hidden;
+}
+
+.ig-slides {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.ig-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.ig-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ig-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ig-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: url("win98-pointer.png"), pointer;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.ig-prev { left: 8px; }
+.ig-next { right: 8px; }
+
+.ig-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 0;
+  background: #fff;
+}
+
+.ig-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #c7c7c7;
+  border: none;
+  cursor: url("win98-pointer.png"), pointer;
+}
+
+.ig-dot.active {
+  background: #3897f0;
+}
