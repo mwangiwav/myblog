@@ -40,42 +40,60 @@
 
     <div id="footer" style="text-align: center"></div>
     <script src="script.js" type="text/javascript"></script>
+   <script>
+  (function() {
+    var carousel = document.getElementById('gngCarousel');
+    var slidesBox = carousel.querySelector('.ig-slides');
+    var slides = carousel.querySelectorAll('.ig-slide');
+    var dots = carousel.querySelectorAll('.ig-dot');
+    var current = 0;
 
-    <script>
-      (function() {
-        var carousel = document.getElementById('gngCarousel');
-        var slides = carousel.querySelectorAll('.ig-slide');
-        var dots = carousel.querySelectorAll('.ig-dot');
-        var current = 0;
+    function setRatio(img) {
+      if (img.naturalWidth && img.naturalHeight) {
+        slidesBox.style.aspectRatio = img.naturalWidth + ' / ' + img.naturalHeight;
+      }
+    }
 
-        function goTo(index) {
-          slides[current].classList.remove('active');
-          dots[current].classList.remove('active');
-          current = (index + slides.length) % slides.length;
-          slides[current].classList.add('active');
-          dots[current].classList.add('active');
-        }
+    function applyRatioFor(index) {
+      var img = slides[index].querySelector('img');
+      if (img.complete) {
+        setRatio(img);
+      } else {
+        img.addEventListener('load', function() { setRatio(img); });
+      }
+    }
 
-        carousel.querySelector('.ig-prev').addEventListener('click', function() {
-          goTo(current - 1);
-        });
-        carousel.querySelector('.ig-next').addEventListener('click', function() {
-          goTo(current + 1);
-        });
-        dots.forEach(function(dot, i) {
-          dot.addEventListener('click', function() { goTo(i); });
-        });
+    function goTo(index) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      applyRatioFor(current);
+    }
 
-        var startX = 0;
-        carousel.addEventListener('touchstart', function(e) {
-          startX = e.touches[0].clientX;
-        });
-        carousel.addEventListener('touchend', function(e) {
-          var diff = e.changedTouches[0].clientX - startX;
-          if (diff > 50) goTo(current - 1);
-          else if (diff < -50) goTo(current + 1);
-        });
-      })();
-    </script>
+    applyRatioFor(0);
+
+    carousel.querySelector('.ig-prev').addEventListener('click', function() {
+      goTo(current - 1);
+    });
+    carousel.querySelector('.ig-next').addEventListener('click', function() {
+      goTo(current + 1);
+    });
+    dots.forEach(function(dot, i) {
+      dot.addEventListener('click', function() { goTo(i); });
+    });
+
+    var startX = 0;
+    carousel.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+    });
+    carousel.addEventListener('touchend', function(e) {
+      var diff = e.changedTouches[0].clientX - startX;
+      if (diff > 50) goTo(current - 1);
+      else if (diff < -50) goTo(current + 1);
+    });
+  })();
+</script>
   </body>
 </html>
