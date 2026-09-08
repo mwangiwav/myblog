@@ -61,8 +61,8 @@ let track_list = [
   },
  
   {
-    name: "sAy sOMETHINg - Lil Yachty",
-    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20sAy%20sOMETHINg%20-%20Lil%20Yachty.mp3",
+    name: "pRETTy - Lil Yachty",
+    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20pRETTy%20-%20Lil%20Yachty.mp3",
   },
   
   {
