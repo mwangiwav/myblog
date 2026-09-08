@@ -39,27 +39,25 @@ let track_list = [
     name: "idk idk - Jim Legxacy",
     path: "https://file.garden/adsn6IDutmhqKH5B/idk%20idk%20-%20jim%20legxacy.mp3",
   },  
+   {
+    name: "popstar in da bits - young eman",
+    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20popstar%20in%20da%20bits%20-%20Young%20Eman.mp3",
+  }, 
   {
-    name: "I already know - young thug",
-    path: " https://file.garden/adsn6IDutmhqKH5B/Young%20Thug%20-%20I%20Already%20Know%20(Unreleased)%20-%20YOUNG%20SLATT%20WORLD.mp3",
- },
- 
+    name: "I'M YEAT - Yeat",
+    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20IM%20YEAT%20-%20Yeat.mp3",
+  },
   {
     name: "BOMB - ¥$",
     path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20BOMB%20-%20__.mp3",
   }, 
    {
-    name: "popstar in da bits - young eman",
-    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20popstar%20in%20da%20bits%20-%20Young%20Eman.mp3",
-  },
-  
-   {
-    name: "Through the wire - Kanye West",
-    path: "https://file.garden/adsn6IDutmhqKH5B/Through%20the%20wire%20-%20Kanye%20West.mp3",
-  },  
+    name: "WASTING TIME - Brent Faiyaz, Drake, The Neptunes",
+    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20WASTING%20TIME%20_FEAT.%20DRAKE%20_%20THE%20NEPTUNES_%20-%20Brent%20Faiyaz.mp3",
+ }, 
   {
-    name: "if. (spring in new york) - Brent Faiyaz",
-    path: "https://file.garden/adsn6IDutmhqKH5B/Brent%20Faiyaz%20-%20if.%20(spring%20in%20new%20york)%20-%20Brent%20Faiyaz.mp3",
+    name: "Last Call - Kanye West",
+    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20Last%20Call%20-%20Kanye%20West.mp3",
   },
  
   {
@@ -76,8 +74,8 @@ let track_list = [
     path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20MYANNA_S%20PERSPECTIVE%20-%20millkzy.mp3",
   },  
   {
-    name: "I Really Want to Stay at Your House - Rosa Walton",
-    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20I%20Really%20Want%20to%20Stay%20at%20Your%20House%20-%20Rosa%20Walton.mp3",
+    name: "if.(spring in new york) - Brent Faiyaz ",
+    path: "https://file.garden/adsn6IDutmhqKH5B/Brent%20Faiyaz%20-%20if.%20(spring%20in%20new%20york)%20-%20Brent%20Faiyaz.mp3",
   },
   {
     name: "Strawberry Swing - Frank Ocean",
