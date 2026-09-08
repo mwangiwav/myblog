@@ -26,14 +26,15 @@ let track_list = [
     name: "drive ME crazy - lil yachty",
     path: "https://file.garden/adsn6IDutmhqKH5B/YTDown.com_YouTube_Lil-Yachty-drive-ME-crazy-extended-versi_Media_G4ttJvcpuhA_009_128k.mp3",
   },
-  {
+   { 
+    name:"Pretty When U Cry - Olones ",
+    path: "https://file.garden/adsn6IDutmhqKH5B/Pretty%20When%20U%20Cry.mp3",
+  },
+   {
     name: "Bullies - Baby Keem ft. Kendrick Lamar",
     path: "https://file.garden/adsn6IDutmhqKH5B/Baby%20Keem%20-%20Bullies%20(ft.%20Kendrick%20Lamar).mp3",
   },
-  {
-    name: "popstar in da bits - young eman",
-    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20popstar%20in%20da%20bits%20-%20Young%20Eman.mp3",
-  },
+ 
   {
     name: "idk idk - Jim Legxacy",
     path: "https://file.garden/adsn6IDutmhqKH5B/idk%20idk%20-%20jim%20legxacy.mp3",
@@ -42,14 +43,15 @@ let track_list = [
     name: "I already know - young thug",
     path: " https://file.garden/adsn6IDutmhqKH5B/Young%20Thug%20-%20I%20Already%20Know%20(Unreleased)%20-%20YOUNG%20SLATT%20WORLD.mp3",
  },
-  { 
-    name:"END OF LIFE - Elijah Aike ",
-    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20END%20OF%20LIFE%20-%20Elijah%20Aike.mp3",
-  },
+ 
   {
     name: "BOMB - ¥$",
     path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20BOMB%20-%20__.mp3",
-  },  
+  }, 
+   {
+    name: "popstar in da bits - young eman",
+    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20popstar%20in%20da%20bits%20-%20Young%20Eman.mp3",
+  },
   
    {
     name: "Through the wire - Kanye West",
@@ -78,13 +80,13 @@ let track_list = [
     path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20I%20Really%20Want%20to%20Stay%20at%20Your%20House%20-%20Rosa%20Walton.mp3",
   },
   {
-    name: "Bella Solitudine - Mia FluxXx",
-    path: "https://file.garden/adsn6IDutmhqKH5B/Bella_Solitudine.mp3",
+    name: "Strawberry Swing - Frank Ocean",
+    path: "https://file.garden/adsn6IDutmhqKH5B/Frank%20Ocean%20-%20Strawberry%20Swing.mp3",
   },
  
   {
-    name: "never see me again - Kanye West",
-    path: "https://file.garden/adsn6IDutmhqKH5B/never%20see%20me%20again%20-%20kanye%20west.mp3",
+    name: "FTC - Jojit",
+    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20FTC%20-%20Joji.mp3",
   },
  
 ];
