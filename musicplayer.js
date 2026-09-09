@@ -67,7 +67,7 @@ let track_list = [
   
   {
     name: "NHH - Kanye West",
-    path: "https://file.garden/adsn6IDutmhqKH5B/NHH%20-%20Kanye%20West.mp3",
+    path: "https://file.garden/adsn6IDutmhqKH5B/NHH.mp3",
   },
   {
     name: "MYANNA'S PERSPECTIVE - millkzy",
