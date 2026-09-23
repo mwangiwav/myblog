@@ -1,8 +1,9 @@
       .masonry {
-        columns: 2;
-        column-gap: 8px;
-        margin-top: 12px;
-      }
+  columns: 2;
+  column-gap: 8px;
+  margin-top: 12px;
+  overflow-x: hidden;
+}
  
       .masonry .poster-wrap {
         position: relative;
