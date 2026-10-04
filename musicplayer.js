@@ -48,8 +48,8 @@ let track_list = [
     path: "https://file.garden/adsn6IDutmhqKH5B/Trouble%20-%20Frank%20Ocean.mp3",
   },
   {
-    name: "BOMB - ¥$",
-    path: "https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20BOMB%20-%20__.mp3",
+    name: "At the Gates - Drake ft Lil Uzi Vert",
+    path: "https://file.garden/adsn6IDutmhqKH5B/Drake%20%26%20Lil%20Uzi%20Vert%20-%20At%20The%20Gates.mp3",
   }, 
    {
     name: "WASTING TIME - Brent Faiyaz, Drake, The Neptunes",
