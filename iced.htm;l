@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="plain-blog-style.css"/>
+    <link rel="stylesheet" href="iced.css"/>
+    <title>Gng</title>
+  </head>
+  <body>
+    <div id="header">This site requires JavaScript!</div>
+    <div id="content">
+
+      <div class="ig-carousel" id="gngCarousel">
+        <div class="ig-slides">
+          <div class="ig-slide active">
+            <img src="b.jpeg" alt=""/>
+          </div>
+          <div class="ig-slide">
+            <img src="a.jpeg" alt=""/>
+          </div>
+          <!-- more ig-slide blocks go here as you add more photos -->
+        </div>
+
+        <button class="ig-arrow ig-prev" aria-label="previous">&#10094;</button>
+        <button class="ig-arrow ig-next" aria-label="next">&#10095;</button>
+
+        <audio id="gngSong" src="https://file.garden/adsn6IDutmhqKH5B/SpotiDown.App%20-%20popstar%20in%20da%20bits%20-%20Young%20Eman.mp3" loop preload="auto"></audio>
+      </div>
+
+      <br>
+      <a href="gng.html">← back</a>
+
+    </div>
+
+    <script src="script.js" type="text/javascript"></script>
+    <script src="iced.js" type="text/javascript"></script>
+  </body>
+</html>
