@@ -1,0 +1,67 @@
+.ig-carousel {
+  position: relative;
+  max-width: 470px;
+  margin: 12px auto;
+  overflow: hidden;
+}
+
+.ig-slides {
+  position: relative;
+  width: 100%;
+}
+
+.ig-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.ig-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ig-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* tall invisible tap zones on each side, with a faint chevron */
+.ig-arrow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 14%;
+  background: none;
+  border: none;
+  padding: 0;
+  color: #fff;
+  font-size: 18px;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+  opacity: 0.18;
+  transition: opacity 0.2s ease;
+  cursor: url("win98-pointer.png"), pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ig-arrow:hover {
+  opacity: 0.7;
+}
+
+.ig-prev {
+  left: 0;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.ig-next {
+  right: 0;
+  text-align: right;
+  padding-right: 10px;
+}
