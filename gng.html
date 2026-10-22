@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-   <meta charset="UTF-8"/>
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="plain-blog-style.css" />
+    <link rel="stylesheet" href="plain-blog-style.css"/>
+    <link rel="stylesheet" href="duo.css"/>
     <title>Gng</title>
   </head>
   <body>
-    <h2 style="text-align: center">mwangi's blog</h2>
-    <div id="header"></div>
+    <div id="header">This site requires JavaScript!</div>
     <div id="content">
-      <h3>Gng</h3>
-      <div style="display: flex; flex-wrap: wrap; gap: 24px;">
-      <a href="duo.html" style="text-decoration: none; color: inherit; display: inline-flex; flex-direction: column; align-items: center; width: 80px; text-align: center;">
-    <img src="folder.png" width="48" height="48" alt="folder"/>
-    <span>duos 26/07/2026</span>
-  </a>
+
+      <div class="ig-carousel" id="gngCarousel">
+        <div class="ig-slides">
+          <div class="ig-slide active">
+            <img src="gang.JPG" alt=""/>
+          </div>
+          <div class="ig-slide">
+            <img src="gng.gif" alt=""/>
+          </div>
+          <!-- more ig-slide blocks go here as you add more photos -->
+        </div>
+
+        <button class="ig-arrow ig-prev" aria-label="previous">&#10094;</button>
+        <button class="ig-arrow ig-next" aria-label="next">&#10095;</button>
+
+        <audio id="gngSong" src="song.mp3" loop preload="auto"></audio>
+      </div>
+
+      <br>
+      <a href="gng.html">← back</a>
+
     </div>
-    </div>
-    <br>
-    <a href="home.html">← back</a>
-    <div id="footer" style="text-align: center"></div>
-    <script src="script.js"></script>
+
+    <script src="script.js" type="text/javascript"></script>
+    <script src="duo.js" type="text/javascript"></script>
   </body>
 </html>
