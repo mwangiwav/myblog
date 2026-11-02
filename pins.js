@@ -141,7 +141,8 @@ const boards = {
       "https://i.pinimg.com/1200x/be/ed/f8/beedf8121d913b3406bebd852c9a6e7f.jpg",
       "https://i.pinimg.com/736x/b2/af/40/b2af4026720bd91111d78162107dc438.jpg",
       "https://i.pinimg.com/736x/a1/6a/76/a16a7600cf02c627d0bd2625aa64e4ec.jpg",
-      "https://i.pinimg.com/736x/b3/de/8e/b3de8ece441f808dd44ec2aaab244686.jpg"
+      "https://i.pinimg.com/736x/b3/de/8e/b3de8ece441f808dd44ec2aaab244686.jpg",
+      "https://substackcdn.com/image/fetch/$s_!3Wua!,w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8a5731cd-975b-4fbc-8540-68a90d5d1f07_1064x995.jpeg"
   
     ]
   }
